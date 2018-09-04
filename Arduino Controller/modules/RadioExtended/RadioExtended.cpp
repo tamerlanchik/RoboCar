@@ -1,9 +1,9 @@
 #include "RadioExtended.h"
 extern Logger* Log;
 
-RadioExtended::RadioExtended(byte CE, byte CSN, const byte* adr1,
-                            const byte* adr2, rf24_datarate_e r,
-                            rf24_pa_dbm_e l, RadioModes role):RF24(CE, CSN) {
+RadioExtended::RadioExtended(unsigned char CE, unsigned char CSN, const char* adr1,
+                            const char* adr2, rf24_datarate_e r,
+                            rf24_pa_dbm_e l, bool role):RF24(CE, CSN) {
     begin();
     setDataRate(r);
     setPALevel(l);
@@ -19,15 +19,14 @@ RadioExtended::RadioExtended(byte CE, byte CSN, const byte* adr1,
     }
 
     this->startListening();
-    Log->d("Radio inited");
+    #ifdef DEBUG
+      Log->d("Radio inited");
+    #endif
   }
 
 bool RadioExtended::write(void* data, int size){
   this->stopListening();
   bool fl = RF24::write(data,size);
   this->startListening();
-
-  lastConnectionTime = millis();
-
   return fl;
 }

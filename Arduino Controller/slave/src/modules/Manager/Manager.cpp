@@ -3,9 +3,10 @@
 extern Logger* Log;
 
 Manager::Manager(){
-  radio=new RadioExtended(radioCE,radioCSN, radioAdresses[0], radioAdresses[1], RF24_1MBPS, RF24_PA_MAX, RadioMode.SLAVE);
+  radio=new RadioExtended(radioCE,radioCSN, radioAdresses[0], radioAdresses[1], RF24_1MBPS, RF24_PA_MAX, 0);
   chassis = new Chassis();
   chassis->init();
+  mRadioMessage = new RadioMessage();
   Log->d("Manager inited");
 }
 void Manager::testing(){
@@ -25,17 +26,17 @@ int Manager::f(long long x, long long x0){
   else return 0;
 }
 
-RadioMessage* getRadioMessage(){
+RadioMessage* Manager::getRadioMessage(){
   if(!radio->available()){return NULL;}
-
+  Log->d("Message got");
   radio->read(mRadioMessage, sizeof(mRadioMessage));
-  return &mRadioMessage;
+  return mRadioMessage;
 }
 
-void handleMessage(RadioMessage& message){
+void Manager::handleMessage(RadioMessage* message){
   if(!message) return;
   switch(message->getMode()){
-    case RadioMessage::Mode::CHKCONN:
+    case Mode::CHKCONN:
       Log->d("Check conn");
       break;
     default:

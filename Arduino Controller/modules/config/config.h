@@ -1,10 +1,12 @@
+#pragma once
 #ifndef HeaderCommonConfig
 #define HeaderCommonConfig
 
 #define byte unsigned char
 #define DEBUG
 
-const char radioAdresses[2][] = {"1PIPE","2PIPE"}
+enum class Mode{CHKCONN = 2, DEF1};
+const char radioAdresses[][5] = {"1PIPE","2PIPE"};
 enum class RadioMode {SLAVE, MASTER};
 const unsigned int messageDataSize = 3;
 class RadioMessage{
@@ -12,10 +14,10 @@ class RadioMessage{
     Mode mMode;
     byte mData[messageDataSize];
   public:
-    static enum class Mode{CHKCONN = 2, DEF1};
     Mode getMode(){return mMode;}
     void setMode(Mode mode){mMode = mode;}
-    byte* getData(){return mData;}
+    byte* getDataArray(){return mData;}
+    byte getData(unsigned int index){return mData[index];}
     void setData(byte data[]){
       for(unsigned int i = 0; i < messageDataSize; i++){
         mData[i] = data[i];
