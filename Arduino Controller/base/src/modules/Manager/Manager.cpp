@@ -2,7 +2,7 @@
 #include "Manager.h"
 extern Logger* Log;
 Manager::Manager(){
-  mRadio = new RadioExtended(radioCE, radioCSN, radioAdresses[0], radioAdresses[1], RF24_1MBPS, RF24_PA_MAX, 0);
+  mRadio = new RadioExtended(radioCE, radioCSN, radioAdresses[0], radioAdresses[1], RF24_1MBPS, RF24_PA_MAX, 1);
   mRadioMessage = new RadioMessage();
   #ifdef DEBUG
     Log->d("Init Manager");
@@ -13,20 +13,24 @@ Manager::Manager(){
 bool Manager::checkRadioConnection(unsigned int timeout){
   mRadioMessage->setMode(Mode::CHKCONN);
   mRadioMessage->setData(0, '?');
-  mRadio->write(mRadioMessage, sizeof(mRadioMessage));
+  mRadio->write(mRadioMessage, sizeof(RadioMessage));
+  mRadioMessage->setData(0, '&');
 
   unsigned long startTime=millis();
   while(millis()-startTime <= timeout) {   //trying to get respond for 10 millis
     if(mRadio->available()){
-      mRadio->read(mRadioMessage, sizeof(mRadioMessage));
+      mRadio->read(mRadioMessage, sizeof(RadioMessage));
+      Serial.println(sizeof(RadioMessage));
       if(mRadioMessage->getData(0) == '!'){
         #ifdef DEBUG
-          Log->d("Connecion is active!");
+          //Log->d("Connecion is active!");
         #endif
         return true;
       }else{
         #ifdef DEBUG
           Log->e("A wrong check answer is got");
+          Serial.println(mRadioMessage->getData(0));
+          return 0;
         #endif
         break;
       }

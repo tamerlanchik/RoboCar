@@ -19,4 +19,5 @@ void setup()
 void loop()
 {
   manager->checkRadioConnection(10);
+  delay(1);
 }
