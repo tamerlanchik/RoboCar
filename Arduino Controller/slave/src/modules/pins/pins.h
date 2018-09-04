@@ -6,5 +6,7 @@
 //pins
 //REMEMBER: PIN 10 ONLY OUTPUT!
 const byte motorPins[] = {14,15,16,17, 5, 6};
+const byte radioCE = 0;
+const byte radioSCN = 1;
 
 #endif
