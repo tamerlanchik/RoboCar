@@ -19,6 +19,7 @@ class RadioMessage{
     byte getData(unsigned int index);
     void setData(unsigned char index, byte data);
     unsigned int getSize();
+    bool isRequestMessage();
 };
 
 #endif
