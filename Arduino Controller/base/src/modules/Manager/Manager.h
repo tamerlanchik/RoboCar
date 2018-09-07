@@ -5,6 +5,7 @@
 #include <pins.h>
 #include <config.h>
 #include "Logger.h"
+#include <RadioMessage.h>
 using namespace std;
 class Manager{
 private:
@@ -14,6 +15,6 @@ public:
     Manager();
     bool checkRadioConnection(unsigned int);
     RadioMessage* readRadio();
-    bool sendCommandRadio(Mode);
+    bool sendCommandRadio(RadioMessage::MC);
 };
 #endif

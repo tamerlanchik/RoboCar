@@ -1,5 +1,6 @@
 //base
 #include "Manager.h"
+#include <RadioMessage.h>
 extern Logger* Log;
 Manager::Manager(){
   mRadio = new RadioExtended(radioCE, radioCSN, radioAdresses[0], radioAdresses[1], RF24_1MBPS, RF24_PA_MAX, 1);
@@ -11,20 +12,17 @@ Manager::Manager(){
 
 
 bool Manager::checkRadioConnection(unsigned int timeout){
-  mRadioMessage->setMode(Mode::CHKCONN);
+  mRadioMessage->setMode(RadioMessage::MC::CHKCONN);
   mRadioMessage->setData(0, '?');
-  mRadio->write(mRadioMessage, sizeof(RadioMessage));
+  mRadio->write(mRadioMessage, mRadioMessage->getSize());
   mRadioMessage->setData(0, '&');
 
   unsigned long startTime=millis();
   while(millis()-startTime <= timeout) {   //trying to get respond for 10 millis
     if(mRadio->available()){
-      mRadio->read(mRadioMessage, sizeof(RadioMessage));
-      Serial.println(sizeof(RadioMessage));
+      mRadio->read(mRadioMessage, mRadioMessage->getSize());
+      Serial.println(mRadioMessage->getSize());
       if(mRadioMessage->getData(0) == '!'){
-        #ifdef DEBUG
-          //Log->d("Connecion is active!");
-        #endif
         return true;
       }else{
         #ifdef DEBUG
@@ -45,7 +43,7 @@ RadioMessage* Manager::readRadio() {
       #ifdef DEBUG
         Log->d("Read Radio");
       #endif
-      mRadio->read(mRadioMessage, sizeof(mRadioMessage));
+      mRadio->read(mRadioMessage, mRadioMessage->getSize());
       #ifdef DEBUG
         Log->d("Message get:");
         Log->write((int)(mRadioMessage->getMode()), 'i');
@@ -57,13 +55,13 @@ RadioMessage* Manager::readRadio() {
     return mRadioMessage;
 }
 
-bool Manager::sendCommandRadio(Mode mode) {
+bool Manager::sendCommandRadio(RadioMessage::MC mode) {
   #ifdef DEBUG
     Log->d("sendCommandRadio");
   #endif
   mRadioMessage->setMode(mode);
   switch(mode){
-    case Mode::CHKCONN:
+    case RadioMessage::MC::CHKCONN:
       this->checkRadioConnection(10);
     default:
       #ifdef DEBUG
