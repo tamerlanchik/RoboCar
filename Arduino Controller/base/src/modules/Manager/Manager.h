@@ -6,7 +6,6 @@
 #include <config.h>
 #include "Logger.h"
 #include <RadioMessage.h>
-#include <CarModel.h>
 using namespace std;
 class Manager{
 private:

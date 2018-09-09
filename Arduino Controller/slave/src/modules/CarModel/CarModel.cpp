@@ -4,6 +4,7 @@ CarModel::CarModel(){
   velLin[0] = velLin[1] = 0;
   velAn[0] = 0;
   coordGlob[0] = coordGlob[1] = 0;
+  motorValues[0] = motorValues[1] = 0;
 }
 
 void CarModel::setVelLin(int data[]){

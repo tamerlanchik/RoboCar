@@ -1,6 +1,6 @@
 #ifndef HEADER_BYTEARRAY
 #define HEADER_BYTEARRAY
-
+#define byte unsigned char
 class ByteArray{
   public:
     static void reverseString(byte a[], int l);

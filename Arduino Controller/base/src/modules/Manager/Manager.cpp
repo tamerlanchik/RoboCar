@@ -85,7 +85,7 @@ bool Manager::readSerial(){
         if(mSerialMessage[i++] == ';') break;
       }
     }while(i<32);
-    this->mSerialMessageLength = i;
+    this->mSerialMessageLength = i-1;
     //Serial.println(String((char*)mSerialMessage));  //echo
     return true;
   }

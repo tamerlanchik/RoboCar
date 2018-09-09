@@ -1,6 +1,6 @@
 #include "RadioMessage.h"
 
-unsigned char RadioMessage::ML[3] = {0, 1, 1, 2, 5};
+unsigned char RadioMessage::ML[5] = {0, 1, 1, 8, 5};
 
 RadioMessage::RadioMessage():mMode(MC::EMPTY) {}
 
@@ -26,4 +26,9 @@ bool RadioMessage::isRequestMessage(){
   unsigned char mode = (unsigned char) mMode;
   if(mode >=2 && mode <= 2) return true;
   else return false;
+}
+
+void RadioMessage::inflateChassisCommandPack(int pack[]){
+  pack[0] = ByteArray::getIntFromByteArray(mData, 0);
+  pack[1] = ByteArray::getIntFromByteArray(mData, 4);
 }

@@ -18,8 +18,10 @@ void setup()
 
 void loop()
 {
-  manager->checkRadioConnection(10);
+  /*manager->checkRadioConnection(10);
   delay(2);
   manager->sendTestLongParcelRadio();
-  delay(100);
+  delay(100);*/
+  manager->retranslateSerialToRadio();
+  delay(1);
 }

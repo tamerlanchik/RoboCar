@@ -7,6 +7,7 @@ Manager::Manager(){
   chassis = new Chassis();
   chassis->init();
   mRadioMessage = new RadioMessage();
+  mModel = new CarModel();
   Log->d("Manager inited");
 }
 void Manager::testing(){
@@ -45,6 +46,13 @@ void Manager::handleMessage(RadioMessage* message){
       break;
     case RadioMessage::MC::ANDR_CHK_CONN:
       Log->d("Android check conn");
+      break;
+    case RadioMessage::MC::CHASSIS_COMM:
+      message->inflateChassisCommandPack(mModel->motorValues);
+      Serial.print(mModel->motorValues[0]);
+      Serial.print(" ");
+      Serial.println(mModel->motorValues[1]);
+      chassis->setValue(mModel->motorValues);
       break;
     case RadioMessage::MC::DEF1:
       Log->d("Long parcel got");

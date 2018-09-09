@@ -5,6 +5,7 @@
 #include "Chassis.h"
 #include <RadioExtended.h>
 #include <RadioMessage.h>
+#include <CarModel.h>
 #include <pins.h>
 #include <config.h>
 class Manager{
@@ -12,6 +13,7 @@ private:
   RadioExtended* radio;
   Chassis* chassis;
   RadioMessage* mRadioMessage;
+  CarModel* mModel;
 public:
     Manager();
     void testing();
