@@ -13,15 +13,14 @@ Manager::Manager(){
 
 bool Manager::checkRadioConnection(unsigned int timeout){
   mRadioMessage->setMode(RadioMessage::MC::CHKCONN);
-  mRadioMessage->setData(1, '?');
+  mRadioMessage->setData(0, '?');
   mRadio->write(mRadioMessage, mRadioMessage->getSize());
-  mRadioMessage->setData(1, '&');
 
   unsigned long startTime=millis();
   while(millis()-startTime <= timeout) {   //trying to get respond for 10 millis
     if(mRadio->available()){
       mRadio->read(mRadioMessage, mRadioMessage->getSize());
-      if(mRadioMessage->getData(1) == '!'){
+      if(mRadioMessage->getData(0) == '!'){
         return true;
       }else{
         #ifdef DEBUG

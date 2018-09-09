@@ -40,8 +40,11 @@ void Manager::handleMessage(RadioMessage* message){
   switch(message->getMode()){
     case RadioMessage::MC::CHKCONN:
       Log->d("Check conn");
-      message->setData(1, '!');
+      message->setData(0, '!');
       radio->write(message, message->getSize());
+      break;
+    case RadioMessage::MC::ANDR_CHK_CONN:
+      Log->d("Android check conn");
       break;
     case RadioMessage::MC::DEF1:
       Log->d("Long parcel got");
