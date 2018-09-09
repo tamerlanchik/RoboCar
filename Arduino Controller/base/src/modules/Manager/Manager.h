@@ -12,11 +12,15 @@ class Manager{
 private:
     RadioExtended* mRadio;
     RadioMessage* mRadioMessage;
+    byte mSerialMessage[32];
+    unsigned int mSerialMessageLength;
 public:
     Manager();
     bool checkRadioConnection(unsigned int);
     RadioMessage* readRadio();
     bool sendCommandRadio(RadioMessage::MC);
     void sendTestLongParcelRadio();
+    bool readSerial();
+    void retranslateSerialToRadio();
 };
 #endif

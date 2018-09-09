@@ -76,3 +76,25 @@ void Manager::sendTestLongParcelRadio(){
   mRadioMessage->setData(4, '@');
   mRadio->write(mRadioMessage, mRadioMessage->getSize());
 }
+
+bool Manager::readSerial(){
+  if(Serial.available()){
+    unsigned int i = 0;
+    do{
+      if(Serial.available() > 0){
+        mSerialMessage[i] = Serial.read();
+        if(mSerialMessage[i++] == ';') break;
+      }
+    }while(i<32);
+    this->mSerialMessageLength = i;
+    //Serial.println(String((char*)mSerialMessage));  //echo
+    return true;
+  }
+  return false;
+}
+
+void Manager::retranslateSerialToRadio(){
+  if(readSerial()){
+    mRadio->write(mSerialMessage, mSerialMessageLength);
+  }
+}
