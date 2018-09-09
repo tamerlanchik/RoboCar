@@ -1,9 +1,10 @@
 #ifndef HEADER_RADIO_MESSAGE
 #define HEADER_RADIO_MESSAGE
 #include <config.h>
+
 class RadioMessage{
   public:
-    enum class MC : unsigned char {EMPTY, CHKCONN, DEF1};
+    enum class MC : unsigned char {EMPTY=0, CHKCONN, DEF1};
   private:
     const static unsigned char maxDataLength = 10;
     static unsigned char ML[3];

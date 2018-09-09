@@ -13,16 +13,15 @@ Manager::Manager(){
 
 bool Manager::checkRadioConnection(unsigned int timeout){
   mRadioMessage->setMode(RadioMessage::MC::CHKCONN);
-  mRadioMessage->setData(0, '?');
+  mRadioMessage->setData(1, '?');
   mRadio->write(mRadioMessage, mRadioMessage->getSize());
-  mRadioMessage->setData(0, '&');
+  mRadioMessage->setData(1, '&');
 
   unsigned long startTime=millis();
   while(millis()-startTime <= timeout) {   //trying to get respond for 10 millis
     if(mRadio->available()){
       mRadio->read(mRadioMessage, mRadioMessage->getSize());
-      Serial.println(mRadioMessage->getSize());
-      if(mRadioMessage->getData(0) == '!'){
+      if(mRadioMessage->getData(1) == '!'){
         return true;
       }else{
         #ifdef DEBUG
@@ -70,4 +69,10 @@ bool Manager::sendCommandRadio(RadioMessage::MC mode) {
       return false;
   }
   return true;
+}
+
+void Manager::sendTestLongParcelRadio(){
+  mRadioMessage->setMode(RadioMessage::MC::DEF1);
+  mRadioMessage->setData(4, '@');
+  mRadio->write(mRadioMessage, mRadioMessage->getSize());
 }

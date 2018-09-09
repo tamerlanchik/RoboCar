@@ -6,6 +6,7 @@
 #include <config.h>
 #include "Logger.h"
 #include <RadioMessage.h>
+#include <CarModel.h>
 using namespace std;
 class Manager{
 private:
@@ -16,5 +17,6 @@ public:
     bool checkRadioConnection(unsigned int);
     RadioMessage* readRadio();
     bool sendCommandRadio(RadioMessage::MC);
+    void sendTestLongParcelRadio();
 };
 #endif

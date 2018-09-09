@@ -29,22 +29,27 @@ int Manager::f(long long x, long long x0){
 RadioMessage* Manager::getRadioMessage(){
   if(!radio->available()){return NULL;}
   Log->d("Message got");
-  radio->read(mRadioMessage, sizeof(RadioMessage));
+  int messSize = radio->getDynamicPayloadSize();
+  Serial.println(messSize);
+  radio->read(mRadioMessage, messSize);
   return mRadioMessage;
 }
 
 void Manager::handleMessage(RadioMessage* message){
   if(!message) return;
   switch(message->getMode()){
-    case Mode::CHKCONN:
+    case RadioMessage::MC::CHKCONN:
       Log->d("Check conn");
-      mRadioMessage->setData(0, '!');
-      radio->write(mRadioMessage, sizeof(RadioMessage));
-      mRadioMessage->setData(0, '7');
-      mRadioMessage->setMode(Mode::DEF1);
+      message->setData(1, '!');
+      radio->write(message, message->getSize());
+      break;
+    case RadioMessage::MC::DEF1:
+      Log->d("Long parcel got");
+      Serial.println((int)message->getData(4));
       break;
     default:
       Log->e("Unknown message mode!");
+      Serial.println((int)message->getMode());
       break;
   }
 }

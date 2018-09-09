@@ -1,6 +1,6 @@
 #include "RadioMessage.h"
 
-unsigned char RadioMessage::ML[3] = {0, 1, 3};
+unsigned char RadioMessage::ML[3] = {0, 2, 5};
 
 RadioMessage::RadioMessage():mMode(MC::EMPTY) {}
 

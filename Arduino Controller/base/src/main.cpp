@@ -19,5 +19,7 @@ void setup()
 void loop()
 {
   manager->checkRadioConnection(10);
-  delay(1);
+  delay(2);
+  manager->sendTestLongParcelRadio();
+  delay(100);
 }

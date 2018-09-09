@@ -7,6 +7,7 @@ RadioExtended::RadioExtended(unsigned char CE, unsigned char CSN, const char* ad
     begin();
     setDataRate(r);
     setPALevel(l);
+    enableDynamicPayloads();
     setRetries(3, 3);
 
     //role: 1-base, 0-slave

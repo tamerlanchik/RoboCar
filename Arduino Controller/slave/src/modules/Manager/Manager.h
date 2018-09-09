@@ -4,6 +4,7 @@
 #include "Logger.h"
 #include "Chassis.h"
 #include <RadioExtended.h>
+#include <RadioMessage.h>
 #include <pins.h>
 #include <config.h>
 class Manager{
