@@ -38,6 +38,7 @@ RadioMessage* Manager::getRadioMessage(){
 
 void Manager::handleMessage(RadioMessage* message){
   if(!message) return;
+  tone(9, 1000, 50);
   switch(message->getMode()){
     case RadioMessage::MC::CHKCONN:
       Log->d("Check conn");

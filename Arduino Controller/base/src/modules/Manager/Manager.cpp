@@ -5,6 +5,8 @@ extern Logger* Log;
 Manager::Manager(){
   mRadio = new RadioExtended(radioCE, radioCSN, radioAdresses[0], radioAdresses[1], RF24_1MBPS, RF24_PA_MAX, 1);
   mRadioMessage = new RadioMessage();
+  pinMode(6, OUTPUT);
+  tone(6, 1000, 200);
   #ifdef DEBUG
     Log->d("Init Manager");
   #endif
@@ -78,6 +80,7 @@ void Manager::sendTestLongParcelRadio(){
 
 bool Manager::readSerial(){
   if(Serial.available()){
+    tone(6, 2000, 10);
     unsigned int i = 0;
     do{
       if(Serial.available() > 0){

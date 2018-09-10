@@ -14,6 +14,7 @@ void setup(){
   Log->d("CAR");
   Serial.println("BBegin");
   manager = new Manager();
+  pinMode(9, OUTPUT);
   delay(1000);
 }
 
