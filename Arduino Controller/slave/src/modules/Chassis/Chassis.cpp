@@ -45,6 +45,10 @@ void Chassis::setValue(int a, int b){
   }
 }
 
+void Chassis::setValue(int value[]){
+  setValue(value[0], value[1]);
+}
+
 //private
 void Chassis::writeMotors(bool values[]){
   for(unsigned char i = 0; i<4; i++)

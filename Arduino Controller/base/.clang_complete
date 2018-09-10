@@ -1,0 +1,48 @@
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\cores\arduino
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\variants\standard
+-IB:\Andrey\Documents\Git\Main RoboCar\RoboCar\Arduino Controller\modules\ByteArray
+-IB:\Andrey\Documents\Git\Main RoboCar\RoboCar\Arduino Controller\modules\Logger
+-IB:\Andrey\Documents\Git\Main RoboCar\RoboCar\Arduino Controller\modules\RadioExtended
+-IB:\Andrey\Documents\Git\Main RoboCar\RoboCar\Arduino Controller\modules\RadioMessage
+-IB:\Andrey\Documents\Git\Main RoboCar\RoboCar\Arduino Controller\modules\config
+-IB:\Andrey\Documents\Git\Main RoboCar\RoboCar\Arduino Controller\base\src\modules\Manager
+-IB:\Andrey\Documents\Git\Main RoboCar\RoboCar\Arduino Controller\base\src\modules\Map
+-IB:\Andrey\Documents\Git\Main RoboCar\RoboCar\Arduino Controller\base\src\modules\pins
+-IB:\Andrey\Documents\Git\Main RoboCar\RoboCar\Arduino Controller\base\.piolibdeps\RF24
+-IB:\Andrey\Documents\Git\Main RoboCar\RoboCar\Arduino Controller\base\.piolibdeps\RF24\utility
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\SPI\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\EEPROM\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\HID\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\SoftwareSerial\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\Wire\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Adafruit_CircuitPlayground
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Adafruit_CircuitPlayground\utility
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Bridge\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Esplora\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Ethernet\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Firmata
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Firmata\utility
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\GSM\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Keyboard\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\LiquidCrystal\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Mouse\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\RobotIRremote\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Robot_Control\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Robot_Motor\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\SD\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Servo\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\SpacebrewYun\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Stepper\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\TFT\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\Temboo\src
+-IC:\Users\PC\.platformio\packages\framework-arduinoavr\libraries\WiFi\src
+-IC:\Users\PC\.platformio\packages\toolchain-atmelavr\avr\include
+-IC:\Users\PC\.platformio\packages\toolchain-atmelavr\lib\gcc\avr\4.9.2\include
+-IC:\Users\PC\.platformio\packages\toolchain-atmelavr\lib\gcc\avr\4.9.2\include-fixed
+-IC:\Users\PC\.platformio\packages\tool-unity
+-DF_CPU=16000000L
+-DPLATFORMIO=30601
+-DARDUINO_AVR_UNO
+-DARDUINO_ARCH_AVR
+-DARDUINO=10620
+-D__AVR_ATmega328P__

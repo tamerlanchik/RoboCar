@@ -6,7 +6,6 @@ Logger::Logger(){
 }
 
 void Logger::write(const void* mess, char mode, char level){
-  #if defined DEBUG
   switch(level)
   {
     case 'i': Serial.print("I: "); break;
@@ -24,7 +23,6 @@ void Logger::write(const void* mess, char mode, char level){
     case 'L': Serial.println(*((unsigned long*)mess)); break;
     default: break;
   }
-  #endif
 }
 
 void Logger::d(const void* mess, char mode){

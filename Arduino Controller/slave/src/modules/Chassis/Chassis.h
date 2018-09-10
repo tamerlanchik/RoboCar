@@ -26,6 +26,7 @@ public:
   Chassis();
   void init();
   void setValue(int,int);
+  void setValue(int[]);
 };
 
 #endif

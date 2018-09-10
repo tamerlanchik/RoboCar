@@ -1,7 +1,6 @@
 #if !defined(HEADERLOG)
 #define HEADERLOG
 #include <Arduino.h>
-#include "config.h"
 /*
 Log modes (Android Log):
 d: DEBUG
