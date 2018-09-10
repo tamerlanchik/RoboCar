@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">RoboCar</string>
     <string name="linearSpeed">Lin. speed</string>
     <string name="angularSpeed">Ang. speed</string>
     <string name="connectedSwitch">Connect to transmitter</string>

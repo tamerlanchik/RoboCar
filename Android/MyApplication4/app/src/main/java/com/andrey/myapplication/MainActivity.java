@@ -71,15 +71,13 @@ public class MainActivity extends AppCompatActivity implements SerialModule.View
 
             @Override
             public void onValueChanged(Joystick g, Point value) {
-                if(System.currentTimeMillis() - mSendTimeout > -1) {
                 mLogger.write("Values - X: " + Float.toString(value.x) + " Y: " + Float.toString(value.y));
-                    if(mSerial.write(MessageManager.buildJoystickMessage(value))){
-                        mLogger.write("Sent");
-                    }else{
-                        mLogger.write(new LogItem("Error sending", true));
-                    }
-                    mSendTimeout = System.currentTimeMillis();
+                if(mSerial.write(MessageManager.buildJoystickMessage(value))){
+                    mLogger.write("Sent");
+                }else{
+                    mLogger.write(new LogItem("Error sending", true));
                 }
+                mSendTimeout = System.currentTimeMillis();
             }
 
             @Override

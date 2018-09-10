@@ -11,14 +11,16 @@ import java.util.List;
 
 public class MessageManager {
     public enum Mode {CHECK_CONN, MOTOR_COMM, SIGNAL_COMM, SENSOR_REQUEST, ALL};
-    public static char[] code = {'#', '@'};
+    public static char[] mCode = {'#', '@'};
+    public enum MessCode {EMPTY, CHKCONN, ANDR_CHK_CONN, CHASSIS_COMM, DEF1};
 
     public static byte[] buildJoystickMessage(Point data){
         List<Byte> l = new ArrayList<>();
 
-        l.add((byte)'#');
-        copyArrayToList(l, floatToByte(-data.y));
-        copyArrayToList(l, floatToByte(-data.x));
+        //l.add((byte)'#');
+        l.add((byte)MessCode.CHASSIS_COMM.ordinal());
+        copyArrayToList(l, intToByte(-data.y));
+        copyArrayToList(l, intToByte(-data.x));
         l.add((byte)';');
 
         byte a[] = new byte[l.size()];
@@ -54,11 +56,12 @@ public class MessageManager {
     }
 
     public static boolean isControlData(byte [] message){
-        if(findInArray(code, message[0]) >= 0){
+        /*if(findInArray(code, message[0]) >= 0){
             return true;
         }else{
             return false;
-        }
+        }*/
+        return true;
     }
 
     private static int findInArray(char [] a, byte c){
