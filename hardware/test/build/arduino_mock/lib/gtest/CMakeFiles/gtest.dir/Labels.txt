@@ -1,0 +1,13 @@
+# Target labels
+ gtest
+# Source files and their labels
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/CMakeFiles/gtest
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/CMakeFiles/gtest.rule
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/CMakeFiles/gtest-complete.rule
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-stamp/gtest-install.rule
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-stamp/gtest-mkdir.rule
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-stamp/gtest-download.rule
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-stamp/gtest-update.rule
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-stamp/gtest-patch.rule
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-stamp/gtest-configure.rule
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-stamp/gtest-build.rule

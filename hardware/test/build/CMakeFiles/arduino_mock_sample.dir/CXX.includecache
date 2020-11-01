@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/andrey/Documents/RoboCar/hardware/DigitalRead.ino
+
+/home/andrey/Documents/RoboCar/hardware/test/test_main.cpp
+arduino_mock/lib/gtest/gtest.h
+/home/andrey/Documents/RoboCar/hardware/test/arduino_mock/lib/gtest/gtest.h
+arduino_mock/Arduino.h
+/home/andrey/Documents/RoboCar/hardware/test/arduino_mock/Arduino.h
+arduino_mock/Serial.h
+/home/andrey/Documents/RoboCar/hardware/test/arduino_mock/Serial.h
+../DigitalRead.ino
+/home/andrey/Documents/RoboCar/hardware/DigitalRead.ino
+

@@ -1,0 +1,16 @@
+/home/andrey/Documents/RoboCar/hardware/test/build/CMakeFiles/rebuild_cache.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/CMakeFiles/edit_cache.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/CMakeFiles/arduino_mock_sample.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/CMakeFiles/test.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/CMakeFiles/rebuild_cache.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/CMakeFiles/edit_cache.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/CMakeFiles/arduino_mock.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/CMakeFiles/test.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/CMakeFiles/rebuild_cache.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/CMakeFiles/edit_cache.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/CMakeFiles/gtest.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/CMakeFiles/test.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gmock/CMakeFiles/edit_cache.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gmock/CMakeFiles/rebuild_cache.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gmock/CMakeFiles/gmock.dir
+/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gmock/CMakeFiles/test.dir

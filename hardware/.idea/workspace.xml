@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="Robocar" targetName="main" />
+      <config projectName="Robocar" targetName="unity" />
+      <config projectName="Robocar" targetName="ArduinoFake" />
+      <config projectName="Robocar" targetName="Test" />
+      <config projectName="Robocar" targetName="Robocar" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="uno" CONFIG_NAME="uno" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9523e15f-b9be-4e27-a164-3f9c6928bd78" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1j5rvVAMiuGFqpsH02mtU6ohYNB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/core/arduino" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/ArduinoFake/external/unity" />
+      <recent name="$PROJECT_DIR$/lib" />
+      <recent name="$PROJECT_DIR$/test" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/Debugs" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/core/arduino" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/include" />
+      <recent name="$PROJECT_DIR$/pkg" />
+    </key>
+  </component>
+  <component name="RunManager" selected="CMake Application.Test">
+    <configuration name="ArduinoFake" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="ArduinoFake" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Robocar" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-D TEST" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="Robocar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Robocar" RUN_TARGET_NAME="Robocar">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="Test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Robocar" RUN_TARGET_NAME="Test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Robocar" RUN_TARGET_NAME="main">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="unity" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="unity" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.Robocar" />
+      <item itemvalue="CMake Application.Test" />
+      <item itemvalue="CMake Application.unity" />
+      <item itemvalue="CMake Application.ArduinoFake" />
+      <item itemvalue="CMake Application.main" />
+    </list>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9523e15f-b9be-4e27-a164-3f9c6928bd78" name="Default Changelist" comment="" />
+      <created>1603105024941</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603105024941</updated>
+      <workItem from="1603105026116" duration="7428000" />
+      <workItem from="1603116587035" duration="488000" />
+      <workItem from="1603118220761" duration="11169000" />
+      <workItem from="1603200438829" duration="3906000" />
+      <workItem from="1604244995217" duration="113000" />
+      <workItem from="1604245396723" duration="830000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="956" y="207" width="637" height="673" key="#ArduinoFake" timestamp="1604245460262">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="956" y="207" width="637" height="673" key="#ArduinoFake/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604245460262" />
+    <state x="418" y="149" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603200232053">
+      <screen x="0" y="29" width="1920" height="1051" />
+    </state>
+    <state x="418" y="149" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.29.1920.1051@0.29.1920.1051" timestamp="1603200232053" />
+    <state x="693" y="293" width="524" height="532" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603109154911">
+      <screen x="0" y="29" width="1920" height="1051" />
+    </state>
+    <state x="693" y="293" width="524" height="532" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.29.1920.1051@0.29.1920.1051" timestamp="1603109154911" />
+    <state x="743" y="309" width="419" height="511" key="FileChooserDialogImpl" timestamp="1603107222704">
+      <screen x="0" y="29" width="1920" height="1051" />
+    </state>
+    <state x="743" y="309" width="419" height="511" key="FileChooserDialogImpl/0.29.1920.1051@0.29.1920.1051" timestamp="1603107222704" />
+    <state width="2496" height="302" key="GridCell.Tab.0.bottom" timestamp="1604246187046">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="1852" height="288" key="GridCell.Tab.0.bottom/0.29.1920.1051@0.29.1920.1051" timestamp="1603203137550" />
+    <state width="2496" height="302" key="GridCell.Tab.0.bottom/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604246187046" />
+    <state width="2496" height="302" key="GridCell.Tab.0.center" timestamp="1604246187046">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="1852" height="288" key="GridCell.Tab.0.center/0.29.1920.1051@0.29.1920.1051" timestamp="1603203137550" />
+    <state width="2496" height="302" key="GridCell.Tab.0.center/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604246187046" />
+    <state width="2496" height="302" key="GridCell.Tab.0.left" timestamp="1604246187046">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="1852" height="288" key="GridCell.Tab.0.left/0.29.1920.1051@0.29.1920.1051" timestamp="1603203137550" />
+    <state width="2496" height="302" key="GridCell.Tab.0.left/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604246187046" />
+    <state width="2496" height="302" key="GridCell.Tab.0.right" timestamp="1604246187046">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="1852" height="288" key="GridCell.Tab.0.right/0.29.1920.1051@0.29.1920.1051" timestamp="1603203137550" />
+    <state width="2496" height="302" key="GridCell.Tab.0.right/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604246187046" />
+    <state width="2496" height="223" key="GridCell.Tab.1.bottom" timestamp="1604246186940">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="223" key="GridCell.Tab.1.bottom/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604246186940" />
+    <state width="2496" height="223" key="GridCell.Tab.1.center" timestamp="1604246186940">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="223" key="GridCell.Tab.1.center/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604246186940" />
+    <state width="2496" height="223" key="GridCell.Tab.1.left" timestamp="1604246186940">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="223" key="GridCell.Tab.1.left/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604246186940" />
+    <state width="2496" height="223" key="GridCell.Tab.1.right" timestamp="1604246186940">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="223" key="GridCell.Tab.1.right/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604246186940" />
+    <state x="599" y="164" width="1022" height="740" key="SettingsEditor" timestamp="1604245107551">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="449" y="189" width="1022" height="740" key="SettingsEditor/0.29.1920.1051@0.29.1920.1051" timestamp="1603200170564" />
+    <state x="599" y="164" key="SettingsEditor/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604245107551" />
+    <state x="219" y="29" width="633" height="1051" key="find.popup" timestamp="1603201651833">
+      <screen x="0" y="29" width="1920" height="1051" />
+    </state>
+    <state x="219" y="29" width="633" height="1051" key="find.popup/0.29.1920.1051@0.29.1920.1051" timestamp="1603201651833" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/test/test_main.cpp</url>
+          <line>17</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/test/test_main.cpp</url>
+          <line>37</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/test/test_main.cpp</url>
+          <line>10</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.cpp</url>
+          <line>15</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

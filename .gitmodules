@@ -1,0 +1,6 @@
+[submodule "hardware/ArduinoFake"]
+	path = hardware/ArduinoFake
+	url = https://github.com/FabioBatSilva/ArduinoFake.git
+[submodule "hardware/arduino-mock"]
+	path = hardware/arduino-mock
+	url = https://github.com/ikeyasu/arduino-mock.git
