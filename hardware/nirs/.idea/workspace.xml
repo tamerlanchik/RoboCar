@@ -2,16 +2,21 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
+      <config projectName="Robocar" targetName="Car" />
+      <config projectName="Robocar" targetName="CarModules" />
       <config projectName="Robocar" targetName="main" />
       <config projectName="Robocar" targetName="unity" />
+      <config projectName="Robocar" targetName="Modules" />
       <config projectName="Robocar" targetName="ArduinoFake" />
       <config projectName="Robocar" targetName="Test" />
-      <config projectName="Robocar" targetName="Robocar" />
+      <config projectName="Robocar" targetName="CarTest1" />
     </generated>
   </component>
-  <component name="CMakeSettings">
+  <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
+      <configuration PROFILE_NAME="Test" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DUNIT_TEST=5" />
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Release" CONFIG_NAME="Release" />
     </configurations>
   </component>
   <component name="ChangeListManager">
@@ -25,6 +30,13 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectId" id="1jhCfqlwpvzkIoF113kAR69KIAD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,15 +47,42 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/modules/Logger" />
+    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
-  <component name="RunManager" selected="CMake Application.Test">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/modules/Logger" />
+      <recent name="$PROJECT_DIR$/src/car" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mock" />
+      <recent name="$PROJECT_DIR$/src/car/Controller" />
+      <recent name="$PROJECT_DIR$/src/car" />
+    </key>
+  </component>
+  <component name="RunManager" selected="CMake Application.CarTest1">
     <configuration name="ArduinoFake" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="ArduinoFake" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Robocar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="Robocar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Robocar" RUN_TARGET_NAME="Robocar">
+    <configuration name="Car" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="Car" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Robocar" RUN_TARGET_NAME="Car">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CarModules" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-DUNIT_TEST" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="CarModules" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CarTest1" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-DUNIT_TEST" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="CarTest1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Robocar" RUN_TARGET_NAME="CarTest1">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Modules" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="Modules" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -64,11 +103,14 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake Application.Robocar" />
+      <item itemvalue="CMake Application.Car" />
+      <item itemvalue="CMake Application.CarTest1" />
       <item itemvalue="CMake Application.Test" />
       <item itemvalue="CMake Application.unity" />
       <item itemvalue="CMake Application.ArduinoFake" />
       <item itemvalue="CMake Application.main" />
+      <item itemvalue="CMake Application.CarModules" />
+      <item itemvalue="CMake Application.Modules" />
     </list>
   </component>
   <component name="TaskManager">
@@ -78,11 +120,91 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604247042829</updated>
-      <workItem from="1604247044050" duration="323000" />
+      <workItem from="1604247044050" duration="19445000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="738" y="156" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604411091456">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="738" y="156" key="#com.intellij.execution.impl.EditConfigurationsDialog/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604411091456" />
+    <state x="1063" y="245" width="767" height="596" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1604408695779">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="1063" y="245" width="767" height="596" key="#com.intellij.ide.macro.MacrosDialog/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604408695779" />
+    <state width="2496" height="280" key="GridCell.Tab.0.bottom" timestamp="1604412121311">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="280" key="GridCell.Tab.0.bottom/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604412121311" />
+    <state width="2496" height="280" key="GridCell.Tab.0.center" timestamp="1604412121311">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="280" key="GridCell.Tab.0.center/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604412121311" />
+    <state width="2496" height="280" key="GridCell.Tab.0.left" timestamp="1604412121311">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="280" key="GridCell.Tab.0.left/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604412121311" />
+    <state width="2496" height="280" key="GridCell.Tab.0.right" timestamp="1604412121311">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="280" key="GridCell.Tab.0.right/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604412121311" />
+    <state width="2496" height="336" key="GridCell.Tab.1.bottom" timestamp="1604406581123">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="336" key="GridCell.Tab.1.bottom/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604406581123" />
+    <state width="2496" height="336" key="GridCell.Tab.1.center" timestamp="1604406581123">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="336" key="GridCell.Tab.1.center/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604406581123" />
+    <state width="2496" height="336" key="GridCell.Tab.1.left" timestamp="1604406581123">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="336" key="GridCell.Tab.1.left/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604406581123" />
+    <state width="2496" height="336" key="GridCell.Tab.1.right" timestamp="1604406581123">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="336" key="GridCell.Tab.1.right/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604406581123" />
+    <state x="776" y="175" width="1007" height="737" key="SettingsEditor" timestamp="1604411074416">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="776" y="175" width="1007" height="737" key="SettingsEditor/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604411074416" />
+    <state x="0" y="0" width="628" height="1080" key="find.popup" timestamp="1604409033086">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="0" y="0" width="628" height="1080" key="find.popup/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604409033086" />
+    <state x="943" y="235" width="672" height="687" key="search.everywhere.popup" timestamp="1604401558700">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="943" y="235" width="672" height="687" key="search.everywhere.popup/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604401558700" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/test/car/test_1.cpp</url>
+          <line>30</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/modules/Logger/Serial/Serial.h</url>
+          <line>27</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/cmd/car.cpp</url>
+          <line>25</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/car/Chassis/Chassis.h</url>
+          <line>22</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

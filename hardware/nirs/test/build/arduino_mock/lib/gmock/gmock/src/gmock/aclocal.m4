@@ -2990,7 +2990,7 @@ dnl not every word.  This closes a longstanding sh security hole.
 *** as such.  This will affect the creation of libtool libraries that
 *** depend on shared libraries, but programs linked with such libtool
 *** libraries will work regardless of this problem.  Nevertheless, you
-*** may want to report the problem to your system manager and/or to
+*** may want to report the problem to your system controller and/or to
 *** bug-libtool@gnu.org
 
 _LT_EOF

@@ -4,15 +4,34 @@ project(Robocar)
 set(CMAKE_CXX_STANDARD 14)
 include_directories(src)
 include_directories(test)
-add_subdirectory(lib/ArduinoFake)
+include_directories(mock)
 
 add_executable(Test test/test_main.cpp)
-target_link_libraries(Test PUBLIC ArduinoFake unity)
 
-add_executable(Robocar src/main/test.cpp src/core/Scheduller.cpp
-        src/core/controller_interface/IPin.h
-        src/core/arduino/Pin.h src/core/arduino/Pin.cpp
-        src/core/controller_interface/IUtils.h
-        src/core/arduino/Utils.cpp src/core/arduino/Utils.h)
+add_executable(CarTest1 test/car/test_1.cpp)
+
+add_executable(Car src/cmd/car.cpp)
+
+if(TARGET Car OR TARGET CarTest1)
+    add_subdirectory(mock/ArduinoFake)
+    add_subdirectory(src/car)
+    add_subdirectory(src/modules)
+#    add_compile_definitions(UNIT_TEST)
+endif()
+
+# Write down all test targets
+set(TESTS_TARGETS Test CarTest1 Car)
+set(LIB_LIST ArduinoFake unity CarModules Modules)
+foreach(target ${TESTS_TARGETS})
+    target_compile_definitions(${target} PUBLIC UNIT_TEST)
+    target_link_libraries(${target} PUBLIC ${LIB_LIST})
+endforeach()
+
+
+#add_executable(Robocar src/main/test.cpp src/core/Scheduller.cpp
+#        src/core/controller_interface/IPin.h
+#        src/core/arduino/Pin.h src/core/arduino/Pin.cpp
+#        src/core/controller_interface/IUtils.h
+#        src/core/arduino/Utils.cpp src/core/arduino/Utils.h)
 #
 #target_include_directories(Robocar PUBLIC test/ArduinoFake)
