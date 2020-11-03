@@ -3,12 +3,13 @@
  * Turns on an LED on for one second,
  * then off for one second, repeatedly.
  */
-#define UNIT_TEST
+// #define UNIT_TEST
 #ifdef UNIT_TEST
 #include "ArduinoFake.h"
 #else
 #include "Arduino.h"
 #endif
+#include <Vector.h>
 
 void setup()
 {

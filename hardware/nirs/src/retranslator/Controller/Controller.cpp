@@ -1,14 +1,14 @@
 //base
 #include "Controller.h"
 //#include <RadioMessage.h>
-extern Logger* Log;
+extern Log* log;
 Controller::Controller(){
 //  mRadio = new RadioExtended(radioCE, radioCSN, radioAdresses[0], radioAdresses[1], RF24_1MBPS, RF24_PA_MAX, 1);
 //  mRadioMessage = new RadioMessage();
   pinMode(6, OUTPUT);
   tone(6, 1000, 200);
   #ifdef DEBUG
-    Log->d("Init Manager");
+    log->d("Init Manager");
   #endif
 }
 
@@ -26,7 +26,7 @@ Controller::Controller(){
 //        return true;
 //      }else{
 //        #ifdef DEBUG
-//          Log->e("A wrong check answer is got");
+//          log->e("A wrong check answer is got");
 //          Serial.println(mRadioMessage->getData(0));
 //          return 0;
 //        #endif
@@ -34,21 +34,21 @@ Controller::Controller(){
 //      }
 //    }
 //  }
-//  Log->e("No check answer");
+//  log->e("No check answer");
 //  return 0;
 //}
 //
 //RadioMessage* Controller::readRadio() {
 //    if(mRadio->available()){
 //      #ifdef DEBUG
-//        Log->d("Read Radio");
+//        log->d("Read Radio");
 //      #endif
 //      mRadio->read(mRadioMessage, mRadioMessage->getSize());
 //      #ifdef DEBUG
-//        Log->d("Message get:");
-//        Log->write((int)(mRadioMessage->getMode()), 'i');
+//        log->d("Message get:");
+//        log->write((int)(mRadioMessage->getMode()), 'i');
 //        for(int i=0; i<3; i++){
-//          Log->write(mRadioMessage->getData(i), 'i');
+//          log->write(mRadioMessage->getData(i), 'i');
 //        }
 //      #endif
 //    }
@@ -57,7 +57,7 @@ Controller::Controller(){
 
 //bool Controller::sendCommandRadio(RadioMessage::MC mode) {
 //  #ifdef DEBUG
-//    Log->d("sendCommandRadio");
+//    log->d("sendCommandRadio");
 //  #endif
 //  mRadioMessage->setMode(mode);
 //  switch(mode){
@@ -65,7 +65,7 @@ Controller::Controller(){
 //      this->checkRadioConnection(10);
 //    default:
 //      #ifdef DEBUG
-//        Log->e("Unknown command mode");
+//        log->e("Unknown command mode");
 //      #endif
 //      return false;
 //  }

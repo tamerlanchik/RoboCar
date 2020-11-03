@@ -1,8 +1,13 @@
-//
-// Created by andrey on 03.11.2020.
-//
-
 #include "Controller.h"
+#ifdef UNIT_TEST
+    #include <modules/Logger/Logger.hpp>
+    #include <car/Model/Model.h>
+    #include <modules/Communicator/SerialCommunicator.h>
+#else
+    #include <Logger.hpp>
+    #include <Model.h>
+    #include "SerialCommunicator.h"
+#endif
 
 extern Logger* Log;
 
@@ -11,8 +16,12 @@ Controller::Controller(){
     chassis = new Chassis();
     chassis->init();
 //    mRadioMessage = new RadioMessage();
-//    mModel = new CarModel();
-    Log->d("Controller inited");
+    mModel = new Model();
+
+    comm = new SerialCommunicator(9600, 5, 'K', Mode::TEXT);
+    Log->println('d', "Controller inited");
+    Message msg = Message((int)Commands::PING, "Hello, world");
+    comm->send(msg);
 }
 void Controller::testing(){
     long long t = millis();
@@ -33,7 +42,7 @@ int Controller::f(long long x, long long x0){
 
 //RadioMessage* Controller::getRadioMessage(){
 //    if(!radio->available()){return NULL;}
-//    Log->d("Message got");
+//    log->d("Message got");
 //    int messSize = radio->getDynamicPayloadSize();
 //    Serial.println(messSize);
 //    radio->read(mRadioMessage, messSize);
@@ -45,12 +54,12 @@ int Controller::f(long long x, long long x0){
 //    tone(9, 1000, 50);
 //    switch(message->getMode()){
 //        case RadioMessage::MC::CHKCONN:
-//            Log->d("Check conn");
+//            log->d("Check conn");
 //            message->setData(0, '!');
 //            radio->write(message, message->getSize());
 //            break;
 //        case RadioMessage::MC::ANDR_CHK_CONN:
-//            Log->d("Android check conn");
+//            log->d("Android check conn");
 //            break;
 //        case RadioMessage::MC::CHASSIS_COMM:
 //            message->inflateChassisCommandPack(mModel->motorValues);
@@ -60,17 +69,19 @@ int Controller::f(long long x, long long x0){
 //            chassis->setValue(mModel->motorValues);
 //            break;
 //        case RadioMessage::MC::DEF1:
-//            Log->d("Long parcel got");
+//            log->d("Long parcel got");
 //            Serial.println((int)message->getData(4));
 //            break;
 //        default:
-//            Log->e("Unknown message mode!");
+//            log->e("Unknown message mode!");
 //            Serial.println((int)message->getMode());
 //            break;
 //    }
 //}
 
 int Controller::ping(long int time) {
-    Log->d("ping()");
+    Log->println('d', "ping()");
     return 0;
 }
+
+Communicator* Controller::getCommunicator() { return comm; }

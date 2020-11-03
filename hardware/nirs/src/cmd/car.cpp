@@ -1,42 +1,54 @@
 //slave
-#define DEBUG
+// #define DEBUG
 
 #include <Arduino.h>
 #include "car/Controller/Controller.h"
-#include "modules/Logger/Logger.h"
-//#include <../modules/Logger/Logger.h>
+#include "modules/Logger/Logger.hpp"
+//#include <../modules/Log/Log.hpp>
+bool state = 1;
+int iteratons = 1;
+class PingListener : public Listener {
+public:
+    void Handle(Message& msg) {
+        digitalWrite(13, state);
+        state = !state;
+    }
+};
 
-Logger* Log;
 Controller* controller;
 long long t=0;
-
+Logger* Log;
 void setup(){
-    t = millis();
     Log = new Logger();
-    Log->d("CAR");
     controller = new Controller();
-    pinMode(9, OUTPUT);
-//    delay(1000);
+    pinMode(13, OUTPUT);
+    controller->getCommunicator()->addListener('L', new PingListener());
 }
 
 
-void loop()
-{
+void loop() {
+//    digitalWrite(13, 1);
+//    delay(500);
+//    digitalWrite(13, 0);
+//    delay(500);
+//    Log->println('d', "AAd", 134);
+//    Message msg = Message('M', "Hello fucking world!");
+//    controller->getCommunicator()->send(msg);
+    controller->getCommunicator()->read(true);
+
+
+
+
+
+    // delay(500);
 //    controller->handleMessage(controller->getRadioMessage());
-    Log->d("Im awake");
-    controller->ping(millis()-t);
-    if(millis()-t > 1000){
-        Log->d("Im awake");
-        t = millis();
-    }
-#ifndef UNIT_TEST
-    return;
+//    log->d("Im awake");
+//    controller->ping(millis()-t);
+//    if(millis()-t > 1000){
+////        log->d("Im awake");
+//        t = millis();
+//    }
+#ifdef UNIT_TEST
+    if (--iteratons) { return; }
 #endif
 }
-
-#ifndef UNIT_TEST
-int main() {
-    setup();
-    loop();
-}
-#endif

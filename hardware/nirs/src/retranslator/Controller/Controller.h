@@ -4,7 +4,7 @@
 //#include <RadioExtended.h>
 #include <car/pins/pins.h>
 #include <modules/config/config.h>
-#include "modules/Logger/Logger.h"
+#include "modules/Logger/Logger.hpp"
 //#include <RadioMessage.h>
 using namespace std;
 class Controller{

@@ -1,11 +1,14 @@
+if (${CMAKE_BUILD_TYPE} STREQUAL Debug)
+    add_compile_definitions(UNIT_TEST)
+endif()
 include_directories(
         ByteArray
         config
         Logger
-        Logger/Serial
+        Communicator
 #        RadioExtended
 #        RadioMessage
 )
-add_library(Modules SHARED ByteArray/ByteArray.cpp Logger/Logger.cpp Logger/Serial/Serial.cpp
+add_library(Modules SHARED ByteArray/ByteArray.cpp Logger/Logger.hpp
 #        RadioExtended/RadioExtended.cpp RadioMessage/RadioMessage.cpp
-        )
+        Communicator/Communicator.h Communicator/SerialCommunicator.cpp Communicator/SerialCommunicator.h Communicator/Message.h Communicator/Listener.h Communicator/Communicator.cpp Communicator/Message.cpp Communicator/SerialMock.h)

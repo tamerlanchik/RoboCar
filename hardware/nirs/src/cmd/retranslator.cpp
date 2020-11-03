@@ -4,15 +4,15 @@
 #include <car/Controller/Controller.h>
 //#include <car/pins/pins.h>
 #include <modules/config/config.h>
-#include <modules/Logger/Logger.h>
-Logger* Log;
+#include <modules/Log/Log.hpp>
+Log* log;
 Controller* controller;
 
 void setup()
 {
-  Log = new Logger();
+  log = new log();
   #if defined DEBUG
-    Log->d("BASE");
+    log->d("BASE");
   #endif
   controller = new Controller();
 }

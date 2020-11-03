@@ -1,5 +1,5 @@
 #include "RadioExtended.h"
-extern Logger* Log;
+extern Log* log;
 
 RadioExtended::RadioExtended(unsigned char CE, unsigned char CSN, const char* adr1,
                             const char* adr2, rf24_datarate_e r,
@@ -21,7 +21,7 @@ RadioExtended::RadioExtended(unsigned char CE, unsigned char CSN, const char* ad
 
     this->startListening();
     #ifdef DEBUG
-      Log->d("Radio inited");
+      log->d("Radio inited");
     #endif
   }
 

@@ -3,23 +3,23 @@
 //
 //#define UNIT_TEST
 #ifdef UNIT_TEST
-#include <modules/Logger/Logger.h>
+#include <modules/Logger/Logger.hpp>
 #else
-#include "../Logger/Logger.h"
+#include "../Logger/Logger.hpp"
 #endif
 #include "Chassis.h"
 
 extern Logger* Log;
 
 Chassis::Chassis(){
-    Log->d("Create Chassis");
+//    log->d("Create Chassis");
 }
 
 void Chassis::init(){
     for(byte pin : motorPins){
         pinMode(pin, OUTPUT);
     }
-    Log->d("Init Chassis");
+    Log->println('d', "Init Chassis");
 }
 
 void Chassis::setValue(int a, int b){

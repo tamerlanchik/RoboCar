@@ -4,6 +4,7 @@
     <generated>
       <config projectName="Robocar" targetName="Car" />
       <config projectName="Robocar" targetName="CarModules" />
+      <config projectName="Robocar" targetName="Vector" />
       <config projectName="Robocar" targetName="main" />
       <config projectName="Robocar" targetName="unity" />
       <config projectName="Robocar" targetName="Modules" />
@@ -47,15 +48,19 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/modules/Logger" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/Vector" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="serialMonitor.commands" value="M|fwfewfe$&#10;L|ee$&#10;L|fwefwe$&#10;L|Me$&#10;L|Fuckme$" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/Vector" />
       <recent name="$PROJECT_DIR$/src/modules/Logger" />
       <recent name="$PROJECT_DIR$/src/car" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/Vector" />
       <recent name="$PROJECT_DIR$/mock" />
       <recent name="$PROJECT_DIR$/src/car/Controller" />
       <recent name="$PROJECT_DIR$/src/car" />
@@ -92,6 +97,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Vector" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="Vector" CONFIG_NAME="Test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Robocar" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Robocar" RUN_TARGET_NAME="main">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -106,6 +116,7 @@
       <item itemvalue="CMake Application.Car" />
       <item itemvalue="CMake Application.CarTest1" />
       <item itemvalue="CMake Application.Test" />
+      <item itemvalue="CMake Application.Vector" />
       <item itemvalue="CMake Application.unity" />
       <item itemvalue="CMake Application.ArduinoFake" />
       <item itemvalue="CMake Application.main" />
@@ -120,7 +131,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604247042829</updated>
-      <workItem from="1604247044050" duration="19445000" />
+      <workItem from="1604247044050" duration="45830000" />
     </task>
     <servers />
   </component>
@@ -136,73 +147,76 @@
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
     <state x="1063" y="245" width="767" height="596" key="#com.intellij.ide.macro.MacrosDialog/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604408695779" />
-    <state width="2496" height="280" key="GridCell.Tab.0.bottom" timestamp="1604412121311">
+    <state x="1027" y="373" width="496" height="340" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1604425064903">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="2496" height="280" key="GridCell.Tab.0.bottom/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604412121311" />
-    <state width="2496" height="280" key="GridCell.Tab.0.center" timestamp="1604412121311">
+    <state x="1027" y="373" width="496" height="340" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604425064903" />
+    <state width="2496" height="267" key="GridCell.Tab.0.bottom" timestamp="1604445424649">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="2496" height="280" key="GridCell.Tab.0.center/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604412121311" />
-    <state width="2496" height="280" key="GridCell.Tab.0.left" timestamp="1604412121311">
+    <state width="2496" height="267" key="GridCell.Tab.0.bottom/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604445424649" />
+    <state width="2496" height="267" key="GridCell.Tab.0.center" timestamp="1604445424649">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="2496" height="280" key="GridCell.Tab.0.left/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604412121311" />
-    <state width="2496" height="280" key="GridCell.Tab.0.right" timestamp="1604412121311">
+    <state width="2496" height="267" key="GridCell.Tab.0.center/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604445424649" />
+    <state width="2496" height="267" key="GridCell.Tab.0.left" timestamp="1604445424649">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="2496" height="280" key="GridCell.Tab.0.right/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604412121311" />
-    <state width="2496" height="336" key="GridCell.Tab.1.bottom" timestamp="1604406581123">
+    <state width="2496" height="267" key="GridCell.Tab.0.left/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604445424649" />
+    <state width="2496" height="267" key="GridCell.Tab.0.right" timestamp="1604445424649">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="2496" height="336" key="GridCell.Tab.1.bottom/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604406581123" />
-    <state width="2496" height="336" key="GridCell.Tab.1.center" timestamp="1604406581123">
+    <state width="2496" height="267" key="GridCell.Tab.0.right/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604445424649" />
+    <state width="2496" height="339" key="GridCell.Tab.1.bottom" timestamp="1604445317257">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="2496" height="336" key="GridCell.Tab.1.center/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604406581123" />
-    <state width="2496" height="336" key="GridCell.Tab.1.left" timestamp="1604406581123">
+    <state width="2496" height="339" key="GridCell.Tab.1.bottom/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604445317257" />
+    <state width="2496" height="339" key="GridCell.Tab.1.center" timestamp="1604445317257">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="2496" height="336" key="GridCell.Tab.1.left/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604406581123" />
-    <state width="2496" height="336" key="GridCell.Tab.1.right" timestamp="1604406581123">
+    <state width="2496" height="339" key="GridCell.Tab.1.center/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604445317257" />
+    <state width="2496" height="339" key="GridCell.Tab.1.left" timestamp="1604445317257">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state width="2496" height="336" key="GridCell.Tab.1.right/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604406581123" />
+    <state width="2496" height="339" key="GridCell.Tab.1.left/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604445317257" />
+    <state width="2496" height="339" key="GridCell.Tab.1.right" timestamp="1604445317257">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state width="2496" height="339" key="GridCell.Tab.1.right/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604445317257" />
     <state x="776" y="175" width="1007" height="737" key="SettingsEditor" timestamp="1604411074416">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
     <state x="776" y="175" width="1007" height="737" key="SettingsEditor/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604411074416" />
-    <state x="0" y="0" width="628" height="1080" key="find.popup" timestamp="1604409033086">
+    <state x="359" y="0" width="628" height="1080" key="find.popup" timestamp="1604440018316">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state x="0" y="0" width="628" height="1080" key="find.popup/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604409033086" />
-    <state x="943" y="235" width="672" height="687" key="search.everywhere.popup" timestamp="1604401558700">
+    <state x="359" y="0" width="628" height="1080" key="find.popup/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604440018316" />
+    <state x="944" y="242" key="run.anything.popup" timestamp="1604442010865">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state x="943" y="235" width="672" height="687" key="search.everywhere.popup/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604401558700" />
+    <state x="944" y="242" key="run.anything.popup/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604442010865" />
+    <state x="943" y="235" width="672" height="687" key="search.everywhere.popup" timestamp="1604430927074">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="943" y="235" width="672" height="687" key="search.everywhere.popup/199.1080.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1604430927074" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/test/car/test_1.cpp</url>
-          <line>30</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/modules/Logger/Serial/Serial.h</url>
-          <line>27</line>
+          <line>32</line>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/cmd/car.cpp</url>
-          <line>25</line>
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/car/Chassis/Chassis.h</url>
           <line>22</line>
           <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/modules/Communicator/SerialCommunicator.cpp</url>
+          <line>79</line>
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
