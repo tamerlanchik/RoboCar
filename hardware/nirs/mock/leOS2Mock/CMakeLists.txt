@@ -1,0 +1,1 @@
+add_library(LeOS2Mock STATIC leOS2Mock.cpp leOS2Mock.h)

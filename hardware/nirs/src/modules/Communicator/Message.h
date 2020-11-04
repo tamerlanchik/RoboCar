@@ -16,4 +16,5 @@ private:
     Load payload;
 };
 
+
 #endif //ROBOCAR_MESSAGE_H

@@ -2,11 +2,22 @@
 // #define DEBUG
 
 #include <Arduino.h>
+#ifdef UNIT_TEST
+#include <leOS2Mock/leOS2Mock.h>
+typedef leOS2Mock leOS2;
+#else
+#include <leOS2.h>
+#endif
+#include <Arduino.h>
 #include "car/Controller/Controller.h"
 #include "modules/Logger/Logger.hpp"
 
+
 bool state = 1;
 int iteratons = 1;
+
+leOS2 os;
+
 class PingListener : public Listener {
 public:
     void Handle(Message& msg) {
@@ -14,28 +25,22 @@ public:
         state = !state;
     }
 };
-
 Controller* controller;
-long long t=0;
 Logger* Log;
 void setup(){
     Log = new Logger();
     controller = new Controller();
     pinMode(13, OUTPUT);
+    os.begin();
     controller->getCommunicator()->addListener('L', new PingListener());
+
+    os.addTask([](){
+        controller->getCommunicator()->read(true);
+    }, os.convertMs(32));   // кратно 16
 }
 
 
 void loop() {
-//    digitalWrite(13, 1);
-//    delay(500);
-//    digitalWrite(13, 0);
-//    delay(500);
-//    Log->println('d', "AAd", 134);
-//    Message msg = Message('M', "Hello fucking world!");
-//    controller->getCommunicator()->send(msg);
-    controller->getCommunicator()->read(true);
-
 #ifdef UNIT_TEST
     if (--iteratons) { return; }
 #endif
