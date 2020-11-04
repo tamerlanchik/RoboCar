@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/arduino_mock_sample.dir/test_main.cpp.o  -o arduino_mock_sample /lib/gtest/gtest/src/gtest-build/libgtest.a /lib/gmock/gmock/src/gmock-build/libgmock.a /dist/lib/libarduino_mock.a 

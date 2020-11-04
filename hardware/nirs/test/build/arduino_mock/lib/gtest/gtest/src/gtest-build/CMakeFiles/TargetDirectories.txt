@@ -1,4 +1,0 @@
-/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-build/CMakeFiles/rebuild_cache.dir
-/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-build/CMakeFiles/gtest.dir
-/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-build/CMakeFiles/edit_cache.dir
-/home/andrey/Documents/RoboCar/hardware/test/build/arduino_mock/lib/gtest/gtest/src/gtest-build/CMakeFiles/gtest_main.dir
