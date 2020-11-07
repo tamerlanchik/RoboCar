@@ -4,36 +4,33 @@ Communicator::Communicator(size_t messages_count, size_t offset) : msg_cnt(messa
     this->listeners = new Vector<Listener*>[messages_count];
 }
 
-int Communicator::addListener(Cmd cmd, Listener* listener) {
+Status Communicator::addListener(Cmd cmd, Listener* listener) {
     size_t idx = cmd - this->msg_offset;
     if (idx >= this->msg_cnt) {
-        return 1;
+        return ERROR;
     }
-    size_t alreadySet = this->findListener(cmd, listener);
-    if(alreadySet != 0) {
-        return 1;
+    int alreadySet = this->findListener(cmd, listener);
+    if(alreadySet != NOT_FOUND) {
+        return OK;
     }
     if (listeners[idx].empty()) {
-        Listener** storage = new Listener*[5];
-        this->listeners[idx].setStorage(storage, 5, 0);
+        Listener** storage = new Listener*[LISTENERS_QUEUE_LEN];
+        this->listeners[idx].setStorage(storage, LISTENERS_QUEUE_LEN, 0);
     }
     this->listeners[idx].push_back(listener);
-    Vector<Listener*> v = listeners[idx];
-    return 0;
+    return OK;
 }
 
-size_t Communicator::findListener(Cmd cmd, Listener* listener) {
+// Найти и вернуть индекс слушателя
+int Communicator::findListener(Cmd cmd, Listener* listener) {
     size_t idx = cmd - this->msg_offset;
-    if (idx>= this->msg_cnt) {
-        return 1;
-    }
     Vector<Listener*> ls = this->listeners[idx];
     for(size_t i = 0; i < ls.size(); i++) {
         if(ls.at(i) == listener) {
             return i;
         }
     }
-    return 0;
+    return NOT_FOUND;
 }
 
 Listener* Communicator::removeListener(Cmd cmd, Listener* listener) {

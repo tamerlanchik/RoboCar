@@ -1,21 +1,24 @@
-//
-// Created by andrey on 03.11.2020.
-//
-
 #ifndef ROBOCAR_COMMUNICATOR_H
 #define ROBOCAR_COMMUNICATOR_H
 
 #include "Listener.h"
 #include "Message.h"
-
 #ifdef UNIT_TEST
-#include <Vector/src/Vector.h>
+    #include <Vector/src/Vector.h>
 #else
-#include <Vector.h>
-//#include "Vector.h"
+    #include <Vector.h>
 #endif
 
+/*
+ * базовый класс коммуникации.
+ * Предоставляет интерфейс чтения-записи
+ * и функционал слушателей событий.
+ */
+
 typedef int Status;
+enum {NOT_FOUND=-1, OK, ERROR};
+// для каждой команды заводим массив слушателей такого размера
+const size_t LISTENERS_QUEUE_LEN = 2;
 
 class Communicator {
 public:
@@ -32,7 +35,7 @@ private:
     size_t msg_cnt;
     size_t msg_offset;
 
-    size_t findListener(Cmd, Listener*);
+    int findListener(Cmd, Listener*);
 };
 
 #endif //ROBOCAR_COMMUNICATOR_H

@@ -17,8 +17,7 @@ SerialMock* serial_;
     #define serial Serial
 #endif
 
-const size_t BUFFER_SIZE = 1000;
-
+const size_t BUFFER_SIZE = 100;
 enum class Mode {TEXT, BINARY};
 
 class SerialCommunicator : public Communicator{

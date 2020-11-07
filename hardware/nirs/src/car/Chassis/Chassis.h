@@ -5,39 +5,28 @@
 #ifndef ROBOCAR_CHASSIS_H
 #define ROBOCAR_CHASSIS_H
 
-
-#if !defined HEADERCHASSIS
-#define HEADERCHASSIS
 #include <Arduino.h>
 #include "pins.h"
 //#include <modules/Log/Log.hpp>
-struct MOVING_MODES{
-    bool Stop[4];
-    bool Forward[4];
-    bool Backward[4];
-    bool Right[4];
-    bool Left[4];
-};
+typedef char Movement;
+enum MoveIndexes {Stop, Forward, Backward, Right, Left};
 
-class Chassis
-{
-private:
-    MOVING_MODES Modes = {
-            {0,0,0,0},
-            {0,1,0,1},
-            {1,0,1,0},
-            {1,0,0,1},
-            {0,1,1,0}
-    };
-    void writeMotors(bool[]);
+class Chassis {
 public:
+    constexpr static const Movement movements[] = {0b0, 0b0101, 0b1010, 0b1001, 0b0110};
+
     Chassis();
-    void init();
-    void setValue(int,int);
-    void setValue(int[]);
+    virtual void init();
+    virtual void setValue(int,int);
+
+//    void setValue(int[]);
+    virtual void setMotorValues(Movement);
+
+protected:
+    virtual void writeMotors(Movement);
 };
 
-#endif
+bool byteAt(int src, size_t pos);
 
 
 

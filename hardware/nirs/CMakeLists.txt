@@ -7,23 +7,24 @@ include_directories(test)
 include_directories(lib)
 include_directories(mock)
 
-add_executable(Test test/test_main.cpp)
-
 add_executable(CarTest1 test/car/test_1.cpp)
-
+add_executable(TestChassis test/car/test_chasssis.cpp)
 add_executable(Car src/cmd/car.cpp)
 
-if(TARGET Car OR TARGET CarTest1)
-    add_subdirectory(mock/ArduinoFake)
-    add_subdirectory(src/car)
-    add_subdirectory(src/modules)
-    add_subdirectory(lib/Vector)
-#    add_compile_definitions(UNIT_TEST)
-endif()
+set(TESTS_TARGETS CarTest1 TestChassis)
 
-if(TARGET Car)
-    add_subdirectory(lib/leOS2)
-endif()
+#if(TARGET Car OR TARGET CarTest1 TestChassis)
+#if("bar" IN_LIST TESTS_TARGETS)
+add_subdirectory(mock/ArduinoFake)
+add_subdirectory(src/car)
+add_subdirectory(src/modules)
+add_subdirectory(lib/Vector)
+#    add_compile_definitions(UNIT_TEST)
+#endif()
+
+#if(TARGET Car)
+#    add_subdirectory(lib/leOS2)
+#endif()
 add_subdirectory(mock/leOS2Mock)
 
 if(TARGET CarTest1)
@@ -32,16 +33,16 @@ if(TARGET CarTest1)
 endif()
 
 # Write down all test targets
-set(TESTS_TARGETS Test CarTest1 Car)
+#set(TESTS_TARGETS CarTest1 Car)
 set(LIB_LIST ArduinoFake unity CarModules Modules Vector)
 foreach(target ${TESTS_TARGETS})
     target_compile_definitions(${target} PUBLIC UNIT_TEST)
     target_link_libraries(${target} PUBLIC ${LIB_LIST})
 endforeach()
 
-if(TARGET CarTest1)
+#if(TARGET CarTest1)
     target_link_libraries(CarTest1 PUBLIC LeOS2Mock)
-endif()
+#endif()
 
 
 #add_executable(Robocar src/main/test.cpp src/core/Scheduller.cpp
