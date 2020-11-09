@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">RoboCar</string>
+    <string name="devices">Bluetooth Devices</string>
+
     <string name="linearSpeed">Lin. speed</string>
     <string name="angularSpeed">Ang. speed</string>
     <string name="connectedSwitch">Connect to transmitter</string>
@@ -11,6 +13,4 @@
         <item>9600</item>
         <item>115200</item>
     </string-array>
-<!--    <string name="app_name">Simple Bluetooth Terminal</string>-->
-    <string name="devices">Bluetooth Devices</string>
 </resources>
