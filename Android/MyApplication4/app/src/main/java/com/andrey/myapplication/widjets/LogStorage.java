@@ -1,4 +1,4 @@
-package com.andrey.myapplication;
+package com.andrey.myapplication.widjets;
 
 import android.content.Context;
 

@@ -5,29 +5,23 @@ import android.graphics.Point;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.andrey.myapplication.usb.SerialModule;
+import com.andrey.myapplication.widjets.Joystick;
+import com.andrey.myapplication.widjets.LogItem;
+import com.andrey.myapplication.widjets.Logger;
 import com.felhr.usbserial.UsbSerialDevice;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements SerialModule.ViewBound{
+public class ControlPane extends AppCompatActivity implements SerialModule.ViewBound {
     private static final String TAG = "Main Activity";
     private  static final String ACTION_USB_PERMISSION = "com.andrey.arduinousb.USB_PERMISSION";
 
@@ -53,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements SerialModule.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLogger = new Logger(MainActivity.this);
+        mLogger = new Logger(ControlPane.this);
         mLogger.write("Hello!");
 
         mSerial = new SerialModule(this, mLogger);

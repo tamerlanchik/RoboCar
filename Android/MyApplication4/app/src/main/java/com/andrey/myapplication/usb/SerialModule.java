@@ -1,4 +1,4 @@
-package com.andrey.myapplication;
+package com.andrey.myapplication.usb;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.andrey.myapplication.widjets.Logger;
 import com.felhr.usbserial.UsbSerialDevice;
 import com.felhr.usbserial.UsbSerialInterface;
 
@@ -34,7 +34,7 @@ public class SerialModule {
     private UsbSerialInterface.UsbReadCallback mCallback;
     private Logger mLogger;
 
-    interface ViewBound{
+    public interface ViewBound{
         void usbDetached();
         void usbAttached();
         void messageReceived(byte[] message);

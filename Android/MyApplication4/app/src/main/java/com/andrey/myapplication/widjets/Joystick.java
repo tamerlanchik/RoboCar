@@ -1,4 +1,4 @@
-package com.andrey.myapplication;
+package com.andrey.myapplication.widjets;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,8 +9,9 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
-import android.util.SizeF;
 import android.view.MotionEvent;
+
+import com.andrey.myapplication.R;
 
 public class Joystick extends AppCompatSeekBar {
     private static final String TAG = "JoystickView";
