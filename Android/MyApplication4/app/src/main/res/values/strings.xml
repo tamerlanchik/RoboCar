@@ -11,4 +11,6 @@
         <item>9600</item>
         <item>115200</item>
     </string-array>
+<!--    <string name="app_name">Simple Bluetooth Terminal</string>-->
+    <string name="devices">Bluetooth Devices</string>
 </resources>

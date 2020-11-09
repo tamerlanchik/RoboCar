@@ -77,15 +77,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/checkCarConnectionLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/checkCarConnection"
-        android:textAppearance="@android:style/TextAppearance.Material.Widget"
-        app:layout_constraintStart_toStartOf="@+id/connectSwitch"
-        app:layout_constraintTop_toBottomOf="@+id/connectSwitch" />
+<!--    <TextView-->
+<!--        android:id="@+id/checkCarConnectionLabel"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:text="@string/checkCarConnection"-->
+<!--        android:textAppearance="@android:style/TextAppearance.Material.Widget"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/connectSwitch"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/connectSwitch" />-->
 
     <TextView
         android:id="@+id/angularSpeedLabel"

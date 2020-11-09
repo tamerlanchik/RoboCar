@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ControlPane">
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="149dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkCarConnectionLabel"
+        app:srcCompat="@android:color/darker_gray" />
+
+    <com.andrey.myapplication.widjets.Joystick
+        android:id="@+id/graph"
+        android:layout_width="165dp"
+        android:layout_height="165dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        app:axis_on="true"
+        app:handle_color="@color/colorAccent"
+        app:handle_radius="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/linearSpeedLabelTextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/linearSpeed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/linearSpeedValueTextBox"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearSpeedLabelTextBox" />
+
+    <Switch
+        android:id="@+id/connectSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/connectedSwitch"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/checkCarConnectionLabel"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:text="@string/checkCarConnection"-->
+<!--        android:textAppearance="@android:style/TextAppearance.Material.Widget"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/connectSwitch"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/connectSwitch" />-->
+
+    <TextView
+        android:id="@+id/angularSpeedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/angularSpeed"
+        app:layout_constraintStart_toStartOf="@+id/linearSpeedLabelTextBox"
+        app:layout_constraintTop_toBottomOf="@+id/linearSpeedLabelTextBox" />
+
+    <TextView
+        android:id="@+id/angularSpeedValue"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="@+id/linearSpeedValueTextBox"
+        app:layout_constraintStart_toEndOf="@+id/angularSpeedLabel"
+        app:layout_constraintTop_toTopOf="@+id/angularSpeedLabel" />
+
+    <ToggleButton
+        android:id="@+id/carConnectionStateButten"
+        android:layout_width="47dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/holo_red_light"
+        android:text="@string/Disconnected"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/checkCarConnectionLabel"
+        app:layout_constraintStart_toEndOf="@+id/checkCarConnectionLabel"
+        app:layout_constraintTop_toTopOf="@+id/checkCarConnectionLabel" />
+
+    <CheckBox
+        android:id="@+id/speedCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:checked="true"
+        android:text="Fast"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/connectSwitch"
+        app:layout_constraintEnd_toStartOf="@+id/linearSpeedLabelTextBox"
+        app:layout_constraintStart_toEndOf="@+id/connectSwitch"
+        app:layout_constraintTop_toTopOf="@+id/connectSwitch" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/log_recycle_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graph" />
+
+</android.support.constraint.ConstraintLayout>

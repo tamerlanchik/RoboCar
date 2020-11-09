@@ -1,13 +1,19 @@
 package com.andrey.myapplication.widjets;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.app.Activity;
+//import android.content.Context;
+//import android.support.annotation.NonNull;
+//import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrey.myapplication.R;
 
@@ -18,9 +24,9 @@ public class Logger {
     private RecyclerView mLogRecyclerView;
     private LogAdapter mAdapter;
     private LogStorage mLogMessagesList;
-    private AppCompatActivity mContext;
+    private Activity mContext;
 
-    public Logger(AppCompatActivity context){
+    public Logger(Activity context){
         mContext = context;
         mLogRecyclerView = (RecyclerView) mContext.findViewById(R.id.log_recycle_view);
         mLogRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));

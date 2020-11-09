@@ -1,11 +1,12 @@
 package com.andrey.myapplication;
 
+import android.app.Activity;
 import android.content.IntentFilter;
 import android.graphics.Point;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.CheckBox;
@@ -21,7 +22,7 @@ import com.andrey.myapplication.widjets.LogItem;
 import com.andrey.myapplication.widjets.Logger;
 import com.felhr.usbserial.UsbSerialDevice;
 
-public class ControlPane extends AppCompatActivity implements SerialModule.ViewBound {
+public class ControlPane extends Activity implements SerialModule.ViewBound {
     private static final String TAG = "Main Activity";
     private  static final String ACTION_USB_PERMISSION = "com.andrey.arduinousb.USB_PERMISSION";
 
@@ -45,7 +46,7 @@ public class ControlPane extends AppCompatActivity implements SerialModule.ViewB
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.control_pane);
 
         mLogger = new Logger(ControlPane.this);
         mLogger.write("Hello!");
