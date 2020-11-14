@@ -44,6 +44,11 @@ void ISR(int);
 //class constructor
 leOS2Mock::leOS2Mock(void) {
     _initialized = 0;
+    need_now = 0;
+}
+
+void leOS2Mock::setNowMode(bool mode) {
+    need_now = mode;
 }
 
 
@@ -83,6 +88,9 @@ uint8_t leOS2Mock::addTask(void (*userTask)(void), unsigned long taskInterval, u
     _numTasks++;
     sced.restart();
 //    SREG |= (1<<SREG_I); //restart the scheduler
+    if (need_now) {
+        userTask();
+    }
     return 0;
 }
 

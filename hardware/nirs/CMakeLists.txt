@@ -9,9 +9,10 @@ include_directories(mock)
 
 add_executable(CarTest1 test/car/test_1.cpp)
 add_executable(TestChassis test/car/test_chasssis.cpp)
+add_executable(TestTachometr test/car/test_tachometr.cpp)
 add_executable(Car src/cmd/car.cpp)
 
-set(TESTS_TARGETS CarTest1 TestChassis)
+set(TESTS_TARGETS CarTest1 TestChassis TestTachometr)
 
 #if(TARGET Car OR TARGET CarTest1 TestChassis)
 #if("bar" IN_LIST TESTS_TARGETS)

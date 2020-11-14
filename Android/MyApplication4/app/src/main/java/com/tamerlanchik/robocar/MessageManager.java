@@ -29,6 +29,25 @@ public class MessageManager {
         }
         return a;
     }
+    public static String buildJoystickTextMessage(Point data){
+        data = preparePoint(data);
+        String s = new String();
+        s += "K|";
+        s += Float.toString(data.x);
+        s += " ";
+        s += Float.toString(data.y);
+        s += "$";
+        return s;
+    }
+
+    public static Point preparePoint(Point src) {
+        int basis = src.y;
+        double diff = src.x * 0.3;
+        Point p = new Point();
+        p.x = basis + (int)diff;
+        p.y = basis - (int)diff;
+        return p;
+    }
     public static void handleMessage(byte[] mess){
 
     }

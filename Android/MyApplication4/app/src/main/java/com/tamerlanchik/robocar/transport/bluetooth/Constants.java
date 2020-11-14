@@ -1,6 +1,8 @@
-package com.tamerlanchik.robocar;
+package com.tamerlanchik.robocar.transport.bluetooth;
 
-class Constants {
+import com.tamerlanchik.robocar.BuildConfig;
+
+public class Constants {
 
     // values have to be globally unique
     static final String INTENT_ACTION_DISCONNECT = BuildConfig.APPLICATION_ID + ".Disconnect";

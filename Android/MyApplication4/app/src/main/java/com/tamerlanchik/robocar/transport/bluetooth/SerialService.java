@@ -1,4 +1,4 @@
-package com.tamerlanchik.robocar;
+package com.tamerlanchik.robocar.transport.bluetooth;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -15,6 +15,8 @@ import android.os.Looper;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+
+import com.tamerlanchik.robocar.R;
 
 import java.io.IOException;
 import java.util.LinkedList;

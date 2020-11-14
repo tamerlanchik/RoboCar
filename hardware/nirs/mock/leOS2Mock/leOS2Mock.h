@@ -15,6 +15,9 @@ const uint8_t SCHEDULED = 1; //0b00000001
 const uint8_t SCHEDULED_IMMEDIATESTART = 5; //0b00000101
 const uint8_t IMMEDIATESTART = SCHEDULED_IMMEDIATESTART; //alias for previous
 const uint8_t ONETIME = 2;
+const uint8_t NOW = 10;
+
+class scheduller;
 
 class leOS2Mock {
 public:
@@ -31,10 +34,13 @@ public:
     void haltScheduler(void);
     void restartScheduler(void);
     void reset(void);
+    void setNowMode(bool);
+//    scheduller* getScheduller();
 private:
     //private methods
     void setWDT();
     uint8_t setTask(void (*)(void), uint8_t, unsigned long taskInterval = 0);
+    bool need_now;
 };
 
 class scheduler {
@@ -42,10 +48,12 @@ public:
     void init(void (*)(int));
     void halt();
     void restart();
+    void needTime(bool);
 private:
     struct itimerval timer;
     struct timeval start;
     struct timeval interval;
+    bool needTime();
 };
 
 

@@ -6,9 +6,11 @@ include_directories(
         config
         Logger
         Communicator
+        CIrcularBuffer
 #        RadioExtended
 #        RadioMessage
 )
 add_library(Modules SHARED ByteArray/ByteArray.cpp Logger/Logger.hpp
 #        RadioExtended/RadioExtended.cpp RadioMessage/RadioMessage.cpp
+        CIrcularBuffer/CircularBuffer.cpp
         Communicator/Communicator.h Communicator/SerialCommunicator.cpp Communicator/SerialCommunicator.h Communicator/Message.h Communicator/Listener.h Communicator/Communicator.cpp Communicator/Message.cpp Communicator/SerialMock.h)

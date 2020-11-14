@@ -85,3 +85,5 @@ int Controller::ping(long int time) {
 }
 
 Communicator* Controller::getCommunicator() { return comm; }
+
+Chassis* Controller::getChassis() { return chassis; };

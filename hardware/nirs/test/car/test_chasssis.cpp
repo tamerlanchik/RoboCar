@@ -22,8 +22,9 @@ void init_pinmodes(int digital, int* analog = nullptr) {
     if (!analog) {
         return;
     }
-    When(Method(ArduinoFake(), analogWrite).Using(motorPins[4], analog[0])).AlwaysReturn();
-    When(Method(ArduinoFake(), analogWrite).Using(motorPins[5], analog[1])).AlwaysReturn();
+//    printf("L=%d|%d, R=%d|%d\n", motorPinsPWM[(int)Pins::AL], abs(analog[0]), motorPinsPWM[(int)Pins::AR], abs(analog[1]));
+    When(Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[(int)Pins::AL], abs(analog[0]))).AlwaysReturn();
+    When(Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[(int)Pins::AR], abs(analog[1]))).AlwaysReturn();
 }
 
 void test_init(void)
@@ -60,19 +61,33 @@ void test_set_value() {
         int analogRes[2];
         int digitalRes;
     };
+//    const Case cases[] = {
+//        {
+//            "Forward 1",
+//            {100, 0},
+//            {100, 100},
+//            {Chassis::movements[Forward]}
+//        },
+//        {
+//            "Right",
+//            {10, 50},
+//            {50, 50},
+//            {Chassis::movements[Right]}
+//        },
+//    };
     const Case cases[] = {
-        {
-            "Forward 1",
-            {100, 0},
-            {100, 100},
-            {Chassis::movements[Forward]}
-        },
-        {
-            "Right",
-            {10, 50},
-            {50, 50},
-            {Chassis::movements[Right]}
-        },
+            {
+                    "Forward 1",
+                    {100, 0},
+                    {100, 0},
+                    {add((char)Chassis::MotorMov::FORWARD, 0)}
+            },
+            {
+                    "Right 1",
+                    {100, -70},
+                    {100, 70},
+                    {add((char)Chassis::MotorMov::FORWARD, (char)Chassis::MotorMov::BACKWARD)}
+            },
     };
     for(auto test : cases) {
         std::cout << "Case: " << test.name << std::endl;
@@ -81,7 +96,7 @@ void test_set_value() {
         init_pinmodes(test.digitalRes, test.analogRes);
 
         // call
-        Chassis().setValue(test.val[0], test.val[1]);
+        Chassis().setValue2(test.val[0], test.val[1]);
 
         //verify
         // порядок неважен
@@ -114,6 +129,15 @@ void test_byteAt() {
     }
 }
 
+void test_add() {
+    int res = (int)Pins::AL;
+    res = (int)Pins::AR;
+    res = (int)Pins::D1;
+    res=(int)Pins::D2;
+    res = (int)Pins::D3;
+    int r = 1;
+}
+
 void setUp(void)
 {
     ArduinoFakeReset();
@@ -122,11 +146,13 @@ void setUp(void)
 
 int main(int argc, char **argv)
 {
+//    test_add();
+//    return 0;
     UNITY_BEGIN();
 
-    RUN_TEST(test_byteAt);
-    RUN_TEST(test_init);
-    RUN_TEST(test_write_values);
+//    RUN_TEST(test_byteAt);
+//    RUN_TEST(test_init);
+//    RUN_TEST(test_write_values);
     RUN_TEST(test_set_value);
 
 

@@ -33,10 +33,11 @@ private:
     Model* mModel;
 public:
     Controller();
-    void testing();
-    int f(long long, long long);
-    int ping(long int);
-    Communicator* getCommunicator();
+    virtual void testing();
+    virtual int f(long long, long long);
+    virtual int ping(long int);
+    virtual Communicator* getCommunicator();
+    virtual Chassis* getChassis();
 //    RadioMessage* getRadioMessage();
 //    void handleMessage(RadioMessage*);
 

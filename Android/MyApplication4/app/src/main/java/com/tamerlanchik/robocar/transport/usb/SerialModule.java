@@ -1,4 +1,4 @@
-package com.tamerlanchik.robocar.usb;
+package com.tamerlanchik.robocar.transport.usb;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;

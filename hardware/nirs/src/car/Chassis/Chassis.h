@@ -7,17 +7,32 @@
 
 #include <Arduino.h>
 #include "pins.h"
+#ifdef UNIT_TEST
+    #include <car/config.h>
+#else
+    #include <config.h>
+#endif
 //#include <modules/Log/Log.hpp>
 typedef char Movement;
 enum MoveIndexes {Stop, Forward, Backward, Right, Left};
+enum class MotorMovementIndexes { Stop, Forward, Backward };
+
+// склеиваем два байта в один по порядку
+// 0b11001001: high_part = 10, low part=01
+//constexpr
+char add(char high_part, char low_part);
 
 class Chassis {
 public:
-    constexpr static const Movement movements[] = {0b0, 0b0101, 0b1010, 0b1001, 0b0110};
+    enum class MotorMov {HALT=0, FORWARD, BACKWARD};
+    static const Movement movements[6];
+    static const Movement motorMovements[3];
 
     Chassis();
     virtual void init();
     virtual void setValue(int,int);
+    virtual void setValue2(int,int);
+//    virtual void changeMoveMode(int, int);  // поворот в движении
 
 //    void setValue(int[]);
     virtual void setMotorValues(Movement);

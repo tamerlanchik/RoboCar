@@ -1,4 +1,4 @@
-package com.tamerlanchik.robocar;
+package com.tamerlanchik.robocar.transport.bluetooth;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
@@ -8,13 +8,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+import com.tamerlanchik.robocar.Constants;
+
 import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.concurrent.Executors;
 
-class SerialSocket implements Runnable {
+public class SerialSocket implements Runnable {
 
     private static final UUID BLUETOOTH_SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 

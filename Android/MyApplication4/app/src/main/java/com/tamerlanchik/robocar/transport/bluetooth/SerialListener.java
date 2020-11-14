@@ -1,6 +1,6 @@
-package com.tamerlanchik.robocar;
+package com.tamerlanchik.robocar.transport.bluetooth;
 
-interface SerialListener {
+public interface SerialListener {
     void onSerialConnect      ();
     void onSerialConnectError (Exception e);
     void onSerialRead         (byte[] data);

@@ -1,11 +1,12 @@
 #include <ArduinoFake.h>
 #include <unity.h>
-//#include <cmd/car.cpp>
-#include <cmd/car_scheduller.cpp>
+#include <cmd/car.cpp>
+//#include <cmd/car_scheduller.cpp>
 #include <car/Chassis/pins.h>
 #include <modules/Communicator/SerialCommunicator.h>
 #include <string>
 #include <unistd.h>
+#define UNIT_TEST
 
 using namespace fakeit;
 
@@ -18,6 +19,48 @@ void test_setup(void)
     }
 
     setup();
+}
+
+void init_pinmodes(int digital, int* analog = nullptr) {
+    for (size_t i = 0; i < 4; i++) {
+        When(Method(ArduinoFake(), digitalWrite).Using(motorPins[i], byteAt(digital, i))).AlwaysReturn();
+    }
+    if (!analog) {
+        return;
+    }
+//    printf("L=%d|%d, R=%d|%d\n", motorPinsPWM[(int)Pins::AL], abs(analog[0]), motorPinsPWM[(int)Pins::AR], abs(analog[1]));
+    When(Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[(int)Pins::AL], abs(analog[0]))).AlwaysReturn();
+    When(Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[(int)Pins::AR], abs(analog[1]))).AlwaysReturn();
+}
+
+void test_setup_scheduller(void)
+{
+    for(byte pin : motorPins) {
+        When(Method(ArduinoFake(), pinMode).Using(pin, 1)).AlwaysReturn();
+    }
+    int values[] = {13, 214};
+    int val = 0b0101;
+    init_pinmodes(val, values);
+
+    String data = "K|13 214$";
+    Log = new Logger();
+    controller = new Controller();
+    serial_->WillReturnRead(data.c_str(), data.length());
+    os.setNowMode(true);
+
+    setup();
+
+    Verify(
+            Method(ArduinoFake(), digitalWrite).Using(motorPins[0], byteAt(val, 0))
+            + Method(ArduinoFake(), digitalWrite).Using(motorPins[1], byteAt(val, 1))
+            + Method(ArduinoFake(), digitalWrite).Using(motorPins[2], byteAt(val, 2))
+            + Method(ArduinoFake(), digitalWrite).Using(motorPins[3], byteAt(val, 3))
+    ).Once();
+
+    Verify(
+            Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[0], 13)
+            + Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[1], 214)
+    ).Once();
 }
 
 void test_loop(void)
@@ -37,12 +80,6 @@ void test_loop(void)
     serial_->WillReturnRead(val3.c_str(), val3.length());
     controller->getCommunicator()->read(true);
     Verify(Method(ArduinoFake(), digitalWrite).Using(13, 1)).Twice();
-//    loop();
-//    Verify(Method(ArduinoFake(), digitalWrite).Using(13, 1)).Once();
-//    Verify(Method(ArduinoFake(), digitalWrite).Using(13, 0)).Once();
-//    Verify(Method(ArduinoFake(), digitalWrite).Using(LED_BUILTIN, HIGH)).Once();
-//    Verify(Method(ArduinoFake(), digitalWrite).Using(LED_BUILTIN, LOW)).Once();
-//    Verify(Method(ArduinoFake(), delay).Using(100)).Exactly(2_Times);
 }
 
 void test_sceduller() {
@@ -60,6 +97,25 @@ void test_sceduller() {
 //    Verify(Method(ArduinoFake(), digitalWrite).Using(13, 0)).Once();
 }
 
+void test_movement_listener() {
+    String payload = String("123 212");
+    Message msg = Message('K', (Load)payload.c_str());
+
+    MovementListener listener;
+    Mock<Controller> ctrlMock;
+    Mock<Chassis> chassisMock;
+    Chassis *chassis = &(chassisMock.get());
+    When(Method(ctrlMock, getChassis)).AlwaysDo([chassis]()->Chassis*{
+        return chassis;
+    });
+    When(Method(chassisMock, setValue2)).AlwaysReturn();
+
+    controller = &(ctrlMock.get());
+    listener.Handle(msg);
+    Verify(Method(ctrlMock, getChassis)).Once();
+    Verify(Method(chassisMock, setValue2).Using(123, 212)).Once();
+}
+
 void setUp(void)
 {
     ArduinoFakeReset();
@@ -71,7 +127,8 @@ int main(int argc, char **argv)
 
 //    RUN_TEST(test_setup);
 //    RUN_TEST(test_loop);
-    RUN_TEST(test_sceduller);
+//    RUN_TEST(test_movement_listener);
+    RUN_TEST(test_setup_scheduller);
 
     UNITY_END();
 
