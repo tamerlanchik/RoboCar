@@ -17,25 +17,25 @@ void init() {
 // пишем в 4 цифровых и 2 аналоговых пина (опционльно)
 void init_pinmodes(int digital, int* analog = nullptr) {
     for (size_t i = 0; i < 4; i++) {
-        When(Method(ArduinoFake(), digitalWrite).Using(motorPins[i], byteAt(digital, i))).AlwaysReturn();
+        When(Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[i], byteAt(digital, i))).AlwaysReturn();
     }
     if (!analog) {
         return;
     }
 //    printf("L=%d|%d, R=%d|%d\n", motorPinsPWM[(int)Pins::AL], abs(analog[0]), motorPinsPWM[(int)Pins::AR], abs(analog[1]));
-    When(Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[(int)Pins::AL], abs(analog[0]))).AlwaysReturn();
-    When(Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[(int)Pins::AR], abs(analog[1]))).AlwaysReturn();
+    When(Method(ArduinoFake(), analogWrite).Using((byte)motorPinsPWM[(int)Pin::AL], abs(analog[0]))).AlwaysReturn();
+    When(Method(ArduinoFake(), analogWrite).Using((byte)motorPinsPWM[(int)Pin::AR], abs(analog[1]))).AlwaysReturn();
 }
 
 void test_init(void)
 {
-    for(byte pin : motorPins) {
-        When(Method(ArduinoFake(), pinMode).Using(pin, 1)).AlwaysReturn();
+    for(Pin pin : motorPins) {
+        When(Method(ArduinoFake(), pinMode).Using((byte)pin, 1)).AlwaysReturn();
     }
     auto chassis = new Chassis();
     chassis->init();
     for (auto pin : motorPins)
-        Verify(Method(ArduinoFake(), pinMode).Using(pin, OUTPUT)).Once();
+        Verify(Method(ArduinoFake(), pinMode).Using((byte)pin, OUTPUT)).Once();
 }
 
 void test_write_values() {
@@ -46,10 +46,10 @@ void test_write_values() {
         Chassis().setMotorValues(static_cast<Movement>(val));
 
         Verify(
-                Method(ArduinoFake(), digitalWrite).Using(motorPins[0], byteAt(val, 0))
-                + Method(ArduinoFake(), digitalWrite).Using(motorPins[1], byteAt(val, 1))
-                + Method(ArduinoFake(), digitalWrite).Using(motorPins[2], byteAt(val, 2))
-                + Method(ArduinoFake(), digitalWrite).Using(motorPins[3], byteAt(val, 3))
+                Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[0], byteAt(val, 0))
+                + Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[1], byteAt(val, 1))
+                + Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[2], byteAt(val, 2))
+                + Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[3], byteAt(val, 3))
         ).Once();
     }
 }
@@ -101,14 +101,14 @@ void test_set_value() {
         //verify
         // порядок неважен
         Verify(
-                Method(ArduinoFake(), digitalWrite).Using(motorPins[0], byteAt(test.digitalRes, 0))
-                + Method(ArduinoFake(), digitalWrite).Using(motorPins[1], byteAt(test.digitalRes, 1))
-                + Method(ArduinoFake(), digitalWrite).Using(motorPins[2], byteAt(test.digitalRes, 2))
-                + Method(ArduinoFake(), digitalWrite).Using(motorPins[3], byteAt(test.digitalRes, 3))
+                Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[0], byteAt(test.digitalRes, 0))
+                + Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[1], byteAt(test.digitalRes, 1))
+                + Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[2], byteAt(test.digitalRes, 2))
+                + Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[3], byteAt(test.digitalRes, 3))
         ).Once();
         Verify(
-                Method(ArduinoFake(), analogWrite).Using(motorPins[4], test.analogRes[0])
-                + Method(ArduinoFake(), analogWrite).Using(motorPins[5], test.analogRes[1])
+                Method(ArduinoFake(), analogWrite).Using((byte)motorPins[4], test.analogRes[0])
+                + Method(ArduinoFake(), analogWrite).Using((byte)motorPins[5], test.analogRes[1])
         ).Once();
     }
 }
@@ -129,14 +129,14 @@ void test_byteAt() {
     }
 }
 
-void test_add() {
-    int res = (int)Pins::AL;
-    res = (int)Pins::AR;
-    res = (int)Pins::D1;
-    res=(int)Pins::D2;
-    res = (int)Pins::D3;
-    int r = 1;
-}
+//void test_add() {
+//    int res = (int)Pins::AL;
+//    res = (int)Pins::AR;
+//    res = (int)Pins::D1;
+//    res=(int)Pins::D2;
+//    res = (int)Pins::D3;
+//    int r = 1;
+//}
 
 void setUp(void)
 {

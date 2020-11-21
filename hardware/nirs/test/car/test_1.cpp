@@ -6,7 +6,7 @@
 #include <modules/Communicator/SerialCommunicator.h>
 #include <string>
 #include <unistd.h>
-#define UNIT_TEST
+//#define UNIT_TEST
 
 using namespace fakeit;
 
@@ -14,8 +14,8 @@ void test_setup(void)
 {
     When(Method(ArduinoFake(), millis)).AlwaysReturn(10000);
     When(Method(ArduinoFake(), pinMode).Using(13, 1)).AlwaysReturn();
-    for(byte pin : motorPins) {
-        When(Method(ArduinoFake(), pinMode).Using(pin, 1)).AlwaysReturn();
+    for(Pin pin : motorPins) {
+        When(Method(ArduinoFake(), pinMode).Using((byte)pin, 1)).AlwaysReturn();
     }
 
     setup();
@@ -23,20 +23,20 @@ void test_setup(void)
 
 void init_pinmodes(int digital, int* analog = nullptr) {
     for (size_t i = 0; i < 4; i++) {
-        When(Method(ArduinoFake(), digitalWrite).Using(motorPins[i], byteAt(digital, i))).AlwaysReturn();
+        When(Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[i], byteAt(digital, i))).AlwaysReturn();
     }
     if (!analog) {
         return;
     }
 //    printf("L=%d|%d, R=%d|%d\n", motorPinsPWM[(int)Pins::AL], abs(analog[0]), motorPinsPWM[(int)Pins::AR], abs(analog[1]));
-    When(Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[(int)Pins::AL], abs(analog[0]))).AlwaysReturn();
-    When(Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[(int)Pins::AR], abs(analog[1]))).AlwaysReturn();
+    When(Method(ArduinoFake(), analogWrite).Using((byte)motorPinsPWM[(int)Pin::AL], abs(analog[0]))).AlwaysReturn();
+    When(Method(ArduinoFake(), analogWrite).Using((byte)motorPinsPWM[(int)Pin::AR], abs(analog[1]))).AlwaysReturn();
 }
 
 void test_setup_scheduller(void)
 {
-    for(byte pin : motorPins) {
-        When(Method(ArduinoFake(), pinMode).Using(pin, 1)).AlwaysReturn();
+    for(Pin pin : motorPins) {
+        When(Method(ArduinoFake(), pinMode).Using((byte)pin, 1)).AlwaysReturn();
     }
     int values[] = {13, 214};
     int val = 0b0101;
@@ -44,30 +44,30 @@ void test_setup_scheduller(void)
 
     String data = "K|13 214$";
     Log = new Logger();
-    controller = new Controller();
     serial_->WillReturnRead(data.c_str(), data.length());
-    os.setNowMode(true);
+    controller->os.setNowMode(true);
 
     setup();
 
     Verify(
-            Method(ArduinoFake(), digitalWrite).Using(motorPins[0], byteAt(val, 0))
-            + Method(ArduinoFake(), digitalWrite).Using(motorPins[1], byteAt(val, 1))
-            + Method(ArduinoFake(), digitalWrite).Using(motorPins[2], byteAt(val, 2))
-            + Method(ArduinoFake(), digitalWrite).Using(motorPins[3], byteAt(val, 3))
+            Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[0], byteAt(val, 0))
+            + Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[1], byteAt(val, 1))
+            + Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[2], byteAt(val, 2))
+            + Method(ArduinoFake(), digitalWrite).Using((byte)motorPins[3], byteAt(val, 3))
     ).Once();
 
     Verify(
-            Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[0], 13)
-            + Method(ArduinoFake(), analogWrite).Using(motorPinsPWM[1], 214)
+            Method(ArduinoFake(), analogWrite).Using((byte)motorPinsPWM[0], 13)
+            + Method(ArduinoFake(), analogWrite).Using((byte)motorPinsPWM[1], 214)
     ).Once();
 }
 
 void test_loop(void)
 {
+    Controller* controller = new Controller();
     When(Method(ArduinoFake(), delay)).AlwaysReturn();
     When(Method(ArduinoFake(), digitalWrite)).AlwaysReturn();
-    iteratons = 3;
+//    iteratons = 3;
     serial_->WillReturnRead("L|Fuck$", 10);
     controller->getCommunicator()->read(true);
     Verify(Method(ArduinoFake(), digitalWrite).Using(13, 1)).Once();
@@ -111,7 +111,7 @@ void test_movement_listener() {
     When(Method(chassisMock, setValue2)).AlwaysReturn();
 
     controller = &(ctrlMock.get());
-    listener.Handle(msg);
+    listener(msg);
     Verify(Method(ctrlMock, getChassis)).Once();
     Verify(Method(chassisMock, setValue2).Using(123, 212)).Once();
 }

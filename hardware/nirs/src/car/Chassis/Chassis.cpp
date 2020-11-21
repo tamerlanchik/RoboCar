@@ -29,8 +29,8 @@ Chassis::Chassis(){
 }
 
 void Chassis::init(){
-    for(byte pin : motorPins){
-        pinMode(pin, OUTPUT);
+    for(Pin pin : motorPins){
+        pinMode((byte)pin, OUTPUT);
     }
     Log->println('d', "Init Chassis");
 }
@@ -49,8 +49,8 @@ void Chassis::setValue(int a, int b){
     int speedB = abs(b);
 
     if(speedA < EPS_MOV){   // поворот на месте / стоянка
-        analogWrite(motorPins[4], speedB);
-        analogWrite(motorPins[5], speedB);
+        analogWrite((byte)motorPins[4], speedB);
+        analogWrite((byte)motorPins[5], speedB);
         if(abs(b) < EPS_MOV){
             writeMotors(movements[Stop]);
         }else{
@@ -61,8 +61,8 @@ void Chassis::setValue(int a, int b){
             }
         }
     }else{  // едем вперед-назад
-        analogWrite(motorPins[4], speedA);
-        analogWrite(motorPins[5], speedA);
+        analogWrite((byte)motorPins[4], speedA);
+        analogWrite((byte)motorPins[5], speedA);
         if(a > 0){
             writeMotors(movements[Forward]);
         }else{
@@ -92,8 +92,8 @@ void Chassis::setValue2(int a, int b){
     );
 
     writeMotors(movement);
-    analogWrite(motorPinsPWM[(int)Pins::AL], abs(a));
-    analogWrite(motorPinsPWM[(int)Pins::AR], abs(b));
+    analogWrite((byte)motorPinsPWM[0], abs(a));
+    analogWrite((byte)motorPinsPWM[1], abs(b));
 }
 
 //void Chassis::setValue(int value[]){
@@ -109,7 +109,7 @@ void Chassis::setMotorValues(Movement movement){
 void Chassis::writeMotors(Movement movement){
     for(size_t i = 0; i < 4; i++) {
 //    for(unsigned char i = 0; i<4; i++)
-        digitalWrite(motorPins[i], byteAt(movement, i));
+        digitalWrite((byte)motorPins[i], byteAt(movement, i));
     }
 }
 

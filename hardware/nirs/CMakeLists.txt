@@ -29,7 +29,7 @@ add_subdirectory(lib/Vector)
 add_subdirectory(mock/leOS2Mock)
 
 if(TARGET CarTest1)
-#    include_directories(mock)
+    include_directories(mock)
 #    add_subdirectory(mock/leOS2)
 endif()
 

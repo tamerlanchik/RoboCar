@@ -17,7 +17,8 @@ SerialCommunicator::SerialCommunicator(int baudrate, size_t messages_count, size
     serial_ = new SerialMock();
     SerialMock serial = *serial_;
 #endif
-    serial.begin(baudrate);
+    // It is meant to Log be init
+//    serial.begin(baudrate);
     serial.println("Communicator init!");
 }
 
@@ -43,7 +44,7 @@ Message SerialCommunicator::read(bool notify) {
 #ifdef UNIT_TEST
     SerialMock serial = serial_ ? *serial_ : SerialMock();
 #endif
-    if(serial.available()){
+    while(serial.available() > 0){
         Message msg = Message();
         this->buffer_size = -1;
         // получаем код команды

@@ -19,7 +19,7 @@ public:
         #ifdef UNIT_TEST
 //        println('i', "Init serial");
         #else
-        Serial.begin(115200);
+        Serial.begin(57600);
         delay(200);
         #endif
         println('i', "Init serial");

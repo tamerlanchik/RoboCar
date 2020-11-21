@@ -13,12 +13,21 @@ extern Logger* Log;
 
 Controller::Controller(){
 //    radio=new RadioExtended(radioCE,radioCSN, radioAdresses[0], radioAdresses[1], RF24_1MBPS, RF24_PA_MAX, 0);
+    os.begin();
     chassis = new Chassis();
     chassis->init();
 //    mRadioMessage = new RadioMessage();
     mModel = new Model();
 
-    comm = new SerialCommunicator(9600, 5, 'K', Mode::TEXT);
+    tachometer[0] = new Tachometr(0);
+    tachometer[0]->start<0>(INTERRUPT0);
+
+    os.addTask([](){
+        for(int i = 0; i < 1; i++)
+            Tachometr::handleStopFlag(i);
+    }, 400/16);
+
+    comm = new SerialCommunicator(SERIAL_BAUDRATE, 5, 'K', Mode::TEXT);
     Log->println('d', "Controller inited");
     Message msg = Message((int)Commands::PING, "Hello, world");
     comm->send(msg);
@@ -85,5 +94,9 @@ int Controller::ping(long int time) {
 }
 
 Communicator* Controller::getCommunicator() { return comm; }
+
+Tachometr* Controller::getTachometr() {
+    return tachometer[0];
+}
 
 Chassis* Controller::getChassis() { return chassis; };

@@ -50,6 +50,6 @@ void Communicator::notifyListener(Cmd cmd, Message& msg) {
     }
     Vector<Listener*> ls = this->listeners[idx];
     for(auto l = ls.begin(); l != ls.end(); ++l) {
-        (*l)->Handle(msg);
+        (*l)->operator()(msg);
     }
 }
