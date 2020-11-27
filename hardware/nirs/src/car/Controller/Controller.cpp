@@ -11,6 +11,9 @@
 
 extern Logger* Log;
 
+extern TachometrConfig tachometrConfig;
+extern CommunicatorConfig communicatorConfig;
+
 Controller::Controller(){
 //    radio=new RadioExtended(radioCE,radioCSN, radioAdresses[0], radioAdresses[1], RF24_1MBPS, RF24_PA_MAX, 0);
     os.begin();
@@ -22,12 +25,18 @@ Controller::Controller(){
     tachometer[0] = new Tachometr(0);
     tachometer[0]->start<0>(INTERRUPT0);
 
-    os.addTask([](){
-        for(int i = 0; i < 1; i++)
-            Tachometr::handleStopFlag(i);
-    }, 400/16);
+    tachometer[1] = new Tachometr(1);
+    tachometer[1]->start<1>(INTERRUPT1);
 
-    comm = new SerialCommunicator(SERIAL_BAUDRATE, 5, 'K', Mode::TEXT);
+    os.addTask([]() {
+        for (int i = 0; i < 2; i++)
+            Tachometr::handleStopFlag(i);
+    }, 9);
+
+    comm = new SerialCommunicator(communicatorConfig.baudrate,
+            communicatorConfig.cmdCount,
+            communicatorConfig.cmdInit,
+            communicatorConfig.isTextMode ? Mode::TEXT: Mode::BINARY);
     Log->println('d', "Controller inited");
     Message msg = Message((int)Commands::PING, "Hello, world");
     comm->send(msg);

@@ -17,6 +17,7 @@
 
 typedef int Status;
 enum {NOT_FOUND=-1, OK, ERROR};
+
 // для каждой команды заводим массив слушателей такого размера
 const size_t LISTENERS_QUEUE_LEN = 2;
 

@@ -7,11 +7,13 @@ include_directories(
         Logger
         Communicator
         CircularBuffer
-
+        Math
 #        RadioExtended
 #        RadioMessage
 )
 add_library(Modules SHARED ByteArray/ByteArray.cpp Logger/Logger.hpp
+        Math/Der.hpp
+        Math/Other.hpp
 #        RadioExtended/RadioExtended.cpp RadioMessage/RadioMessage.cpp
         CircularBuffer/CircularBuffer.h
         Communicator/Communicator.h Communicator/SerialCommunicator.cpp Communicator/SerialCommunicator.h

@@ -12,10 +12,7 @@ class NewTachometr : public Tachometr {
 public:
     NewTachometr(int curr) : Tachometr(curr) {}
     void put(int val) {
-        Tachometr::buffer.mTime[curr].put(val);
-        Tachometr::buffer.mCoord[curr].put(Tachometr::buffer.mDirection[curr] * dL);
-        Tachometr::buffer.changed[curr] = true;
-        Tachometr::buffer.mPath[curr] += Tachometr::buffer.mDirection[curr] * dL;
+        Tachometr::buffer.storage[curr].handleInterr(val);
     }
 };
 
@@ -33,23 +30,25 @@ public:
 //}
 
 void test_1() {
+    String s = "0.6";
+    float d = atof(s.c_str());
     Log = new Logger();
     When(Method(ArduinoFake(), attachInterrupt)).AlwaysReturn();
-    NewTachometr* t = new NewTachometr(0);
-    t->start<0>(2);
-//    unsigned long start = 1000000;
-//    t->put(start + 1);
-//
-//    t->put(start + 2);
-//    t->put(start + 10);
-    t->put(19804688);
-    t->put(19804704);
-    t->put(19804724);
     When(Method(ArduinoFake(), micros)).AlwaysReturn(10000000);
     When(Method(ArduinoFake(), cli)).AlwaysReturn();
     When(Method(ArduinoFake(), sei)).AlwaysReturn();
-    Tachometr::buffer.mPath[0] = 132;
-    TachoData d = t->getData();
+    NewTachometr* t = new NewTachometr(0);
+    t->start<0>(2);
+    const int times[] = {34887036, 34898000, 34905524, 34916944, 34924688, 34937172, 34958712, 34967368, 34981092, 34990292, 35006524};
+    TachoData data[sizeof(times)];
+    int i = 0;
+    for(int time : times) {
+        t->put(time);
+        data[i++] = t->getData();
+    }
+
+//    Tachometr::buffer.mPath[0] = 132;
+//    TachoData d = t->getData();
     int a = 0;
 
 }

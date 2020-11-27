@@ -7,6 +7,7 @@ include_directories(
         Model
         Chassis
         Tachometr
+#        Eeprom
 #        pins
 )
 add_library(CarModules SHARED Controller/Controller.cpp
@@ -14,6 +15,8 @@ add_library(CarModules SHARED Controller/Controller.cpp
         Chassis/Chassis.cpp
         Tachometr/Tachometr.cpp
         Tachometr/Tachometr.h
+#        Eeprom/Eeprom.hpp
+        config.cpp
         Chassis/pins.h config.h)
 target_link_libraries(CarModules Modules LeOS2Mock)
 #target_link_libraries(CarModules STATIC LeOS2Mock)

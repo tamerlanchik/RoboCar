@@ -12,37 +12,13 @@
 #include <leOS2Mock/leOS2Mock.h>
 #include <car/Tachometr/Tachometr.h>
 #include <modules/Communicator/SerialCommunicator.h>
-
+#include <car/config.h>
 typedef leOS2Mock leOS2;
 #else
 #include <leOS2.h>
 #include <car/Tachometr/Tachometr.h>
-
+#include <config.h>
 #endif
-
-//class TestProgram : public Controller {
-//public:
-//    TestProgram() : Controller() {}
-//    void run();
-//    leOS2 os;
-//    void setup();
-//
-//public:
-//    void handleMovementMessage(Message& msg) {
-//        String s = String((const char*)msg.getLoad());
-//        int divider = s.indexOf(' ');
-//        String a_s = s.substring(0, divider);
-//        String b_s = s.substring(divider+1);
-//        int a = atoi(a_s.c_str());
-//        int b = atoi(b_s.c_str());
-//        chassis->setValue2(a, b);
-//    }
-//};
-
-//class PingListener : public Listener {
-//public:
-//    void Handle(Message& msg) = TestProgram::handleMovementMessage;
-//};
 
 Controller* controller;
 Logger* Log;
@@ -69,78 +45,74 @@ struct MovementListener : public Listener {
         controller->getChassis()->setValue2(a, b);
     }
 };
-
-//void TestProgram::setup() {
-//    os.begin();
-//    Log = Log ? Log : new Logger();
-//
-////    os.addTask([]() {
-////        TachoData data = controller->getTachometr()->getData();
-////        Log->println('d', "Data: ", data.x, data.v);
-////    }, 30);
-////    Communicator* c = new SerialCommunicator(1, 1, 1, Mode::TEXT);
-//
-//    comm->addListener('L', new ListenerWrapper([](Message& msg){
-//
-//    }));
-//
-//}
-
-//void TestProgram::run() {
-//    setup();
-//    while(1);
-//}
+Config cfg;
+TachometrConfig tachometrConfig;
+CommunicatorConfig communicatorConfig;
+ChassisConfig chassisConfig;
+//int signal[2] = {0,0};
+float target = 5;
+float I[2] = {0, 0};
 void setup(){
-//    TestProgram().run();
+    communicatorConfig = {17, 'K', true, 57600};
+    tachometrConfig = {4, 0.6};
+    chassisConfig = {10};
+    cfg = {&communicatorConfig, &tachometrConfig, &chassisConfig};
+
     Log = Log ? Log : new Logger();
     controller = controller ? controller : new Controller();
     pinMode(13, OUTPUT);
-     controller->getCommunicator()->addListener('L', new PingListener());
-     controller->getCommunicator()->addListener('K', new MovementListener());
+    controller->getCommunicator()->addListener('K', new ListenerWrapper([](Message& msg){
+        String s = String((const char*)msg.getLoad());
+        int divider = s.indexOf(' ');
+        String paramName = s.substring(0, divider);
+        String paramValue = s.substring(divider+1);
+        cfg.update(&paramName, paramValue.c_str());
+//        if (paramName == "t.a") {
+//            tachometrConfig.a = atof(paramValue.c_str());
+////            Log->println('d', tachometrConfig.a);
+//        } else if(paramName == "t.win") {
+//            tachometrConfig.winSize = atoi(paramValue.c_str());
+////            Log->println('d', tachometrConfig.winSize);
+//        }
+    }));
+
+    controller->getCommunicator()->addListener('L', new PingListener());
+
+    controller->getCommunicator()->addListener('N', new ListenerWrapper([](Message& msg){
+        String s = String((const char*)msg.getLoad());
+        target = atof(s.c_str());
+    }));
+
+     controller->getCommunicator()->addListener('M', new MovementListener());
+
      controller->os.addTask([]() {
          controller->getCommunicator()->read(true);
      }, 1);
 
-//    controller->os.addTask([]() {
-//        TachoData data = controller->getTachometr()->getData();
-//        Log->println('_', data.x, data.v);
-//    }, 30);
+    controller->os.addTask([]() {
+//        TachoData data = controller->getTachometr()->getData(false);
+        TachoData data1 = controller->tachometer[0]->getData(false);
+        TachoData data2 = controller->tachometer[1]->getData(false);
+        Log->println('_', data1.v, data2.v);
+//        float v1 = data1.v, v2 = data2.v;
+//        float e1 = target - v1, e2 = target - v2;
+//        I[0] += e1; I[1] += e2;
+//        float contr1 = e1 * 1 + I[0]*0.05, contr2 = e2*1 + I[1]*0.05;
+//        signal[0] += contr1;
+//        signal[1] += contr2;
+//        controller->chassis->setValue2(signal[0], signal[1]);
+    }, 2);
+
+
+    controller->os.addTask([]() {
+        controller->tachometer[0]->getData(true);
+        controller->tachometer[1]->getData(true);
+    }, 1);
 }
 
 
 void loop() {
-//    digitalWrite(13, 1);
-//    delay(500);
-//    digitalWrite(13, 0);
-//    delay(500);
-//    Log->println('d', "AAd", 134);
-//    Message msg = Message('M', "Hello fucking world!");
-//    controller->getCommunicator()->send(msg);
-//    controller->getCommunicator()->read(true);
-
 #ifdef UNIT_TEST
     if (--iteratons) { return; }
 #endif
 }
-
-
-//D: Start calc: currX= 112 19236 412
-//D: 0 100
-//D: iter:  560 19236 392 108
-//D: 560 -100
-//D: iter:  560 19163 56 104
-//0.11 5600.00
-//
-//
-//D: Start calc: currX= 132 19804 724
-//D: 0 100
-//D: iter:  660 19804 704 128
-//D: 660 -100
-//D: iter:  -140 19804 688 124
-//0.13 -1400.00
-//D: Start calc: currX= 132 19804 724
-//D: 0 100
-//D: iter:  660 19804 704 128
-//D: 660 -100
-//D: iter:  -140 19804 688 124
-//0.13 -1400.00

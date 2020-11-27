@@ -10,11 +10,19 @@
     #include <modules/CircularBuffer/CircularBuffer.h>
     #include <car/config.h>
     #include <modules/Logger/Logger.hpp>
+    #include <modules/Math/Math.h>
+template<typename T> constexpr T max(T a, T b) { return a >= b ? a : b; }
+template<typename T> constexpr T min(T a, T b) { return a <= b ? a : b; }
 #else
     #include <CircularBuffer.h>
     #include <config.h>
     #include <Logger.hpp>
+    #include <Math.h>
 #endif
+
+extern Logger* Log;
+extern TachometrConfig tachometrConfig;
+
 
 struct TachoData {
     float x;
@@ -22,41 +30,50 @@ struct TachoData {
     float a;
 };
 
-const int MULIPLIER = 100;
-// 4й порядок точности
-//const int WEIGHTS[] = {
-//        (int)(0.25*100),
-//        (int)(-1.333*100),
-//        (int)(3*100),
-//        (int)(-4*100),
-//        (int)(2.0822*100),
-//        };
+//const int WIN_SIZE = 6;
+const int WANNA_T = 20 * 1000; // 20 ms
 
-const int WEIGHTS[] = {
-        (int)(-1*MULIPLIER),
-        (int)(1*MULIPLIER),
-};
-
-template<typename T, int count, int K>
+template<int count, int K, int AVER>
 class StaticStorage {
 public:
-    volatile CircularBuffer<unsigned long, K+2> mTime[count];   // время тика
-    volatile CircularBuffer<int, K+2> mCoord[count];  // прирост координаты
+    class Data {
+    public:
+        CircularBuffer<float, max(K+2, AVER)> mCoord;            // координата
+        CircularBuffer<unsigned long, max(K+2, AVER)> dT;
+        Der<K, max(K+2, AVER)> V;
+        unsigned long prevT = 0;
+        int mPath = 0;                              // суммарная координата
+        int mDirection = 1;                         // коэффициент направления
+        bool changed;                               // значения обновились
+        bool haltWatchdogFlag = 1;                  // если долго не сбрасываем, добавим запись 0
 
-    volatile int mPath[count] = {0,0};              // пройденное расстояние
-    int mDirection[count] = {1, 1};                 // коэффициент направления
+        void handleInterr(unsigned long t, float dS) volatile {
+            long dt = t - prevT;
+            if (dT.len() < 1) {
+//                dt = 0;
+                dt = 10000;
+            }
+            dT.put( dt);
+            mCoord.put(mCoord.at(-1) + dS);
+            changed = true;
+            haltWatchdogFlag = false;
+            prevT = t;
+//            Log->println('d', "handle: ", (int)(dt/1000000), (int)(dt%1000000/1000), (int)(dt%1000), mCoord.at(-1), "\n");
+        }
+        void handleInterr(unsigned long t) volatile {
+            handleInterr(t, TachometrConfig::dL*mDirection);
+        }
+    };
 
-    volatile bool changed[count];
-    volatile bool haltWatchdogFlag[count] = {1, 1}; // если долго не сбрасываем, добавим запись 0
+    volatile Data storage[count];
 };
 
-extern Logger* Log;
 
 const int ACC_RATE = 1;
 // TODO: добавить поддержку подписчиков на новые данные
 class Tachometr {
 public:
-    static StaticStorage<long long, 2, ACC_RATE> buffer;
+    static StaticStorage<2, ACC_RATE, TachometrConfig::maxWinSize> buffer;
     int curr;
     TachoData data;
 
@@ -70,39 +87,27 @@ public:
             if (!state[current]) {
                 return;
             }
-            unsigned long t = micros();
-            Tachometr::buffer.mTime[current].put(t);
-            Tachometr::buffer.mCoord[current].put(Tachometr::buffer.mDirection[current] * dL);
-            Tachometr::buffer.changed[current] = true;
-            Tachometr::buffer.mPath[current] += Tachometr::buffer.mDirection[current] * dL;
-            Tachometr::buffer.haltWatchdogFlag[current] = false;    // сбросили флаг
-//             Tachometr::print("Interrupt()");
-            Log->println('d', "inter: ", (int)(t/1000000), (int)(t % 1000000/1000), (int)(t % 1000));
+            Tachometr::buffer.storage[current].handleInterr(micros());
+            Tachometr::instances[current]->getData(true);
+//            Log->println('d', "handlle");
 
         }, CHANGE);
     }
-    virtual TachoData getData();
+    virtual TachoData getData(bool needCalc=true);
     template<typename T>
     static T sum(const T[], int len);
-    static void print() {
-        // Log->println('d', "Star()");
-    }
     static void handleStopFlag(int i) {
-        if(Tachometr::buffer.haltWatchdogFlag[i] == 1) {
+        if(Tachometr::buffer.storage[i].haltWatchdogFlag == 1) {
             noInterrupts();
-            if(Tachometr::buffer.haltWatchdogFlag[i] == 1) {
-                Tachometr::buffer.mTime[i].put(micros());
-                Tachometr::buffer.mCoord[i].put(0);
-                Tachometr::buffer.changed[i] = true;
+            if(Tachometr::buffer.storage[i].haltWatchdogFlag == 1) {
+                Tachometr::buffer.storage[i].handleInterr(micros(), 0);
             }
-            interrupts();
-            auto t = micros();
-            Log->println('d', "inter2: ", (int)(t/1000000), (int)(t % 1000000/1000), (int)(t % 1000));
-        }
-        Tachometr::buffer.haltWatchdogFlag[i] = 1;
+            interrupts();}
+        Tachometr::buffer.storage[i].haltWatchdogFlag = 1;
     }
 public:
     void updateData();
+    static Tachometr* instances[2];
 };
 
 

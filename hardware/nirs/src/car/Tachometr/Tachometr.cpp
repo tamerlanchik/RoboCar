@@ -2,48 +2,72 @@
 
 #ifdef UNIT_TEST
     #include <modules/Logger/Logger.hpp>
+#include <car/config.h>
+
 #else
     #include <Logger.hpp>
 #endif
 
-StaticStorage<long long, 2, ACC_RATE> Tachometr::buffer;
+StaticStorage<2, ACC_RATE, TachometrConfig::maxWinSize> Tachometr::buffer;
+Tachometr* Tachometr::instances[2];
 
 Tachometr::Tachometr(int curr) : curr(curr)  {
+    Tachometr::buffer.storage[curr].mCoord.put(0);
     Log->println('d', "Init Tachometr()");
+    Tachometr::instances[curr] = this;
 }
+
+void ff(Array<float>* a);
 
 // Отдает текущие координату-скорость-ускорение.
 // Если старые данные не менялись, возвращаем их
 // иначе считаем заново
-TachoData Tachometr::getData() {
-    long long int start = micros();
-//    if (!Tachometr::buffer.changed[curr]) {
-//        return data;
-//    }
-    int v_new = 0;
-    data.x = Tachometr::buffer.mPath[curr];
-    int currX = data.x;
-
-//    noInterrupts();
-    // восстанавливаем вектор координаты по текущему значению и истории приращений.
-    long long prevTime, currTime = Tachometr::buffer.mTime[curr].at(-1);
-    Log->println('d', "Start calc: currX=", currX, (int)(currTime/1000), (int)(currTime % 1000));
-    for(int i = Tachometr::buffer.mTime[curr].len() - 1; i > 0; --i) {
-        prevTime = Tachometr::buffer.mTime[curr].at(i - 1);
-        Log->println('d', v_new, WEIGHTS[i-1]);
-//        Log->println('d', (int)((currTime - prevTime)/1000), (int)((currTime - prevTime) % 1000));
-//        Log->println('d', currX, currX * WEIGHTS[i-1]);
-        v_new += (currX * WEIGHTS[i-1] / (currTime - prevTime));
-        currTime = prevTime;
-        currX -= Tachometr::buffer.mCoord[curr].at(i);
-        Log->println('d', "iter: ", v_new, (int)(currTime/1000), (int)(currTime % 1000), currX);
+TachoData Tachometr::getData(bool needCalc) {
+    // не сможем посчитать производные
+    if (Tachometr::buffer.storage[curr].mCoord.len() < ACC_RATE + 1 || !needCalc || !Tachometr::buffer.storage[curr].changed) {
+        return data;
     }
-//    interrupts();
-    data.v = 1.0*v_new * 1000000; // ms->sec
-    data.v /= MULIPLIER; // веса
-    data.v /= LIN_MULT; // dL
-    data.x /= LIN_MULT;
-    Tachometr::buffer.changed[curr] = false;
+    auto storage = &Tachometr::buffer.storage[curr];
+//    Log->println('d', "getData");
+
+    data.x = storage->mCoord.at(-1);
+    noInterrupts();
+
+     float dX = Tachometr::buffer.storage[curr].V.calc(
+             &storage->mCoord,
+             storage->dT.at(-1)
+     );
+
+    // инерционный фильтр
+    const float a = tachometrConfig.a;
+    if (storage->V.buffer.len() > 1) {
+        float dxFiltered = inertialFilter(a, dX, storage->V.buffer.at(-2));
+        storage->V.buffer.set(-1, dxFiltered);
+    }
+
+    // оконный фильтр
+    int winSize = tachometrConfig.winSize;
+    // динамически подбираем размер
+//    float dtAvr = 0;
+//    for(int i = 0; i < Tachometr::buffer.storage[curr].mCoord.len(); ++i) {
+//        dtAvr += Tachometr::buffer.storage[curr].dT.at(i);
+//    }
+//    dtAvr /= Tachometr::buffer.storage[curr].mCoord.len();
+//
+//    winSize = 1.0*WANNA_T/dtAvr + 1;
+//    winSize = min(winSize, Tachometr::buffer.storage[curr].mCoord.len() - 1);
+
+    storage->V.buffer.set(-1,
+            averageFilter(winSize, &storage->V.buffer)
+    );
+
+    Tachometr::buffer.storage[curr].changed = false;
+    interrupts();
+
+    data.v = storage->V.buffer.at(-1) * 10e6; // ms->sec
+//    data.v /= MULIPLIER; // веса
+    data.v /= TachometrConfig::LIN_MULT; // dL
+    data.x /= TachometrConfig::LIN_MULT;
 //    Log->println('d', "getData() ", (int)(micros() - start));
     return data;
 };

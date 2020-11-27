@@ -9,9 +9,13 @@
 
 #ifdef UNIT_TEST
     #include <iostream>
+    #include <car/config.h>
 #else
     #include <Arduino.h>
+    #include <config.h>
 #endif
+
+extern CommunicatorConfig communicatorConfig;
 
 class Logger {
 public:
@@ -19,7 +23,7 @@ public:
         #ifdef UNIT_TEST
 //        println('i', "Init serial");
         #else
-        Serial.begin(57600);
+        Serial.begin(communicatorConfig.baudrate);
         delay(200);
         #endif
         println('i', "Init serial");

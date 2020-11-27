@@ -8,11 +8,14 @@
 #include <Arduino.h>
 #include "pins.h"
 #ifdef UNIT_TEST
-    #include <car/config.h>
+//    #include <car/config.h>
 #else
-    #include <config.h>
+//    #include <config.h>
 #endif
 //#include <modules/Log/Log.hpp>
+
+//extern
+
 typedef char Movement;
 enum MoveIndexes {Stop, Forward, Backward, Right, Left};
 enum class MotorMovementIndexes { Stop, Forward, Backward };

@@ -1,7 +1,3 @@
-//
-// Created by andrey on 03.11.2020.
-//
-
 #ifndef ROBOCAR_CONTROLLER_H
 #define ROBOCAR_CONTROLLER_H
 
@@ -15,22 +11,17 @@
     #include <leOS2Mock/leOS2Mock.h>
     typedef leOS2Mock leOS2;
 #else
-#include <Logger.hpp>
-#include <Chassis.h>
-#include <config.h>
-#include <Model.h>
-#include <Communicator.h>
-#include <Tachometr.h>
-#include <leOS2.h>
+    #include <Logger.hpp>
+    #include <Chassis.h>
+    #include <config.h>
+    #include <Model.h>
+    #include <Communicator.h>
+    #include <Tachometr.h>
+    #include <leOS2.h>
+    #include <Vector.h> // грязный хак - platformio не находит в Communicator.h
 #endif
 #include <Arduino.h>
 
-
-
-//#include <RadioExtended.h>
-//#include <RadioMessage.h>
-//#include <car/Model/Model.h>
-//#include <car/Chassis/pins.h>
 class Controller{
 //protected:
 public:

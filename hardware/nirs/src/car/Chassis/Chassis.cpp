@@ -1,13 +1,15 @@
 //#define UNIT_TEST
 #ifdef UNIT_TEST
 #include <modules/Logger/Logger.hpp>
+#include <car/config.h>
 #else
 #include "../Logger/Logger.hpp"
- #include <config.h>
+#include <config.h>
 #endif
 #include "Chassis.h"
 
 extern Logger* Log;
+extern ChassisConfig chassisConfig;
 
 const Movement Chassis::movements[] = { 0b0, 0b0101, 0b1010, 0b1001, 0b0110 };
 
@@ -48,10 +50,10 @@ void Chassis::setValue(int a, int b){
     int speedA = abs(a);
     int speedB = abs(b);
 
-    if(speedA < EPS_MOV){   // поворот на месте / стоянка
+    if(speedA < chassisConfig.epsMov){   // поворот на месте / стоянка
         analogWrite((byte)motorPins[4], speedB);
         analogWrite((byte)motorPins[5], speedB);
-        if(abs(b) < EPS_MOV){
+        if(abs(b) < chassisConfig.epsMov){
             writeMotors(movements[Stop]);
         }else{
             if(b > 0){
@@ -78,11 +80,11 @@ void Chassis::setValue2(int a, int b){
     a = constrain(a, -255, 255);
     b = constrain(b, -255, 255);
 
-    auto sign = [](float v){ return v >= 0 ? 1 : -1; };
+//    auto sign = [](float v){ return v >= 0 ? 1 : -1; };
     auto chooseMotorMode = [](int speed)->Movement {
         MotorMovementIndexes idx = MotorMovementIndexes::Stop;
-        if(speed >= EPS_MOV) idx = MotorMovementIndexes::Forward;
-        else if (speed <= -EPS_MOV) idx = MotorMovementIndexes::Backward;
+        if(speed >= chassisConfig.epsMov) idx = MotorMovementIndexes::Forward;
+        else if (speed <= -chassisConfig.epsMov) idx = MotorMovementIndexes::Backward;
         return Chassis::motorMovements[(int)idx];
     };
 
