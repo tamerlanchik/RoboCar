@@ -1,15 +1,16 @@
-//
-// Created by andrey on 27.11.2020.
-//
+/*
+ * Класс - дифференциатор.
+ * Считает производную методом конечных разностей
+ * заданного порядка.
+ */
 
 #ifndef ROBOCAR_DER_H
 #define ROBOCAR_DER_H
 
+// коэффициенты для конечных разностей
 const float WEIGHTS_1[] = { -1, 1};
 const float WEIGHTS_2[] = {0.5, -2, 1.5};
 const float WEIGHTS_4[] = {0.25, -1.3333, 3, -4, 2.0833};
-
-//const int* WEIGHTS[] = {0, WEIGHTS_1, WEIGHTS_2};
 
 template<int acc_rate, int buffer_len>
 class Der {
@@ -35,6 +36,8 @@ public:
         return df;
     }
     CircularBuffer<float, buffer_len> buffer;
+    // для последующих вычислителей
+    // время получения данных
     unsigned long lastTime;
     unsigned long prevTime;
 };

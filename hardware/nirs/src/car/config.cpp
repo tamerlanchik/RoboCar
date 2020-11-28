@@ -4,6 +4,7 @@
     #include <config.h>
 #endif
 
+// Динамически обновляем конфиг по команде
 void Config::update(const String* name, const char* value) {
     if (*name =="t.aV") {
         tacho->aV = atof(value);

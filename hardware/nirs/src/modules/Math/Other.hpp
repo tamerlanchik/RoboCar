@@ -1,7 +1,7 @@
-//
-// Created by andrey on 27.11.2020.
-//
-
+/*
+ * Различные фильтры и усреднители
+ * для сигналов
+ */
 #ifndef ROBOCAR_INERTIALFILTER_H
 #define ROBOCAR_INERTIALFILTER_H
 
@@ -10,6 +10,7 @@ T inertialFilter(const float a, const T curr, const T prev) {
     return a*curr + (1 - a)*prev;
 }
 
+// среднее арифметическое
 template<typename T>
 T averageFilter(const int winSize, volatile Array<T>* data) {
     float avr = 0;
@@ -19,6 +20,7 @@ T averageFilter(const int winSize, volatile Array<T>* data) {
     return avr / winSize;
 }
 
+// обрезаем сверху и снизу
 template<typename T>
 T rangeFilter(const T maxVal, volatile T val) {
     val = val > maxVal ? maxVal : val;

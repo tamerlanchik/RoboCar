@@ -22,19 +22,6 @@ public:
     }
 };
 
-//int main() {
-//    CircularBuffer<int, 5> buffer;
-//    buffer.put(1);
-//    buffer.put(2);
-//    buffer.put(3);
-//    buffer.put(4);
-//    buffer.put(5);
-//    buffer.put(6);
-//    for(auto i = buffer.begin(); i != buffer.end(); ++i) {
-//        printf("%d\n", *i);
-//    }
-//}
-
 void init() {
     communicatorConfig = {17, 'K', true, 57600};
     tachometrConfig = {8, 1, 15, 4, 1, 20};
@@ -49,6 +36,8 @@ void init() {
     When(Method(ArduinoFake(), sei)).AlwaysReturn();
 }
 
+// Читаем данные времени из файла, результаты моделирования пишем в другой.
+// Для MatLab.
 void graph() {
     std::ifstream inputFile("fstreams/f1_input.txt");
     std::ofstream outputFile("fstreams/f1_output.txt");

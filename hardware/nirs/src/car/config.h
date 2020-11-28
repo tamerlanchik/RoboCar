@@ -1,30 +1,31 @@
+/*
+ * Классы с конфигурационными данными.
+ * Часть данных поддерживает динамическое переназначение.
+ * TODO: научить записывать в EEPROM
+ */
 #ifndef ROBOCAR_CONFIG_H
 #define ROBOCAR_CONFIG_H
 
 #include <Arduino.h>
 
-const float EPS_MOV = 10;   // мертвый ход движения
-//const int LIN_MULT = 1000;
-//const float dL = LIN_MULT * (0.205/23);
-
-//const unsigned int SERIAL_BAUDRATE = 57600;
-
 const byte INTERRUPT0 = 0;
 const byte INTERRUPT1 = 1;
 
 struct TachometrConfig {
+    // скорость
     int winSizeV;
     float aV;
     float maxV;
 
+    // ускорение
     int winSizeA;
     float aA;
     float maxA;
 
-    static const int LIN_MULT = 1000;
-    static constexpr float dL = LIN_MULT * (0.205/23);
-    static constexpr float dPhi = 2*3.1415 / 23;
-    static const int maxWinSize = 10;
+    static const int LIN_MULT = 1000;   // мультипликатор линейных размеров (изначально для точных вычислений)
+    static constexpr float dL = LIN_MULT * (0.205/23);  // расстояние за оборот, 1000*м)
+    static constexpr float dPhi = 2*3.1415 / 23;    // угол за оборот, рад)
+    static const int maxWinSize = 10;   // максимально возможный размер окна (для выделения места)
     // степень точности интегрирования
     static const int speedAccRate = 1;
     static const int accelAccRate = 1;
@@ -35,16 +36,19 @@ struct TachometrConfig {
 };
 
 struct CommunicatorConfig {
-    int cmdCount;
-    char cmdInit;
+    // команды обозначаем заглавной буквой
+    // должны идти по порядку
+    int cmdCount;   // число команд
+    char cmdInit;   // с какой начинаем
     bool isTextMode;
     long int baudrate;
 };
 
 struct ChassisConfig {
-    float epsMov;
+    float epsMov;   // мертвый ход джойстика для диапазона [0; 255]
 };
 
+// объединенный конфиг
 class Config {
 public:
     CommunicatorConfig* comm;
