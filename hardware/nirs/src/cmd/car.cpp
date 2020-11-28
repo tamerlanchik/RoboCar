@@ -54,7 +54,7 @@ float target = 5;
 float I[2] = {0, 0};
 void setup(){
     communicatorConfig = {17, 'K', true, 57600};
-    tachometrConfig = {4, 0.6};
+    tachometrConfig = {8, 0.8, 15, 6, 0.8, 20};
     chassisConfig = {10};
     cfg = {&communicatorConfig, &tachometrConfig, &chassisConfig};
 
@@ -93,7 +93,7 @@ void setup(){
 //        TachoData data = controller->getTachometr()->getData(false);
         TachoData data1 = controller->tachometer[0]->getData(false);
         TachoData data2 = controller->tachometer[1]->getData(false);
-        Log->println('_', data1.v, data2.v);
+        Log->println('_', data1.v, data2.v, data1.a, data2.a);
 //        float v1 = data1.v, v2 = data2.v;
 //        float e1 = target - v1, e2 = target - v2;
 //        I[0] += e1; I[1] += e2;

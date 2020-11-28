@@ -19,4 +19,11 @@ T averageFilter(const int winSize, volatile Array<T>* data) {
     return avr / winSize;
 }
 
+template<typename T>
+T rangeFilter(const T maxVal, volatile T val) {
+    val = val > maxVal ? maxVal : val;
+    val = val < -maxVal ? -maxVal : val;
+    return val;
+}
+
 #endif //ROBOCAR_INERTIALFILTER_H

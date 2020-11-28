@@ -5,10 +5,14 @@
 #endif
 
 void Config::update(const String* name, const char* value) {
-    if (*name =="t.a") {
-        tacho->a = atof(value);
-    } else if(*name == "t.win") {
-        tacho->winSize = atoi(value);
+    if (*name =="t.aV") {
+        tacho->aV = atof(value);
+    } else if (*name =="t.aA") {
+        tacho->aA = atof(value);
+    } else if(*name == "t.winV") {
+        tacho->winSizeV = atoi(value);
+    } else if(*name == "t.winA") {
+        tacho->winSizeA = atoi(value);
     } else if(*name == "ch.eps") {
         chassis->epsMov = atof(value);
     }

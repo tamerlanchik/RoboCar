@@ -13,12 +13,25 @@ const byte INTERRUPT0 = 0;
 const byte INTERRUPT1 = 1;
 
 struct TachometrConfig {
-    int winSize;
-    float a;
+    int winSizeV;
+    float aV;
+    float maxV;
+
+    int winSizeA;
+    float aA;
+    float maxA;
 
     static const int LIN_MULT = 1000;
     static constexpr float dL = LIN_MULT * (0.205/23);
+    static constexpr float dPhi = 2*3.1415 / 23;
     static const int maxWinSize = 10;
+    // степень точности интегрирования
+    static const int speedAccRate = 1;
+    static const int accelAccRate = 1;
+
+    static constexpr float rad2lin(const float rad) {
+        return rad * (dL / dPhi);
+    }
 };
 
 struct CommunicatorConfig {

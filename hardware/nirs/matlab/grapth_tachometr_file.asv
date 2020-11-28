@@ -1,0 +1,71 @@
+clc;
+clear variables;
+close all force;
+T=0.05;
+t = 0:T:1;
+y = sin(2*pi*t - pi/2) + 1;
+tt = diffSignal(y, T);
+figure(1); hold on;
+plot(t, y);
+% stem(t);
+stem(tt, ones(size(tt))*2);
+
+% t = writeT(10, 0.01);
+% 
+% [t, x, v, a] = get();
+% r = 1;
+% 
+% figure(1);
+% hold on; grid on; grid minor;
+% plot(t, x);
+% plot(t, v);
+% plot(t, a);
+% legend('x(t)', 'v(t)', 'a(t)');
+% ylim([0 30]);
+
+function t = writeT()
+    to_cpp = fopen("../fstreams/f1_input.txt", 'w');
+    
+    assert(to_cpp ~= -1);
+    
+    f = @(t) sin(t);
+    
+    t = round((0:T:8*pi) * 10e6);
+
+    fprintf(to_cpp, '%d\n', t);
+    fclose(to_cpp);
+end
+
+function [t, x, v, a] = get()
+    from_cpp = fopen("../fstreams/f1_output.txt", 'r');
+    assert(from_cpp ~= -1);
+    data = fscanf(from_cpp, '%d %f %f %f\n', [4 Inf]);
+    t = data(1, :)';
+    x = data(2, :)';
+    v = data(3, :)';
+    a = data(4, :)';
+end
+
+function s = diffSignal(src, T)
+    s = [0];
+    maxVal = max(src);
+    i = 1;
+    j = 2;
+    while i < length(src)
+        if T*i <= s(end)
+            i = i + 1;
+        end
+        s_ = s(end) + T * (1 - src(i)/maxVal+0.1);
+        if s_ - s(end) < 0.001
+            
+        end
+        j = j + 1;
+        s = [s; s_];
+        d = T * src(i)/maxVal
+    end
+%     for i=2:1:length(src)
+%         s_ = s(i-1) + T * (1 - src(i)/maxVal);
+%         s = [s; s_];
+%         d = T * src(i)/maxVal
+%     end
+end

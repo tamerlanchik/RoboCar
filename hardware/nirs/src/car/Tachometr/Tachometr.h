@@ -33,14 +33,15 @@ struct TachoData {
 //const int WIN_SIZE = 6;
 const int WANNA_T = 20 * 1000; // 20 ms
 
-template<int count, int K, int AVER>
+template<int count, int Kv, int Ka, int AVER>
 class StaticStorage {
 public:
     class Data {
     public:
-        CircularBuffer<float, max(K+2, AVER)> mCoord;            // координата
-        CircularBuffer<unsigned long, max(K+2, AVER)> dT;
-        Der<K, max(K+2, AVER)> V;
+        CircularBuffer<float, max(Kv+2, AVER)> mCoord;            // координата
+        CircularBuffer<unsigned long, max(Kv+2, AVER)> dT;
+        Der<Kv, max(Ka+2, AVER)> V;
+        Der<Ka, max(1, AVER)> A;
         unsigned long prevT = 0;
         int mPath = 0;                              // суммарная координата
         int mDirection = 1;                         // коэффициент направления
@@ -61,7 +62,7 @@ public:
 //            Log->println('d', "handle: ", (int)(dt/1000000), (int)(dt%1000000/1000), (int)(dt%1000), mCoord.at(-1), "\n");
         }
         void handleInterr(unsigned long t) volatile {
-            handleInterr(t, TachometrConfig::dL*mDirection);
+            handleInterr(t, TachometrConfig::dPhi*mDirection);
         }
     };
 
@@ -69,18 +70,19 @@ public:
 };
 
 
-const int ACC_RATE = 1;
+//const int ACC_RATE = 4;
 // TODO: добавить поддержку подписчиков на новые данные
 class Tachometr {
 public:
-    static StaticStorage<2, ACC_RATE, TachometrConfig::maxWinSize> buffer;
+    static StaticStorage<2,
+        TachometrConfig::speedAccRate, TachometrConfig::accelAccRate,
+        TachometrConfig::maxWinSize> buffer;
     int curr;
     TachoData data;
 
     Tachometr(int curr);
     template<int current>
     void start(char interrupt) {
-        Log->println('d', "Start()");
         attachInterrupt(interrupt, [](){
             static bool state[2] = {1, 1};
             state[current] = !state[current];
@@ -89,11 +91,10 @@ public:
             }
             Tachometr::buffer.storage[current].handleInterr(micros());
             Tachometr::instances[current]->getData(true);
-//            Log->println('d', "handlle");
-
         }, CHANGE);
     }
     virtual TachoData getData(bool needCalc=true);
+    virtual TachoData getLinearData(bool needCalc=true);
     template<typename T>
     static T sum(const T[], int len);
     static void handleStopFlag(int i) {
@@ -105,8 +106,10 @@ public:
             interrupts();}
         Tachometr::buffer.storage[i].haltWatchdogFlag = 1;
     }
+private:
+    virtual float calcSpeed(bool needCalc=true);
+    virtual float calcAccelerate(bool needCalc=true);
 public:
-    void updateData();
     static Tachometr* instances[2];
 };
 
