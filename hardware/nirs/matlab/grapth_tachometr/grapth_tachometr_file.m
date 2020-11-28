@@ -14,7 +14,7 @@ ylim([-1 1]);
 
 
 function [t, x, v, a] = get()
-    from_cpp = fopen("../fstreams/f1_output.txt", 'r');
+    from_cpp = fopen("../../fstreams/f1_output.txt", 'r');
     assert(from_cpp ~= -1);
     data = fscanf(from_cpp, '%d %f %f %f\n', [4 Inf]);
     t = data(1, :)';
