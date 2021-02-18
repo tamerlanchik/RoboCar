@@ -1,0 +1,58 @@
+\ProvidesPackage{mystyle}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian,main=russian]{babel}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtext}           % русские буквы в формулах, перед fontenc
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc} % кодировка
+\usepackage{indentfirst}    % красная строка для первого параграфа
+\usepackage{misccorr}       % настройки для российской полиграфии
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{setspace} 
+\usepackage{fancybox,fancyhdr}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{verbatim}
+
+% ------ включение подфайлов LaTeX ------
+\usepackage{subfiles}
+\newcommand{\onlyinsubfile}[1]{#1}
+\newcommand{\notinsubfile}[1]{}
+
+\usepackage{pdfpages}  % inclide pdf-files
+
+% only for \lipsum blind text
+\usepackage{lipsum}
+
+% ref packages
+\usepackage{nameref}
+% folowing  must be in this order
+\usepackage{varioref}
+% \usepackage{hyperref}
+\usepackage{cleveref}
+
+% ----- Поля -------
+\usepackage[includefoot, heightrounded]{geometry}   % поля
+\geometry{left=30mm}
+\geometry{right=15mm}
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+
+\newcommand{\st}[1]{\textbf{\underline{#1}}}
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}}
+\addto\captionsenglish{
+  \renewcommand{\contentsname}
+    {Оглавление}
+}
+
+\usepackage{caption}
+\DeclareCaptionLabelSeparator{defffis}{ — }
+\captionsetup{labelsep=defffis}
+\captionsetup[figure]{name=Рисунок}
+
+\setlength{\parindent}{1.25cm}
+\linespread{1.3}
