@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.29)  18 FEB 2021 21:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.29)  19 FEB 2021 00:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -832,7 +832,7 @@ Overfull \hbox (5.47287pt too wide) in paragraph at lines 29--35
 <images/shassis_dissassembled.png, id=16, 823.075pt x 819.06pt>
 File: images/shassis_dissassembled.png Graphic file (type png)
 <use images/shassis_dissassembled.png>
-Package pdftex.def Info: images/shassis_dissassembled.png  used on input line 64.
+Package pdftex.def Info: images/shassis_dissassembled.png  used on input line 65.
 (pdftex.def)             Requested size: 375.57782pt x 373.7477pt.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
@@ -844,24 +844,24 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <images/pro_mini.png, id=27, 733.74126pt x 327.2225pt>
 File: images/pro_mini.png Graphic file (type png)
 <use images/pro_mini.png>
-Package pdftex.def Info: images/pro_mini.png  used on input line 108.
+Package pdftex.def Info: images/pro_mini.png  used on input line 109.
 (pdftex.def)             Requested size: 469.47049pt x 209.37175pt.
 <images/motor_driver.png, id=28, 1066.98625pt x 1066.98625pt>
 File: images/motor_driver.png Graphic file (type png)
 <use images/motor_driver.png>
-Package pdftex.def Info: images/motor_driver.png  used on input line 124.
+Package pdftex.def Info: images/motor_driver.png  used on input line 125.
 (pdftex.def)             Requested size: 281.68515pt x 281.67548pt.
  [6 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/pro_mini.png>]
 
-LaTeX Warning: Reference `(' on page 7 undefined on input line 143.
+LaTeX Warning: Reference `(' on page 7 undefined on input line 144.
 
 <images/encoder.jpg, id=33, 518.93875pt x 420.57124pt>
 File: images/encoder.jpg Graphic file (type jpg)
 <use images/encoder.jpg>
-Package pdftex.def Info: images/encoder.jpg  used on input line 145.
+Package pdftex.def Info: images/encoder.jpg  used on input line 146.
 (pdftex.def)             Requested size: 281.68515pt x 228.29872pt.
 
-Overfull \hbox (0.18224pt too wide) in paragraph at lines 134--149
+Overfull \hbox (0.18224pt too wide) in paragraph at lines 135--150
 \T2A/cmr/m/n/14.4 хо-мет-ров за-клю-ча-ет-с€ в ре-ак-ции на каж-дое про-хож-де-ние пре-п€т-стви€ меж-
  []
 
@@ -869,18 +869,29 @@ Overfull \hbox (0.18224pt too wide) in paragraph at lines 134--149
 <images/gyro.jpg, id=38, 153.4533pt x 153.4533pt>
 File: images/gyro.jpg Graphic file (type jpg)
 <use images/gyro.jpg>
-Package pdftex.def Info: images/gyro.jpg  used on input line 158.
+Package pdftex.def Info: images/gyro.jpg  used on input line 159.
 (pdftex.def)             Requested size: 281.68515pt x 281.71118pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [8 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/encoder.jpg>]
-Overfull \hbox (4.90123pt too wide) in paragraph at lines 172--181
+Overfull \hbox (4.90123pt too wide) in paragraph at lines 173--182
 []\T2A/cmr/m/n/14.4 ѕо за-да-нию необ-хо-ди-мо за-да-вать ро-бо-ту на-прав-ле-ние дви-же-ни€ извне.
  []
 
-[9 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/gyro.jpg>] [10] 
+[9 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/gyro.jpg>] [10] [11]
+<images/firmware.png, id=51, 1527.7075pt x 1332.98pt>
+File: images/firmware.png Graphic file (type png)
+<use images/firmware.png>
+Package pdftex.def Info: images/firmware.png  used on input line 261.
+(pdftex.def)             Requested size: 469.47049pt x 409.61942pt.
+ [12 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/firmware.png>]
+Overfull \hbox (1.49406pt too wide) in paragraph at lines 292--297
+[]\T2A/cmr/m/n/14.4 –еализована под-держ-ка ди-на-ми-че-ской кон-фи-гу-ра-ции.  он-стан-ты, ко-
+ []
+
+[13] [14] 
 AED: lastpage setting LastPage
 (/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.aux
 Package cleveref Info: loaded `russian' language definitions on input line 5.
@@ -890,18 +901,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15383 strings out of 480608
- 270213 string characters out of 5903630
+ 15399 strings out of 480608
+ 270520 string characters out of 5903630
  744082 words of memory out of 5000000
- 31022 multiletter control sequences out of 15000+600000
+ 31037 multiletter control sequences out of 15000+600000
  540191 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,7n,69p,10194b,706s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc}{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfsx2074.pfb>
-Output written on /Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf (10 pages, 5380049 bytes).
+Output written on /Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf (14 pages, 5501257 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 84 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
