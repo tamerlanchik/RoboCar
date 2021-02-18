@@ -5,7 +5,7 @@ function t = writeT()
     assert(to_cpp ~= -1);
     
     x = @(t) sin(2*pi*t - pi/2)+1;
-%     x = @(t) 20*t.^2;
+%     x = @(t) 20 *t.^2;
     t = (0.01:0.01:8);
     
     t = diffSignal(x(t), 0.1);
