@@ -52,6 +52,9 @@ ChassisConfig chassisConfig;
 //int signal[2] = {0,0};
 float target = 5;
 float I[2] = {0, 0};
+
+int gas = 50;
+
 void setup(){
     communicatorConfig = {17, 'K', true, 57600};
     tachometrConfig = {8, 0.8, 15, 6, 0.8, 20};
@@ -105,8 +108,30 @@ void setup(){
 
 
     controller->os.addTask([]() {
-        controller->tachometer[0]->getData(true);
-        controller->tachometer[1]->getData(true);
+        struct Data { int gas; float speed; unsigned long tests; unsigned long changeTime; };
+        static Data L{0, 0, 0, 0}, R{0, 0, 0, 0};
+
+        static unsigned long last = 0;
+
+        if (L.gas > 255 || R.gas > 255) {
+//            Log->println('d', "End");
+            return;
+        }
+        if (millis() - L.changeTime > 5000) {
+            L.speed /= L.tests; L.tests = 0;
+            R.speed /= R.tests; R.tests = 0;
+            Log->println('_', L.gas, L.speed, R.speed);
+            L.gas += 5; R.gas = L.gas;
+            L.changeTime = millis();
+            R.changeTime = L.changeTime;
+        }
+        TachoData l = controller->tachometer[0]->getData(true);
+        TachoData r = controller->tachometer[1]->getData(true);
+        if (millis() - last > 5) {
+            last = millis();
+            L.speed += l.v; L.tests++;
+            R.speed += r.v; R.tests++;
+        }
     }, 1);
 }
 
