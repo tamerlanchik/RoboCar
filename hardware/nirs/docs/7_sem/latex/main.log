@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.29)  19 FEB 2021 00:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.29)  20 FEB 2021 17:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -880,18 +880,45 @@ Overfull \hbox (4.90123pt too wide) in paragraph at lines 173--182
 []\T2A/cmr/m/n/14.4 По за-да-нию необ-хо-ди-мо за-да-вать ро-бо-ту на-прав-ле-ние дви-же-ния извне.
  []
 
-[9 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/gyro.jpg>] [10] [11]
-<images/firmware_2.png, id=51, 1638.12pt x 1332.98pt>
+[9 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/gyro.jpg>]
+<images/car_right_0.jpg, id=45, 2479.2625pt x 1541.76pt>
+File: images/car_right_0.jpg Graphic file (type jpg)
+<use images/car_right_0.jpg>
+Package pdftex.def Info: images/car_right_0.jpg  used on input line 195.
+(pdftex.def)             Requested size: 422.52057pt x 262.73091pt.
+<images/car_left_0.jpg, id=46, 2872.7325pt x 1680.2775pt>
+File: images/car_left_0.jpg Graphic file (type jpg)
+<use images/car_left_0.jpg>
+Package pdftex.def Info: images/car_left_0.jpg  used on input line 200.
+(pdftex.def)             Requested size: 422.52057pt x 247.13371pt.
+<images/car_encoders_0.jpg, id=47, 2880.7625pt x 1768.6075pt>
+File: images/car_encoders_0.jpg Graphic file (type jpg)
+<use images/car_encoders_0.jpg>
+Package pdftex.def Info: images/car_encoders_0.jpg  used on input line 205.
+(pdftex.def)             Requested size: 328.6279pt x 201.75288pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[10 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/car_right_0.jpg>] [11 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/car_left_0.jpg> </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/car_encoders_0.jpg>] [12]
+<images/firmware_2.png, id=57, 1638.12pt x 1332.98pt>
 File: images/firmware_2.png Graphic file (type png)
 <use images/firmware_2.png>
-Package pdftex.def Info: images/firmware_2.png  used on input line 261.
+Package pdftex.def Info: images/firmware_2.png  used on input line 272.
 (pdftex.def)             Requested size: 469.47049pt x 382.01857pt.
- [12 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/firmware_2.png>]
-Overfull \hbox (1.49406pt too wide) in paragraph at lines 295--300
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13]
+Overfull \hbox (1.49406pt too wide) in paragraph at lines 306--311
 []\T2A/cmr/m/n/14.4 Реализована под-держ-ка ди-на-ми-че-ской кон-фи-гу-ра-ции. Кон-стан-ты, ко-
  []
 
-[13] [14] [15] [16] 
+[14 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/firmware_2.png>] [15] [16] [17] 
 AED: lastpage setting LastPage
 (/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.aux
 Package cleveref Info: loaded `russian' language definitions on input line 5.
@@ -901,18 +928,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15400 strings out of 480608
- 270548 string characters out of 5903630
- 744082 words of memory out of 5000000
- 31038 multiletter control sequences out of 15000+600000
+ 15422 strings out of 480608
+ 271125 string characters out of 5903630
+ 745082 words of memory out of 5000000
+ 31057 multiletter control sequences out of 15000+600000
  540191 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,7n,69p,10194b,706s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc}{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfsx2074.pfb>
-Output written on /Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf (16 pages, 5512538 bytes).
+Output written on /Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf (17 pages, 7199153 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
+ 96 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
