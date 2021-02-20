@@ -1,7 +1,14 @@
 # Fdb version 3
-["pdflatex"] 1613855338 "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf" "main" 1613855341
-  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.aux" 1613855341 16548 b77c804d151fd15fa3416950d5d6cb5d ""
-  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" 1613855337 52166 bfa196125ba6af988c0e7673db896eca ""
+["bibtex main"] 1613859090 "main.aux" "main.bbl" "main" 1613859327
+  "./utf8gost705u.bst" 1613856350 30556 f199395139a406fa1bbc5650c70663f8 ""
+  "biblio.bib" 1613858360 1740 5132f7c71237e33dd3def7abbdfd09bb ""
+  "main.aux" 1613859327 17290 c44244543b12cfc5eb1c252e72b3ac79 "pdflatex"
+  (generated)
+  "main.blg"
+  "main.bbl"
+["pdflatex"] 1613859324 "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf" "main" 1613859327
+  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.aux" 1613859327 17290 c44244543b12cfc5eb1c252e72b3ac79 ""
+  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" 1613859323 53566 16c47a63cf8e442be8873031525e19ac ""
   "/Users/a.kochnov/Library/texlive/2020/texmf-var/fonts/tfm/lh/lh-t2a/labx1440.tfm" 1602432667 3304 6a543c07045572737981351171e0505e ""
   "/Users/a.kochnov/Library/texlive/2020/texmf-var/fonts/tfm/lh/lh-t2a/larm1000.tfm" 1602434142 3220 0e417eaf233b160335902e97259a6c77 ""
   "/Users/a.kochnov/Library/texlive/2020/texmf-var/fonts/tfm/lh/lh-t2a/larm1440.tfm" 1601405137 3256 3daaa33cf35cf3f354983aa3214ecd7f ""
@@ -117,6 +124,7 @@
   "/usr/local/texlive/2020/texmf-dist/tex/latex/tools/varioref.sty" 1580683321 36692 fa125469c111046ecdf3717a9ba7ff20 ""
   "/usr/local/texlive/2020/texmf-dist/tex/latex/tools/verbatim.sty" 1580683321 7308 a7fb09b68a4a07a482e876fbe2959b04 ""
   "/usr/local/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-32.def" 1368571634 8033 ee5a06eead35a732222f876800c8f10f ""
+  "/usr/local/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-33.def" 1368571634 8589 ed28b1c7dfc407d19d76bca04a0a8153 ""
   "/usr/local/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-4.def" 1368571634 8709 1d3e18d352cac8dfca3961538455774f ""
   "/usr/local/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-global.def" 1368571634 1375 8a855db83af5d6753ccbbd32e6a8a901 ""
   "/usr/local/texlive/2020/texmf-dist/tex/latex/ucs/ucs.sty" 1368571634 27982 5723d81d568db410592a59b85fb3eaae ""
@@ -144,14 +152,15 @@
   "images/motor_driver.png" 1613670993 1083417 fa3b266a34738e45a9103dd7a6280b57 ""
   "images/pro_mini.png" 1613669714 602139 63eb2aedfd7a660fd6713ab8a9b35e00 ""
   "images/shassis_dissassembled.png" 1613667895 3099619 7bb1061fe889eecbfb74e26962b5f067 ""
-  "main.aux" 1613855341 16548 b77c804d151fd15fa3416950d5d6cb5d "pdflatex"
-  "main.tex" 1613855337 52166 bfa196125ba6af988c0e7673db896eca ""
-  "main.toc" 1613855341 3370 ac4b1d151b963d5da732a2fda422d11d "pdflatex"
+  "main.aux" 1613859327 17290 c44244543b12cfc5eb1c252e72b3ac79 "pdflatex"
+  "main.bbl" 1613859090 1924 1d050d405d66e651f206a4783ba3f10d "bibtex main"
+  "main.tex" 1613859323 53566 16c47a63cf8e442be8873031525e19ac ""
+  "main.toc" 1613859327 3800 645f71f11a5665551a27da5ad50e3588 "pdflatex"
   "mystyle.sty" 1613854032 1770 baf1d9a20c00b0d14b05854f01e2771e ""
   (generated)
-  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.log"
-  "main.pdf"
   "main.aux"
+  "main.pdf"
+  "main.log"
   "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf"
   "main.toc"
-  "main.log"
+  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.log"

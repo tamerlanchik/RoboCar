@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.29)  21 FEB 2021 00:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.29)  21 FEB 2021 01:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -728,22 +728,22 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )) (/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 ) (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -767,7 +767,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 6.
+(lastpage)             ! on input line 7.
 \AtBeginShipoutBox=\box57
  (/usr/local/texlive/2020/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
@@ -776,7 +776,7 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-LaTeX Info: Redefining \Ref on input line 6.
+LaTeX Info: Redefining \Ref on input line 7.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -815,7 +815,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for T2A+cmss on input line 13.
+LaTeX Font Info:    Trying to load font information for T2A+cmss on input line 14.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/cyrillic/t2acmss.fd
 File: t2acmss.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 ) (/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.toc
@@ -836,17 +836,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (/usr/local/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-4.def
 File: uni-4.def 2013/05/13 UCS: Unicode data U+0400..U+04FF
 )
-Overfull \hbox (1.68018pt too wide) in paragraph at lines 18--21
+Overfull \hbox (1.68018pt too wide) in paragraph at lines 19--22
 []\T2A/cmr/m/n/14.4 Системы ав-то-ма-ти-че-ско-го управ-ле-ния ис-поль-зу-ют-ся по-все-мест-но. Ос-
  []
 
 
-Overfull \hbox (5.47287pt too wide) in paragraph at lines 29--35
+Overfull \hbox (5.47287pt too wide) in paragraph at lines 30--36
 []\T2A/cmr/m/n/14.4 Для ре-ше-ния про-бле-мы в си-сте-му управ-ле-ния вво-дит-ся об-рат-ная связь
  []
 
 
-Overfull \hbox (126.83078pt too wide) in paragraph at lines 44--45
+Overfull \hbox (126.83078pt too wide) in paragraph at lines 45--46
 []\T2A/cmr/m/n/14.4 Исходный код про-ек-та мож-но най-ти на пор-та-ле Github: github.com/tamerlanchik/RoboCar. 
  []
 
@@ -854,7 +854,7 @@ Overfull \hbox (126.83078pt too wide) in paragraph at lines 44--45
 <images/shassis_dissassembled.png, id=16, 823.075pt x 819.06pt>
 File: images/shassis_dissassembled.png Graphic file (type png)
 <use images/shassis_dissassembled.png>
-Package pdftex.def Info: images/shassis_dissassembled.png  used on input line 67.
+Package pdftex.def Info: images/shassis_dissassembled.png  used on input line 76.
 (pdftex.def)             Requested size: 375.57782pt x 373.7477pt.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
@@ -866,24 +866,24 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <images/pro_mini.png, id=27, 733.74126pt x 327.2225pt>
 File: images/pro_mini.png Graphic file (type png)
 <use images/pro_mini.png>
-Package pdftex.def Info: images/pro_mini.png  used on input line 111.
+Package pdftex.def Info: images/pro_mini.png  used on input line 120.
 (pdftex.def)             Requested size: 469.47049pt x 209.37175pt.
 <images/motor_driver.png, id=28, 1066.98625pt x 1066.98625pt>
 File: images/motor_driver.png Graphic file (type png)
 <use images/motor_driver.png>
-Package pdftex.def Info: images/motor_driver.png  used on input line 127.
+Package pdftex.def Info: images/motor_driver.png  used on input line 136.
 (pdftex.def)             Requested size: 281.68515pt x 281.67548pt.
  [6 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/pro_mini.png>]
 
-LaTeX Warning: Reference `(' on page 7 undefined on input line 146.
+LaTeX Warning: Reference `(' on page 7 undefined on input line 155.
 
 <images/encoder.jpg, id=33, 518.93875pt x 420.57124pt>
 File: images/encoder.jpg Graphic file (type jpg)
 <use images/encoder.jpg>
-Package pdftex.def Info: images/encoder.jpg  used on input line 148.
+Package pdftex.def Info: images/encoder.jpg  used on input line 157.
 (pdftex.def)             Requested size: 281.68515pt x 228.29872pt.
 
-Overfull \hbox (0.18224pt too wide) in paragraph at lines 137--152
+Overfull \hbox (0.18224pt too wide) in paragraph at lines 146--161
 \T2A/cmr/m/n/14.4 хо-мет-ров за-клю-ча-ет-ся в ре-ак-ции на каж-дое про-хож-де-ние пре-пят-ствия меж-
  []
 
@@ -891,14 +891,14 @@ Overfull \hbox (0.18224pt too wide) in paragraph at lines 137--152
 <images/gyro.jpg, id=38, 153.4533pt x 153.4533pt>
 File: images/gyro.jpg Graphic file (type jpg)
 <use images/gyro.jpg>
-Package pdftex.def Info: images/gyro.jpg  used on input line 161.
+Package pdftex.def Info: images/gyro.jpg  used on input line 170.
 (pdftex.def)             Requested size: 281.68515pt x 281.71118pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [8 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/encoder.jpg>]
-Overfull \hbox (4.90123pt too wide) in paragraph at lines 175--184
+Overfull \hbox (4.90123pt too wide) in paragraph at lines 184--193
 []\T2A/cmr/m/n/14.4 По за-да-нию необ-хо-ди-мо за-да-вать ро-бо-ту на-прав-ле-ние дви-же-ния извне.
  []
 
@@ -906,17 +906,17 @@ Overfull \hbox (4.90123pt too wide) in paragraph at lines 175--184
 <images/car_right_0.jpg, id=45, 2479.2625pt x 1541.76pt>
 File: images/car_right_0.jpg Graphic file (type jpg)
 <use images/car_right_0.jpg>
-Package pdftex.def Info: images/car_right_0.jpg  used on input line 197.
+Package pdftex.def Info: images/car_right_0.jpg  used on input line 206.
 (pdftex.def)             Requested size: 422.52057pt x 262.73091pt.
 <images/car_left_0.jpg, id=46, 2872.7325pt x 1680.2775pt>
 File: images/car_left_0.jpg Graphic file (type jpg)
 <use images/car_left_0.jpg>
-Package pdftex.def Info: images/car_left_0.jpg  used on input line 202.
+Package pdftex.def Info: images/car_left_0.jpg  used on input line 211.
 (pdftex.def)             Requested size: 422.52057pt x 247.13371pt.
 <images/car_encoders_0.jpg, id=47, 2880.7625pt x 1768.6075pt>
 File: images/car_encoders_0.jpg Graphic file (type jpg)
 <use images/car_encoders_0.jpg>
-Package pdftex.def Info: images/car_encoders_0.jpg  used on input line 207.
+Package pdftex.def Info: images/car_encoders_0.jpg  used on input line 216.
 (pdftex.def)             Requested size: 328.6279pt x 201.75288pt.
 
 
@@ -929,14 +929,14 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <images/firmware_2.png, id=57, 1638.12pt x 1332.98pt>
 File: images/firmware_2.png Graphic file (type png)
 <use images/firmware_2.png>
-Package pdftex.def Info: images/firmware_2.png  used on input line 274.
+Package pdftex.def Info: images/firmware_2.png  used on input line 283.
 (pdftex.def)             Requested size: 469.47049pt x 382.01857pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [13]
-Overfull \hbox (1.49406pt too wide) in paragraph at lines 308--313
+Overfull \hbox (1.49406pt too wide) in paragraph at lines 317--322
 []\T2A/cmr/m/n/14.4 Реализована под-держ-ка ди-на-ми-че-ской кон-фи-гу-ра-ции. Кон-стан-ты, ко-
  []
 
@@ -944,12 +944,12 @@ Overfull \hbox (1.49406pt too wide) in paragraph at lines 308--313
 <images/android_start.jpeg, id=69, 722.7pt x 1284.8pt>
 File: images/android_start.jpeg Graphic file (type jpg)
 <use images/android_start.jpeg>
-Package pdftex.def Info: images/android_start.jpeg  used on input line 372.
+Package pdftex.def Info: images/android_start.jpeg  used on input line 381.
 (pdftex.def)             Requested size: 211.26028pt x 375.56233pt.
 <images/android_main.jpeg, id=70, 722.7pt x 1284.8pt>
 File: images/android_main.jpeg Graphic file (type jpg)
 <use images/android_main.jpeg>
-Package pdftex.def Info: images/android_main.jpeg  used on input line 374.
+Package pdftex.def Info: images/android_main.jpeg  used on input line 383.
 (pdftex.def)             Requested size: 211.26028pt x 375.56233pt.
 
 
@@ -959,10 +959,10 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <images/graph_speed/pure_signal.png, id=81, 1124.2pt x 843.15pt>
 File: images/graph_speed/pure_signal.png Graphic file (type png)
 <use images/graph_speed/pure_signal.png>
-Package pdftex.def Info: images/graph_speed/pure_signal.png  used on input line 439.
+Package pdftex.def Info: images/graph_speed/pure_signal.png  used on input line 448.
 (pdftex.def)             Requested size: 469.47049pt x 352.10071pt.
 
-Overfull \hbox (10.6182pt too wide) in paragraph at lines 437--443
+Overfull \hbox (10.6182pt too wide) in paragraph at lines 446--452
 []\T2A/cmr/m/n/14.4 Полученный по-сле диф-фе-рен-ци-и-ро-ва-ния сиг-нал пред-став-лен на рис.11[].
  []
 
@@ -973,23 +973,23 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <images/graph_speed/running_average_comparizon.png, id=94, 1555.8125pt x 937.5025pt>
 File: images/graph_speed/running_average_comparizon.png Graphic file (type png)
 <use images/graph_speed/running_average_comparizon.png>
-Package pdftex.def Info: images/graph_speed/running_average_comparizon.png  used on input line 468.
+Package pdftex.def Info: images/graph_speed/running_average_comparizon.png  used on input line 477.
 (pdftex.def)             Requested size: 469.47049pt x 282.89801pt.
  [21 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/graph_speed/running_average_comparizon.png (PNG copy)>]
 <images/graph_speed/window_filter_comparizon.png, id=98, 1276.77pt x 847.165pt>
 File: images/graph_speed/window_filter_comparizon.png Graphic file (type png)
 <use images/graph_speed/window_filter_comparizon.png>
-Package pdftex.def Info: images/graph_speed/window_filter_comparizon.png  used on input line 489.
+Package pdftex.def Info: images/graph_speed/window_filter_comparizon.png  used on input line 498.
 (pdftex.def)             Requested size: 422.52057pt x 280.35384pt.
 
-Underfull \hbox (badness 2012) in paragraph at lines 492--492
+Underfull \hbox (badness 2012) in paragraph at lines 501--501
 [][][]|\T2A/cmr/m/n/14.4 Окон-ный усред-ня-ю-щий фильтр. Рас-шиф-ров-ка ле-ген-ды:
  []
 
 <images/graph_speed/window_filter_adaptive_comparizon.png, id=99, 2890.8pt x 1704.3675pt>
 File: images/graph_speed/window_filter_adaptive_comparizon.png Graphic file (type png)
 <use images/graph_speed/window_filter_adaptive_comparizon.png>
-Package pdftex.def Info: images/graph_speed/window_filter_adaptive_comparizon.png  used on input line 497.
+Package pdftex.def Info: images/graph_speed/window_filter_adaptive_comparizon.png  used on input line 506.
 (pdftex.def)             Requested size: 422.52057pt x 249.09045pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -998,15 +998,22 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <images/graph_speed/combined_1.png, id=103, 2890.8pt x 1704.3675pt>
 File: images/graph_speed/combined_1.png Graphic file (type png)
 <use images/graph_speed/combined_1.png>
-Package pdftex.def Info: images/graph_speed/combined_1.png  used on input line 509.
+Package pdftex.def Info: images/graph_speed/combined_1.png  used on input line 518.
 (pdftex.def)             Requested size: 469.47049pt x 276.7874pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[23 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/graph_speed/window_filter_adaptive_comparizon.png (PNG copy)>] [24 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/graph_speed/combined_1.png (PNG copy)>] [25] 
+[23 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/graph_speed/window_filter_adaptive_comparizon.png (PNG copy)>] [24 </Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/images/graph_speed/combined_1.png (PNG copy)>] [25] (/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.bbl
+Underfull \hbox (badness 3199) in paragraph at lines 20--23
+[]\T2A/cmr/m/n/14.4 А.Л. Мас-лен-ни-ков. Лек-ции по пред-ме-ту "Ме-то-ды вы-чис-ле-ний".
+ []
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-33.def
+File: uni-33.def 2013/05/13 UCS: Unicode data U+2100..U+21FF
+)) 
 AED: lastpage setting LastPage
-(/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.aux
+[26] (/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.aux
 Package cleveref Info: loaded `russian' language definitions on input line 5.
 )
 
@@ -1014,18 +1021,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15622 strings out of 480608
- 275364 string characters out of 5903630
+ 15850 strings out of 480608
+ 278081 string characters out of 5903630
  751404 words of memory out of 5000000
- 31242 multiletter control sequences out of 15000+600000
+ 31464 multiletter control sequences out of 15000+600000
  540988 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,10n,72p,10194b,706s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc}{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfsx2074.pfb>
-Output written on /Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf (25 pages, 7819669 bytes).
+Output written on /Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf (26 pages, 7823948 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 95 compressed objects within 1 object stream
+ 156 PDF objects out of 1000 (max. 8388607)
+ 97 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
