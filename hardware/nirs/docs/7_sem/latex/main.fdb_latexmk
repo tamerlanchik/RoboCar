@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1613859090 "main.aux" "main.bbl" "main" 1613859327
+["bibtex main"] 1613991068 "main.aux" "main.bbl" "main" 1613991071
   "./utf8gost705u.bst" 1613856350 30556 f199395139a406fa1bbc5650c70663f8 ""
   "biblio.bib" 1613858360 1740 5132f7c71237e33dd3def7abbdfd09bb ""
-  "main.aux" 1613859327 17290 c44244543b12cfc5eb1c252e72b3ac79 "pdflatex"
+  "main.aux" 1613991071 17958 9701e791ad77a025824528a444a2de8f "pdflatex"
   (generated)
-  "main.blg"
   "main.bbl"
-["pdflatex"] 1613859324 "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf" "main" 1613859327
-  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.aux" 1613859327 17290 c44244543b12cfc5eb1c252e72b3ac79 ""
-  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" 1613859323 53566 16c47a63cf8e442be8873031525e19ac ""
+  "main.blg"
+["pdflatex"] 1613991068 "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf" "main" 1613991071
+  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.aux" 1613991071 17958 9701e791ad77a025824528a444a2de8f ""
+  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" 1613991065 57824 7f7ca6cf7782b86e4aecb5b8886c843d ""
   "/Users/a.kochnov/Library/texlive/2020/texmf-var/fonts/tfm/lh/lh-t2a/labx1440.tfm" 1602432667 3304 6a543c07045572737981351171e0505e ""
   "/Users/a.kochnov/Library/texlive/2020/texmf-var/fonts/tfm/lh/lh-t2a/larm1000.tfm" 1602434142 3220 0e417eaf233b160335902e97259a6c77 ""
   "/Users/a.kochnov/Library/texlive/2020/texmf-var/fonts/tfm/lh/lh-t2a/larm1440.tfm" 1601405137 3256 3daaa33cf35cf3f354983aa3214ecd7f ""
@@ -150,17 +150,19 @@
   "images/graph_speed/window_filter_comparizon.png" 1613844938 89343 234180043ed23a581496785d64694252 ""
   "images/gyro.jpg" 1613672065 57848 1b21350dbf290eb4a9b850cf2c1a9933 ""
   "images/motor_driver.png" 1613670993 1083417 fa3b266a34738e45a9103dd7a6280b57 ""
+  "images/pid.png" 1613988950 7195 2929b67c995365e8459ca923ed8a78e2 ""
   "images/pro_mini.png" 1613669714 602139 63eb2aedfd7a660fd6713ab8a9b35e00 ""
   "images/shassis_dissassembled.png" 1613667895 3099619 7bb1061fe889eecbfb74e26962b5f067 ""
-  "main.aux" 1613859327 17290 c44244543b12cfc5eb1c252e72b3ac79 "pdflatex"
-  "main.bbl" 1613859090 1924 1d050d405d66e651f206a4783ba3f10d "bibtex main"
-  "main.tex" 1613859323 53566 16c47a63cf8e442be8873031525e19ac ""
-  "main.toc" 1613859327 3800 645f71f11a5665551a27da5ad50e3588 "pdflatex"
+  "include/titul.pdf" 1613990904 318217 383fd3717bd7ae958d89c4a6883e863c ""
+  "main.aux" 1613991071 17958 9701e791ad77a025824528a444a2de8f "pdflatex"
+  "main.bbl" 1613991068 1924 1d050d405d66e651f206a4783ba3f10d "bibtex main"
+  "main.tex" 1613991065 57824 7f7ca6cf7782b86e4aecb5b8886c843d ""
+  "main.toc" 1613991071 3805 54dbc03ecb8a768ffd4b49bf5572106c "pdflatex"
   "mystyle.sty" 1613854032 1770 baf1d9a20c00b0d14b05854f01e2771e ""
   (generated)
-  "main.aux"
   "main.pdf"
   "main.log"
-  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf"
   "main.toc"
+  "main.aux"
+  "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf"
   "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.log"
