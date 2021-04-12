@@ -4,7 +4,7 @@
     #include <car/Model/Model.h>
     #include <modules/Communicator/SerialCommunicator.h>
 #else
-    #include <Logger.hpp>
+    #include <Logger.h>
     #include <Model.h>
     #include "SerialCommunicator.h"
 #endif

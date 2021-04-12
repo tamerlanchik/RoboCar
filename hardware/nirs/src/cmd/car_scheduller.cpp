@@ -10,7 +10,7 @@ typedef leOS2Mock leOS2;
 #endif
 #include <Arduino.h>
 #include "car/Controller/Controller.h"
-#include "modules/Logger/Logger.hpp"
+#include "modules/Logger/Logger.h"
 
 
 bool state = 1;

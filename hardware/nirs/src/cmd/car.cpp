@@ -3,22 +3,20 @@
 
 #include <Arduino.h>
 #include "car/Controller/Controller.h"
-#include "modules/Logger/Logger.hpp"
+#include "modules/Logger/Logger.h"
 #include <modules/Communicator/Message.h>
 #include <modules/Communicator/Listener.h>
 #include <modules/Communicator/Communicator.h>
 // #define UNIT_TEST
 #ifdef UNIT_TEST
 #include <leOS2Mock/leOS2Mock.h>
-#include <car/Tachometr/Tachometr.h>
 #include <modules/Communicator/SerialCommunicator.h>
-#include <car/config.h>
 typedef leOS2Mock leOS2;
 #else
 #include <leOS2.h>
-#include <car/Tachometr/Tachometr.h>
-#include <config.h>
 #endif
+#include <car/Tachometr/Tachometr.h>
+#include <car/Config/Config.h>
 
 Controller* controller;
 Logger* Log;

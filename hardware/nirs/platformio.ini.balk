@@ -1,0 +1,34 @@
+[platformio]
+lib_dir=lib
+
+[env]   ; will share settings between all environments
+platform = atmelavr
+framework = arduino
+
+[env:Debug]
+;board = pro16MHzatmega328
+board = uno
+build_flags = "-std=c++17"
+src_dir = src
+include_dir =
+    src
+src_filter =
+  -<core>
+  -<main>
+;  +<main.cpp>
+;   +<cmd/car.cpp>
+    +<cmd/mpu_6050.cpp>
+  ; +<cmd/car_scheduller.cpp>
+  ; -<car/Model/Model.cpp>
+lib_extra_dirs =
+    src/modules
+    src/car
+    src
+
+[env:prod]
+platform = atmelavr
+board = uno
+framework = arduino
+src_dir = src
+src_filter =
+   +<main/prod.cpp>

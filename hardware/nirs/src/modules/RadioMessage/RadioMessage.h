@@ -1,6 +1,6 @@
 #ifndef HEADER_RADIO_MESSAGE
 #define HEADER_RADIO_MESSAGE
-#include <config.h>
+#include <Config.h>
 #include <ByteArray.h>
 
 class RadioMessage{

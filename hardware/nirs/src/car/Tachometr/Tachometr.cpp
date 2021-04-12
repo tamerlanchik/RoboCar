@@ -5,7 +5,7 @@
 #include <car/config.h>
 
 #else
-    #include <Logger.hpp>
+    #include <Logger.h>
 #endif
 
 StaticStorage<2, TachometrConfig::speedAccRate, TachometrConfig::accelAccRate,

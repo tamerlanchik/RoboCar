@@ -6,7 +6,7 @@
 #else
 #include <RF24.h>
 #endif
-#include "Logger.hpp"
+#include "Logger.h"
 
 class RadioExtended : public RF24
 {

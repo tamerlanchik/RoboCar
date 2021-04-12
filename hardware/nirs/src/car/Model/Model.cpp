@@ -4,7 +4,7 @@
 #ifdef UNIT_TEST
 #include <modules/Logger/Logger.hpp>
 #else
-#include <Logger.hpp>
+#include <Logger.h>
 #endif
 #include "Model.h"
 //

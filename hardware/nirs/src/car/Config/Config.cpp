@@ -1,8 +1,10 @@
-#ifdef UNIT_TEST
-    #include <car/config.h>
-#else
-    #include <config.h>
-#endif
+//#ifdef UNIT_TEST
+//    #include <car/config.h>
+//#else
+////    #include <Config/config.h>
+////#include "config.h"
+//#endif
+#include "Config.h"
 
 // Динамически обновляем конфиг по команде
 void Config::update(const String* name, const char* value) {
