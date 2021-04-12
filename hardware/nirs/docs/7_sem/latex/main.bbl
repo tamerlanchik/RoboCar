@@ -1,0 +1,52 @@
+\begin{thebibliography}{1}
+\def\selectlanguageifdefined#1{
+\expandafter\ifx\csname date#1\endcsname\relax
+\else\language\csname l@#1\endcsname\fi}
+\ifx\undefined\url\def\url#1{{\small #1}}\else\fi
+\ifx\undefined\BibUrl\def\BibUrl#1{\url{#1}}\else\fi
+\ifx\undefined\BibAnnote\long\def\BibAnnote#1{(#1)}\else\fi
+\ifx\undefined\BibEmph\def\BibEmph#1{\emph{#1}}\else\fi
+
+\bibitem{Android}
+\selectlanguageifdefined{russian}
+Филлипс~Б.~Стюарт~К.~Марсикано~К. Android.
+  Программирование для профессионалов: Пер.
+  с англ.
+\newblock Санкт-Петербург: Питер, 2017.
+\newblock 688~{с.}
+
+\bibitem{Amas}
+\selectlanguageifdefined{russian}
+А.Л.~Масленников. Лекции по предмету "Методы
+  вычислений".
+\newblock Москва, 2020.
+
+\bibitem{Sergienko}
+\selectlanguageifdefined{russian}
+А.Б.~Сергиенко. Цифровая обработка
+  сигналов: уч. пособие.
+\newblock Санкт-Петербург: БХВ-Петербург, 2011.
+
+\bibitem{Art1}
+\selectlanguageifdefined{russian}
+А.А.Бобцов~А.С.Боргуль~К.А.Зименко. Алгоритм
+  управления автономным колесным мобильным
+  роботом~// Научно-технический вестник
+  Санкт-Петербургского государственного
+  университета информационных технологий,
+  мехатроники и оптики.
+\newblock 2011.
+\newblock {№}~5.
+\newblock {С.}~63--68.
+
+\bibitem{Cpp}
+\selectlanguageifdefined{russian}
+Страуструп~Б. Язык программирования C++.
+\newblock Москва: Бином, 2010.
+
+\bibitem{web:Matlab}
+\selectlanguageifdefined{russian}
+Matlab Help.
+\newblock url{https://www.mathworks.com/help/matlab/}.
+
+\end{thebibliography}
