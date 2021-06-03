@@ -38,13 +38,13 @@ public class SerialService extends Service implements SerialListener {
         return super.onStartCommand(intent, flags, startId);
     }
 
-    class SerialBinder extends Binder {
-        SerialService getService() {
+    public class SerialBinder extends Binder {
+        public SerialService getService() {
             return SerialService.this;
         }
     }
 
-    private enum QueueType {Connect, ConnectError, Read, IoError}
+    private enum QueueType {Connect, ConnectError, Read, IoError, Disconnect}
 
     private class QueueItem {
         QueueType type;
@@ -82,7 +82,6 @@ public class SerialService extends Service implements SerialListener {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-
         return binder;
     }
 
@@ -121,7 +120,8 @@ public class SerialService extends Service implements SerialListener {
         }
         for(QueueItem item : queue1) {
             switch(item.type) {
-                case Connect:       listener.onSerialConnect      (); break;
+                case Connect:       listener.onSerialConnect      (true); break;
+                case Disconnect:    listener.onSerialConnect      (false); break;
                 case ConnectError:  listener.onSerialConnectError (item.e); break;
                 case Read:          listener.onSerialRead         (item.data); break;
                 case IoError:       listener.onSerialIoError      (item.e); break;
@@ -129,7 +129,8 @@ public class SerialService extends Service implements SerialListener {
         }
         for(QueueItem item : queue2) {
             switch(item.type) {
-                case Connect:       listener.onSerialConnect      (); break;
+                case Connect:       listener.onSerialConnect      (true); break;
+                case Disconnect:    listener.onSerialConnect      (false); break;
                 case ConnectError:  listener.onSerialConnectError (item.e); break;
                 case Read:          listener.onSerialRead         (item.data); break;
                 case IoError:       listener.onSerialIoError      (item.e); break;
@@ -185,20 +186,26 @@ public class SerialService extends Service implements SerialListener {
     /**
      * SerialListener
      */
-    public void onSerialConnect() {
-        if(connected) {
-            synchronized (this) {
-                if (listener != null) {
-                    mainLooper.post(() -> {
-                        if (listener != null) {
-                            listener.onSerialConnect();
-                        } else {
-                            queue1.add(new QueueItem(QueueType.Connect, null, null));
-                        }
-                    });
-                } else {
-                    queue2.add(new QueueItem(QueueType.Connect, null, null));
-                }
+
+    public void onSerialConnect(boolean connected) {
+//        if(connected) {
+        synchronized (this) {
+            final QueueType qType;
+            if (!connected) {
+                qType = QueueType.Disconnect;
+            } else {
+                qType = QueueType.Connect;
+            }
+            if (listener != null) {
+                mainLooper.post(() -> {
+                    if (listener != null) {
+                        listener.onSerialConnect(connected);
+                    } else {
+                        queue1.add(new QueueItem(qType, null, null));
+                    }
+                });
+            } else {
+                queue2.add(new QueueItem(qType, null, null));
             }
         }
     }

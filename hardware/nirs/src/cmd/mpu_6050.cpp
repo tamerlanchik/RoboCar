@@ -27,7 +27,7 @@ void setup() {
 //    }, myOS.convertMs(1000));
 
     myOS.addTask([](){
-        auto data = mpu->readRaw();
+        auto data = mpu->read();
         char str[100];
         sprintf(str, "%6d %6d %6d %6d %6d %6d", (int)data.a.x, (int)data.a.y, (int)data.a.z, (int)data.g.x, (int)data.g.y,(int) data.g.z);
         Serial.println(str);

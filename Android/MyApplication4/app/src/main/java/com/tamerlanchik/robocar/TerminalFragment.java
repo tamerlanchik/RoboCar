@@ -28,6 +28,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.tamerlanchik.robocar.transport.bluetooth.SerialListener;
+import com.tamerlanchik.robocar.transport.bluetooth.SerialService;
+import com.tamerlanchik.robocar.transport.bluetooth.SerialSocket;
+
 public class TerminalFragment extends Fragment implements ServiceConnection, SerialListener {
 
     private enum Connected { False, Pending, True }
@@ -39,7 +43,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     private TextView sendText;
     private TextUtil.HexWatcher hexWatcher;
 
-    private Connected connected = Connected.False;
+    private Connected mConnected = Connected.False;
     private boolean initialStart = true;
     private boolean hexEnabled = false;
     private boolean pendingNewline = false;
@@ -60,7 +64,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
     @Override
     public void onDestroy() {
-        if (connected != Connected.False)
+        if (mConnected != Connected.False)
             disconnect();
         getActivity().stopService(new Intent(getActivity(), SerialService.class));
         super.onDestroy();
@@ -184,21 +188,21 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
             status("connecting...");
-            connected = Connected.Pending;
-            SerialSocket socket = new SerialSocket(getActivity().getApplicationContext(), device);
-            service.connect(socket);
+            mConnected = Connected.Pending;
+//            SerialSocket socket = new SerialSocket(getActivity().getApplicationContext(), device);
+//            service.connect(socket);
         } catch (Exception e) {
             onSerialConnectError(e);
         }
     }
 
     private void disconnect() {
-        connected = Connected.False;
+        mConnected = Connected.False;
         service.disconnect();
     }
 
     private void send(String str) {
-        if(connected != Connected.True) {
+        if(mConnected != Connected.True) {
             Toast.makeText(getActivity(), "not connected", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -254,9 +258,9 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
      * SerialListener
      */
     @Override
-    public void onSerialConnect() {
+    public void onSerialConnect(boolean connected) {
         status("connected");
-        connected = Connected.True;
+        mConnected = Connected.True;
     }
 
     @Override

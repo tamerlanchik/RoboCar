@@ -5,9 +5,11 @@ public interface Communicator {
     void onStop();
     void onDestroy();
     void onResume();
+    void onPause();
 
     boolean send(String string);
     boolean send(byte[] message);
-    
+
+    boolean isConnected();
 }
 

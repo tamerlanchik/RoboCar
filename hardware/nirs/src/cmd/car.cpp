@@ -41,16 +41,13 @@ struct MovementListener : public Listener {
         int b = atoi(b_s.c_str());
 
         controller->getChassis()->setValue2(a, b);
+        Log->println('d', a, b);
     }
 };
 Config cfg;
 TachometrConfig tachometrConfig;
 CommunicatorConfig communicatorConfig;
 ChassisConfig chassisConfig;
-//int signal[2] = {0,0};
-float target = 5;
-float I[2] = {0, 0};
-
 int gas = 50;
 
 void setup(){
@@ -81,7 +78,7 @@ void setup(){
 
     controller->getCommunicator()->addListener('N', new ListenerWrapper([](Message& msg){
         String s = String((const char*)msg.getLoad());
-        target = atof(s.c_str());
+//        target = atof(s.c_str());
     }));
 
      controller->getCommunicator()->addListener('M', new MovementListener());
@@ -94,7 +91,7 @@ void setup(){
 //        TachoData data = controller->getTachometr()->getData(false);
         TachoData data1 = controller->tachometer[0]->getData(false);
         TachoData data2 = controller->tachometer[1]->getData(false);
-        Log->println('_', data1.v, data2.v, data1.a, data2.a);
+//        Log->println('_', data1.v, data2.v, data1.a, data2.a);
 //        float v1 = data1.v, v2 = data2.v;
 //        float e1 = target - v1, e2 = target - v2;
 //        I[0] += e1; I[1] += e2;
@@ -103,6 +100,12 @@ void setup(){
 //        signal[1] += contr2;
 //        controller->chassis->setValue2(signal[0], signal[1]);
     }, 2);
+
+//    controller->os.addTask([](){
+//        Message telemetry = Message{'O', "Fuck123"};
+//        controller->getCommunicator()->send(telemetry);
+//        Log->println('d', "Telemetry sent");
+//    }, 30);
 
 
     controller->os.addTask([]() {

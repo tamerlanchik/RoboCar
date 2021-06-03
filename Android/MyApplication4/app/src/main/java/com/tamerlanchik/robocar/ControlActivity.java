@@ -25,8 +25,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.tamerlanchik.robocar.transport.Communicator;
 import com.tamerlanchik.robocar.transport.UICallback;
 import com.tamerlanchik.robocar.transport.bluetooth.BluetoothController;
+import com.tamerlanchik.robocar.transport.bluetooth.SerialListener;
+import com.tamerlanchik.robocar.transport.bluetooth.SerialService;
 
-public class ControlActivity extends AppCompatActivity implements UICallback {
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class ControlActivity extends AppCompatActivity implements UICallback, SerialListener, MessageManager.Listener {
     private static final String TAG = "Main Activity";
     private  static final String ACTION_USB_PERMISSION = "com.andrey.arduinousb.USB_PERMISSION";
 
@@ -34,6 +40,8 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
     public void handleStatus(Event event, String data) {
         LogItem logitem = new LogItem();
         if (event == Event.ERROR) {
+
+        }
 
     }
 
@@ -48,8 +56,10 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
     private ScrollView mLogScrollView;
     private CheckBox serialSpeedCheckBox;
 
+    private TextView[] mGyroTextViews;
+    private TextView[] mAccelTextViews;
+
     private String deviceAddress;
-//    private SerialService service;
 
     private Communicator mSerial;
     private Connected connected = Connected.False;
@@ -58,36 +68,31 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
     private boolean pendingNewline = false;
     private String newline = TextUtil.newline_crlf;
 
+    private Timer mSendControlTimer;
+
+    private MessageManager mMessagemanager;
+    Date lastSent = new Date();
+
     private long mSendTimeout;
 
     @Override
-    public void onServiceConnected(ComponentName name, IBinder binder) {
-        mLogger.write("onServiceConnected. connecting...");
-        service = ((SerialService.SerialBinder) binder).getService();
-        service.attach(this);
-        if(initialStart) {
-            initialStart = false;
-            runOnUiThread(this::connect);
+    public void onSerialConnect(boolean connected) {
+        if (connected) {
+            mLogger.write("Serial connected");
+            mSendControlTimer = new Timer();
+            setTimerTask();
+        } else {
+            mSendControlTimer.cancel();
+            mSendControlTimer = null;
+            mLogger.write("Serial disconnected");
         }
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-        mLogger.write("onServiceDisconected");
-    }
-
-    @Override
-    public void onSerialConnect() {
-        mLogger.write("Connected");
-//        status("connected");
-        connected = Connected.True;
+        mConnectSwitch.setChecked(connected);
     }
 
     @Override
     public void onSerialConnectError(Exception e) {
         mLogger.write("Connecton failed: " + e.getMessage());
         Log.e(TAG, "Connecton failed: " + e.getMessage());
-        disconnect();
     }
 
     @Override
@@ -99,30 +104,11 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
     public void onSerialIoError(Exception e) {
         mLogger.write("Connecion lost: "+ e.getMessage());
         Log.e(TAG, "Connecion lost: "+ e.getMessage());
-        disconnect();
     }
 
-//    private void connect() {
-//        try {
-//            BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-//            BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
-//            status("connecting...");
-//            mLogger.write("Connecting...");
-//            connected = Connected.Pending;
-//            SerialSocket socket = new SerialSocket(getApplicationContext(), device);
-//            service.connect(socket);
-//        } catch (Exception e) {
-//            onSerialConnectError(e);
-//        }
-//    }
-
-//    private void disconnect() {
-//        connected = Connected.False;
-//        service.disconnect();
-//    }
-
     private void send(String str) {
-        if(connected != Connected.True) {
+        if (!mSerial.isConnected()) {
+//        if(connected != Connected.True) {
             mLogger.write(new LogItem("Not connected", true));
 //            Toast.makeText(ControlActivity.this, "not connected", Toast.LENGTH_SHORT).show();
             return;
@@ -144,7 +130,8 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
             spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorSendText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 //            receiveText.append(spn);
             mLogger.write("Gonna send: " + spn.toString());
-            service.write(data);
+            mSerial.send(data);
+//            service.write(data);
             mLogger.write(spn.toString());
         } catch (Exception e) {
             onSerialIoError(e);
@@ -152,6 +139,23 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
     }
 
     private void receive(byte[] data) {
+        mLogger.write(new String(data));
+//        return;
+//        mMessagemanager.handleMessage(data);
+
+//        MessageManager.Message msg = MessageManager.handleMessage(data);
+//        if (msg == null || msg.cmd == null || msg.cmd == MessageManager.Command.VOID) {
+//            mLogger.write(new String(data));
+//            return;
+//        }
+//        switch (msg.cmd) {
+//            case TELEMETRY:
+//                String payload = msg.stringData();
+//                mAccelTextViews[1].setText(payload);
+//                break;
+//            default:
+//                mLogger.write(new String(data));
+//        }
 //        if(hexEnabled) {
 //            receiveText.append(TextUtil.toHexString(data) + '\n');
 //        } else {
@@ -169,6 +173,39 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
 //            }
 //            receiveText.append(TextUtil.toCaretString(msg, newline.length() != 0));
 //        }
+    }
+
+    @Override
+    public void onReceive(MessageManager.Message msg) {
+        if (msg == null) {
+            return;
+        }
+        if (msg.cmd == null || msg.cmd == MessageManager.Command.VOID) {
+            mLogger.write(new String(msg.data));
+            return;
+        }
+        switch (msg.cmd) {
+            case TELEMETRY:
+                String payload = msg.stringData();
+                mAccelTextViews[1].setText(payload);
+                break;
+            default:
+                mLogger.write(new String(msg.data));
+        }
+    }
+
+    private void setTimerTask() {
+        if (mSendControlTimer == null) {
+            return;
+        }
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                sendMovement(g.getValue());
+                setTimerTask();
+            }
+        };
+        mSendControlTimer.schedule(task, 50);  // 50ms
     }
 
     private void status(String str) {
@@ -192,13 +229,7 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
             mLogger.write("No device selected");
         }
 
-        mSerial = new BluetoothController(this);
-
-//        bindService(new Intent(this, SerialService.class), this, Context.BIND_AUTO_CREATE);
-
-//        mSerial = new SerialModule(this, mLogger);
-//        mSerial.setUSBManager((UsbManager) getSystemService(this.USB_SERVICE));
-//        mSerial.setVB(this);
+        mSerial = new BluetoothController(this, deviceAddress);
 
         mSendTimeout = System.currentTimeMillis();
 
@@ -211,14 +242,29 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
 
             @Override
             public void onValueChanged(Joystick g, Point value) {
-                mLogger.write("Values - X: " + Integer.toString(value.x) + " Y: " + Integer.toString(value.y));
-                send(MessageManager.buildJoystickTextMessage(value));
-//                if(mSerial.write(MessageManager.buildJoystickMessage(value))){
-//                    mLogger.write("Sent");
-//                }else{
-//                    mLogger.write(new LogItem("Error sending", true));
+//                sendMovement(value);
+//                if (Math.abs(value.x) < 50) {
+//                    value.x = 0;
 //                }
-                mSendTimeout = System.currentTimeMillis();
+//                if (Math.abs(value.y) < 50) {
+//                    value.y = 0;
+//                }
+//                if ((new Date()).getTime() - lastSent.getTime() < 50 ) {
+//                    return;
+//                }
+//                value.x = (int)(value.x * 1.4);
+//                value.y = (int)(value.y * 1.4);
+//                lastSent = new Date();
+////                value.x = (int)Math.signum(value.x)*(Math.abs(value.x) + 80);
+////                value.y = (int)Math.signum(value.y)*(Math.abs(value.y) + 80);
+//                mLogger.write("Values - X: " + Integer.toString(value.x) + " Y: " + Integer.toString(value.y));
+//                send(MessageManager.buildJoystickTextMessage(value));
+////                if(mSerial.write(MessageManager.buildJoystickMessage(value))){
+////                    mLogger.write("Sent");
+////                }else{
+////                    mLogger.write(new LogItem("Error sending", true));
+////                }
+//                mSendTimeout = System.currentTimeMillis();
             }
 
             @Override
@@ -235,16 +281,27 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    connect();
+                    mLogger.write("Trying to reconnect...");
+                    mSerial.onResume();
+                } else {
+                    mLogger.write("Disconnecting...");
+                    mSerial.onPause();
                 }
-//                if(b) {
-//                    boolean result = mSerial.connectSerial(serialSpeedCheckBox.isChecked() ? 115200 : 9600);
-//                    compoundButton.setChecked(result);
-//                }else{
-//                    mSerial.disconnect();
-//                }
             }
         });
+
+        mGyroTextViews = new TextView[]{
+            (TextView)findViewById(R.id.gyroXTextView),
+            (TextView)findViewById(R.id.gyroYTextView),
+            (TextView)findViewById(R.id.gyroZTextView),
+        };
+        mAccelTextViews = new TextView[]{
+            (TextView)findViewById(R.id.accelXTextView),
+            (TextView)findViewById(R.id.accelYTextView),
+            (TextView)findViewById(R.id.accelZTextView),
+        };
+
+        mMessagemanager = new MessageManager(this);
 
 //        serialSpeedCheckBox = (CheckBox)findViewById(R.id.speedCheckBox);
 //
@@ -255,37 +312,23 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
 //        registerReceiver(mSerial.getSerialBroadCastReceiver(), filter);
     }
 
-//    @Override
-//    public void usbDetached() {
-//        mConnectSwitch.setChecked(false);
-//        mLogger.write("USB was disconnected");
-//    }
-//
-//    @Override
-//    public void usbAttached() {
-//        mConnectSwitch.callOnClick();
-//    }
-//
-//    @Override
-//    public void messageReceived(byte[] message) {
-//        if(MessageManager.isControlData(message)){
-//            MessageManager.handleMessage(message);
-//        }else {
-//            try {
-//                mLogger.write(new String(message, "UTF-8"));
-//            }catch (java.io.UnsupportedEncodingException e){
-//                mLogger.write(new LogItem("UnsupportedEncodingException", true));
-//            }
-//        }
-//    }
+    private void sendMovement(Point value) {
+        if (Math.abs(value.x) < 50) {
+            value.x = 0;
+        }
+        if (Math.abs(value.y) < 50) {
+            value.y = 0;
+        }
+        value.x = (int)(value.x * 1.4);
+        value.y = (int)(value.y * 1.4);
+        mLogger.write("Values - X: " + Integer.toString(value.x) + " Y: " + Integer.toString(value.y));
+        send(MessageManager.buildJoystickTextMessage(value));
+    }
 
     @Override
     public void onDestroy() {
-        mLogger.write("onDEstroy");
+        mLogger.write("onDestroy");
         mSerial.onDestroy();
-//        if (connected != Connected.False)
-//            disconnect();
-//        stopService(new Intent(ControlActivity.this, SerialService.class));
         super.onDestroy();
     }
 
@@ -293,23 +336,13 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
     public void onStart() {
         mLogger.write("onStart");
         super.onStart();
-        mSerial.onStart();
-//        if(service != null) {
-//            service.attach(this);
-//            mLogger.write("service.attach()");
-//        }
-//
-//        else {
-//            startService(new Intent(ControlActivity.this, SerialService.class)); // prevents service destroy on unbind from recreated activity caused by orientation change
-//            mLogger.write("startService()");
-//        }
+        mConnectSwitch.setChecked(true);
     }
 
     @Override
     public void onStop() {
         mLogger.write("onStop");
-//        if(service != null && !ControlActivity.this.isChangingConfigurations())
-//            service.detach();
+        mConnectSwitch.setChecked(false);
         super.onStop();
     }
 
@@ -317,11 +350,7 @@ public class ControlActivity extends AppCompatActivity implements UICallback {
     public void onResume() {
         super.onResume();
         mLogger.write("onResume");
-        mSerial.onResume();
-//        if(initialStart && service != null) {
-//            initialStart = false;
-//            runOnUiThread(this::connect);
-//        }
+        mConnectSwitch.setChecked(true);
     }
 
 

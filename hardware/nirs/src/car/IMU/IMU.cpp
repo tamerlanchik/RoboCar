@@ -32,7 +32,11 @@ bool IMU::init() {
         return 1;
     }
 
-    setFilters(new DummyFilter<Math3D::Vector>, new DummyFilter<Math3D::Vector>);
+//    setFilters(new DummyFilter<Math3D::Vector>, new DummyFilter<Math3D::Vector>);
+    setFilters(
+        new AverageFilter<Math3D::Vector>(0.5, Math3D::Vector(0, 0, 0)),
+        new AverageFilter<Math3D::Vector>(0.5, Math3D::Vector(0, 0, 0))
+    );
 
     Log->println('d', "Init MPU6050");
     return false;
@@ -41,8 +45,8 @@ bool IMU::init() {
 
 IMU::IMUData IMU::read() {
     IMUData res = readRaw();
-//    res.a = _filter_accel->apply(res.a);
-//    res.g = _filter_gyro->apply(res.g);
+    res.a = _filter_accel->apply(res.a);
+    res.g = _filter_gyro->apply(res.g);
     return res;
 }
 
