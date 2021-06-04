@@ -30,14 +30,23 @@ bool IMU::init() {
     if (!testConnection()) {
         Log->println('e', "No connection to IMU");
         return 1;
+    } else {
+        Log->println('d', "OK connection to IMU");
     }
+//    -2156	3560	75	92	11	59
+
+    setXGyroOffset(92);
+    setYGyroOffset(11);
+//    setZGyroOffset(59);
+    setZGyroOffset(58);
 
 //    setFilters(new DummyFilter<Math3D::Vector>, new DummyFilter<Math3D::Vector>);
     setFilters(
-        new AverageFilter<Math3D::Vector>(0.5, Math3D::Vector(0, 0, 0)),
-        new AverageFilter<Math3D::Vector>(0.5, Math3D::Vector(0, 0, 0))
+        new AverageFilter<Math3D::Vector>(0.2, Math3D::Vector(0, 0, 0)),
+        new AverageFilter<Math3D::Vector>(0.1, Math3D::Vector(0, 0, 0))
     );
 
+    Log->println('d', "set filters");
     Log->println('d', "Init MPU6050");
     return false;
 }

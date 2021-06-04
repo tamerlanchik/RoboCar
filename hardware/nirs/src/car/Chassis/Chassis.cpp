@@ -27,7 +27,7 @@ char add(char high_part, char low_part) {
     return high_part<<2 | low_part;
 }
 
-Chassis::Chassis(){
+Chassis::Chassis() : _gaz(0), _diff(0){
     Log->println('d', "Create Chassis");
 }
 
@@ -107,6 +107,21 @@ void Chassis::setMotorValues(Movement movement){
     writeMotors(movement);
 }
 
+Chassis::MotorValues Chassis::getDifferential(int gaz, int rotation) {
+    int dist = 255 - (abs(gaz) + abs(rotation));
+    if (dist > 0) {
+        dist = 0;
+    }
+    int diffX = rotation/2 + dist;
+    int diffY = rotation/2 - dist;
+//    Log->println('i', gaz, " ", diffX, " ", diffY);
+    return MotorValues{gaz + diffX, gaz - diffY};
+}
+
+void Chassis::setGazDiffValues(int gaz, int diff) {
+    _gaz = gaz;
+    _diff = diff;
+}
 
 //private
 void Chassis::writeMotors(Movement movement){

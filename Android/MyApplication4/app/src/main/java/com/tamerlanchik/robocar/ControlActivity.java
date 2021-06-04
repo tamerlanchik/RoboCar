@@ -13,8 +13,11 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -58,6 +61,7 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
 
     private TextView[] mGyroTextViews;
     private TextView[] mAccelTextViews;
+    private EditText mDifferentialKTestView;
 
     private String deviceAddress;
 
@@ -129,16 +133,17 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
             SpannableStringBuilder spn = new SpannableStringBuilder(msg+'\n');
             spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorSendText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 //            receiveText.append(spn);
-            mLogger.write("Gonna send: " + spn.toString());
+//            mLogger.write("Gonna send: " + spn.toString());
             mSerial.send(data);
 //            service.write(data);
-            mLogger.write(spn.toString());
+//            mLogger.write(spn.toString());
         } catch (Exception e) {
             onSerialIoError(e);
         }
     }
 
     private void receive(byte[] data) {
+//        onReceive(new MessageManager.Message(){MessageManager.});
         mLogger.write(new String(data));
 //        return;
 //        mMessagemanager.handleMessage(data);
@@ -187,7 +192,27 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
         switch (msg.cmd) {
             case TELEMETRY:
                 String payload = msg.stringData();
-                mAccelTextViews[1].setText(payload);
+                int i = 0;
+                for(String data : payload.split(" ")) {
+                    if (data == "" || data == " ") {
+                        continue;
+                    }
+                    try {
+                        int d = Integer.parseInt(data);
+                        if (i < 3) {
+                            mAccelTextViews[i].setText(data);
+                        } else {
+                            mGyroTextViews[i+2].setText(data);
+                        }
+                        ++i;
+                    } catch (NumberFormatException e) {
+                        Log.e("Robocar", e.toString());
+                        return;
+                    }
+
+
+                }
+//                mAccelTextViews[1].setText(payload);
                 break;
             default:
                 mLogger.write(new String(msg.data));
@@ -303,6 +328,19 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
 
         mMessagemanager = new MessageManager(this);
 
+        mDifferentialKTestView = (EditText) findViewById(R.id.rotationK);
+        mDifferentialKTestView.setText(Double.toString(MessageManager.mDiffK));
+        mDifferentialKTestView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                MessageManager.mDiffK = Double.parseDouble(v.getText().toString());
+//                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+//                    MessageManager.mDiffK = Integer.parseInt(v.getText().toString());
+//                }
+                return false;
+            }
+        });
+
 //        serialSpeedCheckBox = (CheckBox)findViewById(R.id.speedCheckBox);
 //
 //        IntentFilter filter = new IntentFilter();
@@ -313,15 +351,16 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
     }
 
     private void sendMovement(Point value) {
-        if (Math.abs(value.x) < 50) {
-            value.x = 0;
-        }
-        if (Math.abs(value.y) < 50) {
+//        value.x = (int)(Math.signum(value.x) * Math.max(0, Math.abs(value.x) - 70));
+        if (Math.abs(value.y) < 70) {
             value.y = 0;
         }
-        value.x = (int)(value.x * 1.4);
+        if (Math.abs(value.y) < 40) {
+            value.y = 0;
+        }
+//        value.x = (int)(value.x * 1.2);
         value.y = (int)(value.y * 1.4);
-        mLogger.write("Values - X: " + Integer.toString(value.x) + " Y: " + Integer.toString(value.y));
+//        mLogger.write("Values - X: " + Integer.toString(value.x) + " Y: " + Integer.toString(value.y));
         send(MessageManager.buildJoystickTextMessage(value));
     }
 

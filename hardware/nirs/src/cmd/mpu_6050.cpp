@@ -29,7 +29,9 @@ void setup() {
     myOS.addTask([](){
         auto data = mpu->read();
         char str[100];
-        sprintf(str, "%6d %6d %6d %6d %6d %6d", (int)data.a.x, (int)data.a.y, (int)data.a.z, (int)data.g.x, (int)data.g.y,(int) data.g.z);
+//        sprintf(str, "%6d %6d %6d %6d %6d %6d", (int)data.a.x, (int)data.a.y, (int)data.a.z, (int)data.g.x, (int)data.g.y,(int) data.g.z);
+//        sprintf(str, "%6d %6d %6d", (int)data.g.x, (int)data.g.y,(int) data.g.z);
+        sprintf(str, "%6d", (int)data.g.z);
         Serial.println(str);
     }, myOS.convertMs(30));
 }

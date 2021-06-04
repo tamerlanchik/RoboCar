@@ -24,6 +24,8 @@ public class MessageManager {
 
     public static final byte CommandCodes[] = new byte[]{'\0', 'K', 'O', 'M', 'L', 'N'};
 
+    public static double mDiffK = 0.3;
+
     public static class Message {
         public Command cmd;
         public byte[] data;
@@ -74,8 +76,7 @@ public class MessageManager {
 
     public static Point preparePoint(Point src) {
         int basis = src.y;
-        final double k = 0.8;
-        double diff = src.x * k;
+        double diff = src.x * mDiffK;
         Point p = new Point();
         if (Math.abs(basis) < 50) {
             p.x = src.x;

@@ -14,7 +14,7 @@
     #include <Chassis.h>
     #include <Model.h>
     #include <Communicator.h>
-    #include <Tachometr.h>
+//    #include <Tachometr.h>
     #include <leOS2.h>
     #include <Config.h>
     #include <Vector.h> // грязный хак - platformio не находит в Communicator.h
@@ -32,7 +32,7 @@ public:
     Communicator* comm;
     Chassis* chassis;
     Model* mModel;
-    Tachometr* tachometer[2];
+//    Tachometr* tachometer[2];
     leOS2 os;
 public:
     Controller();
@@ -43,7 +43,7 @@ public:
     virtual int ping(long int);
     virtual Communicator* getCommunicator();
     virtual Chassis* getChassis();
-    virtual Tachometr* getTachometr();
+//    virtual Tachometr* getTachometr();
 };
 
 enum class Commands {PING='A'};

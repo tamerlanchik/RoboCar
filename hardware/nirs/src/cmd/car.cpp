@@ -15,8 +15,9 @@ typedef leOS2Mock leOS2;
 #else
 #include <leOS2.h>
 #endif
-#include <car/Tachometr/Tachometr.h>
+//#include <car/Tachometr/Tachometr.h>
 #include <car/Config/Config.h>
+#include <IMU.h>
 
 Controller* controller;
 Logger* Log;
@@ -40,7 +41,8 @@ struct MovementListener : public Listener {
         int a = atoi(a_s.c_str());
         int b = atoi(b_s.c_str());
 
-        controller->getChassis()->setValue2(a, b);
+//        controller->getChassis()->setValue2(a, b);
+        controller->getChassis()->setGazDiffValues(a, b);
         Log->println('d', a, b);
     }
 };
@@ -48,7 +50,15 @@ Config cfg;
 TachometrConfig tachometrConfig;
 CommunicatorConfig communicatorConfig;
 ChassisConfig chassisConfig;
+IMU* mpu;
 int gas = 50;
+
+struct Ctrl {
+    int val_;
+    long int t_;
+} control{0,0};
+
+void pidStep();
 
 void setup(){
     communicatorConfig = {17, 'K', true, 57600};
@@ -59,6 +69,17 @@ void setup(){
     Log = Log ? Log : new Logger();
     controller = controller ? controller : new Controller();
     pinMode(13, OUTPUT);
+
+    control.t_ = micros();
+
+    mpu = new IMU(IMU::getDefaultConfig());
+    if (mpu->init()) {
+        while(true) {
+            Log->println('e', "Cannot init IMU");
+            delay(2000);
+        }
+    }
+
     controller->getCommunicator()->addListener('K', new ListenerWrapper([](Message& msg){
         String s = String((const char*)msg.getLoad());
         int divider = s.indexOf(' ');
@@ -87,19 +108,21 @@ void setup(){
          controller->getCommunicator()->read(true);
      }, 1);
 
-    controller->os.addTask([]() {
-//        TachoData data = controller->getTachometr()->getData(false);
-        TachoData data1 = controller->tachometer[0]->getData(false);
-        TachoData data2 = controller->tachometer[1]->getData(false);
-//        Log->println('_', data1.v, data2.v, data1.a, data2.a);
-//        float v1 = data1.v, v2 = data2.v;
-//        float e1 = target - v1, e2 = target - v2;
-//        I[0] += e1; I[1] += e2;
-//        float contr1 = e1 * 1 + I[0]*0.05, contr2 = e2*1 + I[1]*0.05;
-//        signal[0] += contr1;
-//        signal[1] += contr2;
-//        controller->chassis->setValue2(signal[0], signal[1]);
-    }, 2);
+//    controller->os.addTask([]() {
+////        TachoData data = controller->getTachometr()->getData(false);
+//
+//        TachoData data1 = controller->tachometer[0]->getData(false);
+//        TachoData data2 = controller->tachometer[1]->getData(false);
+//
+////        Log->println('_', data1.v, data2.v, data1.a, data2.a);
+////        float v1 = data1.v, v2 = data2.v;
+////        float e1 = target - v1, e2 = target - v2;
+////        I[0] += e1; I[1] += e2;
+////        float contr1 = e1 * 1 + I[0]*0.05, contr2 = e2*1 + I[1]*0.05;
+////        signal[0] += contr1;
+////        signal[1] += contr2;
+////        controller->chassis->setValue2(signal[0], signal[1]);
+//    }, 2);
 
 //    controller->os.addTask([](){
 //        Message telemetry = Message{'O', "Fuck123"};
@@ -108,37 +131,76 @@ void setup(){
 //    }, 30);
 
 
-    controller->os.addTask([]() {
-        struct Data { int gas; float speed; unsigned long tests; unsigned long changeTime; };
-        static Data L{0, 0, 0, 0}, R{0, 0, 0, 0};
+//    controller->os.addTask([]() {
+//        struct Data { int gas; float speed; unsigned long tests; unsigned long changeTime; };
+//        static Data L{0, 0, 0, 0}, R{0, 0, 0, 0};
+//
+//        static unsigned long last = 0;
+//
+//        if (L.gas > 255 || R.gas > 255) {
+////            Log->println('d', "End");
+//            return;
+//        }
+//        if (millis() - L.changeTime > 5000) {
+//            L.speed /= L.tests; L.tests = 0;
+//            R.speed /= R.tests; R.tests = 0;
+//            Log->println('_', L.gas, L.speed, R.speed);
+//            L.gas += 5; R.gas = L.gas;
+//            L.changeTime = millis();
+//            R.changeTime = L.changeTime;
+//        }
+//        TachoData l = controller->tachometer[0]->getData(true);
+//        TachoData r = controller->tachometer[1]->getData(true);
+//        if (millis() - last > 5) {
+//            last = millis();
+//            L.speed += l.v; L.tests++;
+//            R.speed += r.v; R.tests++;
+//        }
+//    }, 1);
 
-        static unsigned long last = 0;
-
-        if (L.gas > 255 || R.gas > 255) {
-//            Log->println('d', "End");
-            return;
-        }
-        if (millis() - L.changeTime > 5000) {
-            L.speed /= L.tests; L.tests = 0;
-            R.speed /= R.tests; R.tests = 0;
-            Log->println('_', L.gas, L.speed, R.speed);
-            L.gas += 5; R.gas = L.gas;
-            L.changeTime = millis();
-            R.changeTime = L.changeTime;
-        }
-        TachoData l = controller->tachometer[0]->getData(true);
-        TachoData r = controller->tachometer[1]->getData(true);
-        if (millis() - last > 5) {
-            last = millis();
-            L.speed += l.v; L.tests++;
-            R.speed += r.v; R.tests++;
-        }
-    }, 1);
+//    controller->os.addTask([](){
+//       pidStep();
+//
+//
+////        char str[100];
+////        sprintf(str, "%6d %6d %6d %6d %6d %6d", (int)data.a.x, (int)data.a.y, (int)data.a.z, (int)data.g.x, (int)data.g.y,(int) data.g.z);
+////        Message msg = Message{'O', str};
+////        controller->getCommunicator()->send(msg);
+////        Serial.println(str);
+//    }, controller->os.convertMs(16));
 }
 
+long int i = millis();
+
+void pidStep() {
+    i++;
+    auto data = mpu->read();
+    long int t = micros();
+    int err = -(data.g.z - 2);
+
+    auto integr = control.val_ + 3.0*err*(t-control.t_)/10e6;
+    const float Kp = 0.05, Ki = 0.1;
+
+    int U = Kp * err + Ki * integr;
+    control.t_ = t;
+    control.val_ = integr;
+
+    auto values = controller->getChassis()->getDifferential(controller->getChassis()->_gaz, U);
+    controller->getChassis()->setValue2(values.L, values.R);
+
+//    if (micros() - i > 10000) {
+//        i = micros();
+////        Log->println('d', control.val_, " ", err);
+//    }
+    Log->println(' ', control.val_, " ", err);
+
+}
 
 void loop() {
 #ifdef UNIT_TEST
     if (--iteratons) { return; }
 #endif
+
+    pidStep();
+
 }
