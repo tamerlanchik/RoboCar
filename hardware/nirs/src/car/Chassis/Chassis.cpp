@@ -108,12 +108,14 @@ void Chassis::setMotorValues(Movement movement){
 }
 
 Chassis::MotorValues Chassis::getDifferential(int gaz, int rotation) {
-    int dist = 255 - (abs(gaz) + abs(rotation));
+    int dist = 255 - (abs(gaz) + abs(rotation/2));
     if (dist > 0) {
         dist = 0;
     }
     int diffX = rotation/2 + dist;
     int diffY = rotation/2 - dist;
+    diffX = gaz >= 0 ? diffX : -diffX;
+    diffY = gaz >= 0 ? diffY : -diffY;
 //    Log->println('i', gaz, " ", diffX, " ", diffY);
     return MotorValues{gaz + diffX, gaz - diffY};
 }

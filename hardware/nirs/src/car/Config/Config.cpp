@@ -18,5 +18,28 @@ void Config::update(const String* name, const char* value) {
         tacho->winSizeA = atoi(value);
     } else if(*name == "ch.eps") {
         chassis->epsMov = atof(value);
+    } else {
+        if(control->update(name, value)) {
+            return;
+        }
     }
+}
+
+bool ControlConfig::update(const String *name, const char *value) {
+    if (*name == "ctrl.Kp") {
+        Kp = atof(value);
+    } else if (*name == "ctrl.Ki") {
+        Ki = atof(value);
+    } else if(*name == "ctrl.Kd") {
+        Kd = atof(value);
+    } else if (*name == "ctrl.errAddFactor") {
+        errIntegrAddFactor = atof(value);
+    } else if (*name == "ctrl.timeIntegrDivider") {
+        timeIntegrDivider = pow(10, atoi(value));
+    } else if(*name == "ctrl.AngSpFct") {
+        wFactor = atof(value);
+    } else {
+        return false;
+    }
+    return true;
 }

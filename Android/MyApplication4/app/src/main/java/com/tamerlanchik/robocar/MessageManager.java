@@ -75,24 +75,23 @@ public class MessageManager {
     }
 
     public static Point preparePoint(Point src) {
-        int basis = src.y;
+        int basis = -src.y;
         double diff = src.x * mDiffK;
         Point p = new Point();
-        if (Math.abs(basis) < 50) {
-            p.x = src.x;
-            p.y = -src.x;
-            return p;
-        }
-        int dist = Math.min(255 - (int)(Math.abs(basis) + Math.abs(diff)), 0);
-        double diffX = diff/2 + dist;
-        double diffY = diff/2 - dist;
+//        if (Math.abs(basis) < 50) {
+//            p.x = src.x;
+//            p.y = -src.x;
+//            return p;
+//        }
+//        int dist = Math.min(255 - (int)(Math.abs(basis) + Math.abs(diff)), 0);
+//        double diffX = diff/2 + dist;
+//        double diffY = diff/2 - dist;
+//
+//        p.x = basis + (int)diffX;
+//        p.y = basis - (int)diffY;
 
-        p.x = basis + (int)diffX;
-        p.y = basis - (int)diffY;
-
-//        Point p = new Point();
-//        p.x = basis + (int)diff;
-//        p.y = basis - (int)diff;
+        p.x = -src.y;
+        p.y = src.x;
         return p;
     }
 
@@ -101,6 +100,10 @@ public class MessageManager {
 
         public Storage() {
             data = new ArrayList<>(1024);
+        }
+
+        public void append(byte dat) {
+            data.add(dat);
         }
 
         public void append(byte[] dat, int start, int end) {
@@ -119,46 +122,79 @@ public class MessageManager {
         if (mess.length == 0) {
             return;
         }
-        int start = 0;
-        while(true) {
-            if (start + 1 >= mess.length) {
-                return;
-            }
-            int idx = findInArray(mess, (byte) '\n', start, mess.length);
-            mStorage.append(mess, start, idx - 1);
-            if (idx == -1) {
-                return;
-            }
 
+        for (byte b : mess) {
+            if(b != '\n') {
+                if (b != '$' && b != '\r') {
+                    mStorage.append(b);
+                }
+                continue;
+            }
+            if (mStorage.data.size() == 0) {
+                continue;
+            }
             Message msg = new Message();
+
             for (int i = 0; i < CommandCodes.length; ++i) {
                 if (mStorage.data.get(0) == CommandCodes[i]) {
                     msg.cmd = Command.values()[i];
                     break;
                 }
             }
-//            if (msg.cmd == null || msg.cmd == Command.VOID) {
-//                mListener.onReceive(msg);
-//                continue;
-//            }
-            int end = mStorage.data.size()-1;
-            if (mStorage.data.get(mStorage.data.size()-1) == '$') {
-                end--;
+
+            int start = 2;
+            if (msg.cmd == null || msg.cmd == Command.VOID) {
+                start = 0;
             }
-            if (mStorage.data.size() < 3) {
-                mStorage = new Storage();
-                continue;
+            msg.data = new byte[mStorage.data.size()];
+            for(int i = start; i < mStorage.data.size(); ++i) {
+                msg.data[i] = mStorage.data.get(i);
             }
-            msg.data = new byte[mStorage.data.size() - 1];
-            int i = 0;
-            for (Byte b : mStorage.data.subList(2, end+1)) {
-                msg.data[i++] = b;
-            }
-            //        msg.data = (byte[]) mStorage.data.subList(2, mStorage.data.size()).toArray();
+
             mListener.onReceive(msg);
             mStorage = new Storage();
-            start = idx + 1;
         }
+
+//        int start = 0;
+//        while(true) {
+//            if (start + 1 >= mess.length) {
+//                return;
+//            }
+//            int idx = findInArray(mess, (byte) '\n', start, mess.length);
+//            mStorage.append(mess, start, idx - 1);
+//            if (idx == -1) {
+//                return;
+//            }
+//
+//            Message msg = new Message();
+//            for (int i = 0; i < CommandCodes.length; ++i) {
+//                if (mStorage.data.get(0) == CommandCodes[i]) {
+//                    msg.cmd = Command.values()[i];
+//                    break;
+//                }
+//            }
+////            if (msg.cmd == null || msg.cmd == Command.VOID) {
+////                mListener.onReceive(msg);
+////                continue;
+////            }
+//            int end = mStorage.data.size()-1;
+//            if (mStorage.data.get(mStorage.data.size()-1) == '$') {
+//                end--;
+//            }
+//            if (mStorage.data.size() < 3) {
+//                mStorage = new Storage();
+//                continue;
+//            }
+//            msg.data = new byte[mStorage.data.size() - 1];
+//            int i = 0;
+//            for (Byte b : mStorage.data.subList(2, end+1)) {
+//                msg.data[i++] = b;
+//            }
+//            //        msg.data = (byte[]) mStorage.data.subList(2, mStorage.data.size()).toArray();
+//            mListener.onReceive(msg);
+//            mStorage = new Storage();
+//            start = idx + 1;
+//        }
     }
 
     private static void copyArrayToList(List<Byte> l, byte[] d){
