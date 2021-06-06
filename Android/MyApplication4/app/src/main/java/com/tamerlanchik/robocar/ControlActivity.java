@@ -287,8 +287,6 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
 //        }
     }
 
-    int i = 0;
-
     @Override
     public void onReceive(MessageManager.Message msg) {
         if (msg == null) {
@@ -385,12 +383,12 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
             mGraph.getViewport().setMaxX(0);
             mGraph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 
-//            GridLabelRenderer gridLabel = mGraph.getGridLabelRenderer();
-//            gridLabel.setVerticalAxisTitle(title);
-            mGraph.setTitle(title);
+            GridLabelRenderer gridLabel = mGraph.getGridLabelRenderer();
+            gridLabel.setVerticalAxisTitle(title);
+//            mGraph.setTitle(title);
 
             GridLabelRenderer glr = mGraph.getGridLabelRenderer();
-            glr.setPadding(80); // should allow for 3 digits to fit on screen
+            glr.setPadding(40); // should allow for 3 digits to fit on screen
             glr.setTextSize(20);
         }
 
@@ -538,16 +536,10 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
     }
 
     private void sendMovement(Point value) {
-//        value.x = (int)(Math.signum(value.x) * Math.max(0, Math.abs(value.x) - 70));
-//        if (Math.abs(value.y) < 70) {
-//            value.y = 0;
-//        }
         if (Math.abs(value.x) < 40) {
             value.x = 0;
         }
-//        value.x = (int)(value.x * 1.2);
         value.y = (int)(value.y * 1.4);
-//        mLogger.write("Values - X: " + Integer.toString(value.x) + " Y: " + Integer.toString(value.y));
         if (send(MessageManager.buildJoystickTextMessage(value))) {
             runOnUiThread(() -> setMovementValue(mCommandValuesTextView, MessageManager.preparePoint(value)));
         }
@@ -556,6 +548,7 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
     @Override
     public void onDestroy() {
         mLogger.write("onDestroy");
+        mConnectSwitch.setChecked(falseпше );
         mSerial.onDestroy();
         super.onDestroy();
     }
@@ -570,7 +563,7 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
     @Override
     public void onStop() {
         mLogger.write("onStop");
-        mConnectSwitch.setChecked(false);
+//        mConnectSwitch.setChecked(false);
         super.onStop();
     }
 
@@ -578,7 +571,7 @@ public class ControlActivity extends AppCompatActivity implements UICallback, Se
     public void onResume() {
         super.onResume();
         mLogger.write("onResume");
-        mConnectSwitch.setChecked(true);
+//        mConnectSwitch.setChecked(true);
     }
 
 

@@ -135,7 +135,7 @@ void pidStep() {
     auto data = mpu->read();
     long int t = micros();
     long int target = -1*c.wFactor * controller->getChassis()->_diff;
-    long int err = target - (data.g.z - 6);
+    long int err = target - (data.g.z - 0);
 
 //    auto integr = control.val_ + 3.0*err*(t-control.t_)/10e6;
     auto integr = control.val_ + c.errIntegrAddFactor*err*(t-control.t_)/c.timeIntegrDivider;
@@ -167,7 +167,8 @@ void pidStep() {
         U, err, control.val_, gyro, controller->getChassis()->_gaz, controller->getChassis()->_diff
     );
     Message msg = Message('O', val);
-    controller->getCommunicator()->send(msg);
+    Log->println('d', gyro);
+//    controller->getCommunicator()->send(msg);
 
 }
 
