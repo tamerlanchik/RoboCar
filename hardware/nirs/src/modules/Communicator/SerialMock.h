@@ -4,7 +4,7 @@
 
 #ifndef ROBOCAR_SERIALMOCK_H
 #define ROBOCAR_SERIALMOCK_H
-#include <modules/Logger/Logger.hpp>
+#include <modules/Logger/Logger.h>
 
 extern Logger* Log;
 class SerialMock{

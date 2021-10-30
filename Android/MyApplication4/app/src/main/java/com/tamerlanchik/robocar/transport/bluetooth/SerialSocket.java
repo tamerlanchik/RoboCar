@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.tamerlanchik.robocar.Constants;
+import com.tamerlanchik.robocar.transport.bluetooth.Constants;
 
 import java.io.IOException;
 import java.security.InvalidParameterException;
@@ -57,11 +57,12 @@ public class SerialSocket implements Runnable {
     }
 
     void disconnect() {
-        listener = null; // ignore remaining data and errors
         // connected = false; // run loop will reset connected
         if(socket != null) {
             try {
                 socket.close();
+                listener.onSerialConnect(false);
+                listener = null; // ignore remaining data and errors
             } catch (Exception ignored) {
             }
             socket = null;
@@ -70,6 +71,7 @@ public class SerialSocket implements Runnable {
             context.unregisterReceiver(disconnectBroadcastReceiver);
         } catch (Exception ignored) {
         }
+        listener = null; // ignore remaining data and errors
     }
 
     void write(byte[] data) throws IOException {
@@ -84,7 +86,7 @@ public class SerialSocket implements Runnable {
             socket = device.createRfcommSocketToServiceRecord(BLUETOOTH_SPP);
             socket.connect();
             if(listener != null)
-                listener.onSerialConnect();
+                listener.onSerialConnect(true);
         } catch (Exception e) {
             if(listener != null)
                 listener.onSerialConnectError(e);

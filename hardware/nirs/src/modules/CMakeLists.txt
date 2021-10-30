@@ -1,6 +1,6 @@
-if (${CMAKE_BUILD_TYPE} STREQUAL Debug)
-    add_compile_definitions(UNIT_TEST)
-endif()
+#if (${CMAKE_BUILD_TYPE} STREQUAL Debug)
+#    add_compile_definitions(UNIT_TEST)
+#endif()
 include_directories(
         ByteArray
         config
@@ -11,7 +11,7 @@ include_directories(
 #        RadioExtended
 #        RadioMessage
 )
-add_library(Modules SHARED ByteArray/ByteArray.cpp Logger/Logger.hpp
+add_library(Modules STATIC ByteArray/ByteArray.cpp Logger/Logger.cpp Logger/Logger.h
         Math/Der.hpp
         Math/Other.hpp
 #        RadioExtended/RadioExtended.cpp RadioMessage/RadioMessage.cpp

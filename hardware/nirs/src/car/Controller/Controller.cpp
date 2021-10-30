@@ -4,7 +4,7 @@
     #include <car/Model/Model.h>
     #include <modules/Communicator/SerialCommunicator.h>
 #else
-    #include <Logger.hpp>
+    #include <Logger.h>
     #include <Model.h>
     #include "SerialCommunicator.h"
 #endif
@@ -22,16 +22,16 @@ Controller::Controller(){
 //    mRadioMessage = new RadioMessage();
     mModel = new Model();
 
-    tachometer[0] = new Tachometr(0);
-    tachometer[0]->start<0>(INTERRUPT0);
-
-    tachometer[1] = new Tachometr(1);
-    tachometer[1]->start<1>(INTERRUPT1);
-
-    os.addTask([]() {
-        for (int i = 0; i < 2; i++)
-            Tachometr::handleStopFlag(i);
-    }, 9);
+//    tachometer[0] = new Tachometr(0);
+//    tachometer[0]->start<0>(INTERRUPT0);
+//
+//    tachometer[1] = new Tachometr(1);
+//    tachometer[1]->start<1>(INTERRUPT1);
+//
+//    os.addTask([]() {
+//        for (int i = 0; i < 2; i++)
+//            Tachometr::handleStopFlag(i);
+//    }, 9);
 
     comm = new SerialCommunicator(communicatorConfig.baudrate,
             communicatorConfig.cmdCount,
@@ -104,8 +104,8 @@ int Controller::ping(long int time) {
 
 Communicator* Controller::getCommunicator() { return comm; }
 
-Tachometr* Controller::getTachometr() {
-    return tachometer[0];
-}
+//Tachometr* Controller::getTachometr() {
+//    return tachometer[0];
+//}
 
 Chassis* Controller::getChassis() { return chassis; };

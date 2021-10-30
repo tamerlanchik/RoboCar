@@ -4,17 +4,16 @@
 #include <Arduino.h>
 #ifdef UNIT_TEST
     #include <modules/CircularBuffer/CircularBuffer.h>
-    #include <car/config.h>
     #include <modules/Logger/Logger.hpp>
     #include <modules/Math/Math.h>
 template<typename T> constexpr T max(T a, T b) { return a >= b ? a : b; }
 template<typename T> constexpr T min(T a, T b) { return a <= b ? a : b; }
 #else
     #include <CircularBuffer.h>
-    #include <config.h>
-    #include <Logger.hpp>
+    #include <Logger.h>
     #include <Math.h>
 #endif
+#include <Config.h>
 
 extern Logger* Log;
 extern TachometrConfig tachometrConfig;

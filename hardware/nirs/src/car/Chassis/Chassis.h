@@ -28,6 +28,10 @@ char add(char high_part, char low_part);
 class Chassis {
 public:
     enum class MotorMov {HALT=0, FORWARD, BACKWARD};
+    struct MotorValues {
+        int L;
+        int R;
+    };
     static const Movement movements[6];
     static const Movement motorMovements[3];
 
@@ -40,6 +44,12 @@ public:
 //    void setValue(int[]);
     virtual void setMotorValues(Movement);
 
+    virtual MotorValues getDifferential(int gaz, int rotation);
+
+    virtual void setGazDiffValues(int,int);
+
+    int _gaz;
+    int _diff;
 protected:
     virtual void writeMotors(Movement);
 };

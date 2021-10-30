@@ -9,26 +9,17 @@
 
 #ifdef UNIT_TEST
     #include <iostream>
-    #include <car/config.h>
 #else
     #include <Arduino.h>
-    #include <config.h>
 #endif
+//#include <car/Config/Config.h>
+#include <Config.h>
 
 extern CommunicatorConfig communicatorConfig;
 
 class Logger {
 public:
-    Logger() : divider(" "), prev_divider(divider) {
-        #ifdef UNIT_TEST
-//        println('i', "Init serial");
-        #else
-        Serial.begin(communicatorConfig.baudrate);
-        delay(200);
-        #endif
-        println('i', "Init serial");
-    }
-
+    Logger();
     template<typename ...Params>
     void println(const char level, Params... params) {
         const char *prefix;
@@ -46,9 +37,9 @@ public:
 //  Рекурсивная функция печати на шаблонах.
     template<typename T, typename... Params>
     void print_rec(T value, Params... params) {
-        #ifdef UNIT_TEST
+#ifdef UNIT_TEST
         std::cout << value << divider;
-        #else
+#else
         Serial.print(value);
         Serial.print(divider);
 #       endif
@@ -58,25 +49,20 @@ public:
 //  для окончания рекурсии
     template<typename T>
     void print_rec(T value) {
-        #ifdef UNIT_TEST
+#ifdef UNIT_TEST
         std::cout << value;
-        #else
+#else
         Serial.print(value);
-        #endif
+#endif
     }
 
-    void print_rec() {}
+//    void print_rec() {}
 
 //  Для удобства записи логгирующих данных ставим разделителем пробел
 //  Для вывода парсируемой информации разделитель убираем
-    void setDivider(const char* d) {
-        prev_divider = divider;
-        divider = d;
-    }
+    void setDivider(const char* d);
 
-    void rollbackDivider() {
-        divider = prev_divider;
-    }
+    void rollbackDivider();
 
 private:
     const char* divider;        // текущий разделитель

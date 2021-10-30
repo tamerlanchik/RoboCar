@@ -4,23 +4,27 @@
 #ifdef UNIT_TEST
     #include "modules/Logger/Logger.hpp"
     #include "car/Chassis/Chassis.h"
-    #include <car/config.h>
     #include <car/Model/Model.h>
     #include <modules/Communicator/Communicator.h>
     #include <car/Tachometr/Tachometr.h>
     #include <leOS2Mock/leOS2Mock.h>
     typedef leOS2Mock leOS2;
 #else
-    #include <Logger.hpp>
+    #include <Logger.h>
     #include <Chassis.h>
-    #include <config.h>
     #include <Model.h>
     #include <Communicator.h>
-    #include <Tachometr.h>
+//    #include <Tachometr.h>
     #include <leOS2.h>
+    #include <Config.h>
     #include <Vector.h> // грязный хак - platformio не находит в Communicator.h
 #endif
 #include <Arduino.h>
+//#include "car/Chassis/Chassis.h"
+//#include <car/Model/Model.h>
+//#include <modules/Communicator/Communicator.h>
+//#include <car/Tachometr/Tachometr.h>
+
 
 class Controller{
 //protected:
@@ -28,7 +32,7 @@ public:
     Communicator* comm;
     Chassis* chassis;
     Model* mModel;
-    Tachometr* tachometer[2];
+//    Tachometr* tachometer[2];
     leOS2 os;
 public:
     Controller();
@@ -39,7 +43,7 @@ public:
     virtual int ping(long int);
     virtual Communicator* getCommunicator();
     virtual Chassis* getChassis();
-    virtual Tachometr* getTachometr();
+//    virtual Tachometr* getTachometr();
 };
 
 enum class Commands {PING='A'};

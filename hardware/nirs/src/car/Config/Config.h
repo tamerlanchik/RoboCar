@@ -48,12 +48,23 @@ struct ChassisConfig {
     float epsMov;   // мертвый ход джойстика для диапазона [0; 255]
 };
 
+struct ControlConfig {
+    float Kp;
+    float Ki;
+    float Kd;
+    float errIntegrAddFactor;
+    long int timeIntegrDivider;
+    float wFactor;
+
+    bool update(const String* name, const char* value);
+};
 // объединенный конфиг
 class Config {
 public:
     CommunicatorConfig* comm;
     TachometrConfig* tacho;
     ChassisConfig* chassis;
+    ControlConfig* control;
     void update(const String* name, const char* value);
 };
 
