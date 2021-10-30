@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1613991068 "main.aux" "main.bbl" "main" 1613991071
+["bibtex main"] 1613991068 "main.aux" "main.bbl" "main" 1613991097
   "./utf8gost705u.bst" 1613856350 30556 f199395139a406fa1bbc5650c70663f8 ""
   "biblio.bib" 1613858360 1740 5132f7c71237e33dd3def7abbdfd09bb ""
   "main.aux" 1613991071 17958 9701e791ad77a025824528a444a2de8f "pdflatex"
   (generated)
-  "main.bbl"
   "main.blg"
-["pdflatex"] 1613991068 "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf" "main" 1613991071
+  "main.bbl"
+["pdflatex"] 1613991068 "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf" "main" 1613991097
   "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.aux" 1613991071 17958 9701e791ad77a025824528a444a2de8f ""
   "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.tex" 1613991065 57824 7f7ca6cf7782b86e4aecb5b8886c843d ""
   "/Users/a.kochnov/Library/texlive/2020/texmf-var/fonts/tfm/lh/lh-t2a/labx1440.tfm" 1602432667 3304 6a543c07045572737981351171e0505e ""
@@ -161,8 +161,8 @@
   "mystyle.sty" 1613854032 1770 baf1d9a20c00b0d14b05854f01e2771e ""
   (generated)
   "main.pdf"
-  "main.log"
   "main.toc"
-  "main.aux"
   "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.pdf"
   "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/docs/7_sem/latex/main.log"
+  "main.log"
+  "main.aux"

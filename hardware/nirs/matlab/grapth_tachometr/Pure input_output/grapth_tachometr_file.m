@@ -14,9 +14,7 @@ ylim([-1 1]);
 
 
 function [t, x, v, a] = get()
-    root = "/Users/a.kochnov/Documents/Personal/RoboCar/hardware/nirs/fstreams/"
-    file = root + "f1_output.txt"
-    from_cpp = fopen(file, 'r');
+    from_cpp = fopen("../../fstreams/f1_output.txt", 'r');
     assert(from_cpp ~= -1);
     data = fscanf(from_cpp, '%d %f %f %f\n', [4 Inf]);
     t = data(1, :)';
